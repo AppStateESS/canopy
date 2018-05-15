@@ -8,7 +8,8 @@ const sourceSassDir = path.resolve(__dirname, 'scss')
 
 module.exports = {
   entry: {
-    'js/bundle.js': sourceDir + '/index.js',
+    'js/custom.js': sourceDir + '/index.js',
+    'js/base.js': sourceDir + '/base.js',
     'css/custom.css': sourceSassDir + '/main.scss',
   },
   output: {
@@ -16,7 +17,7 @@ module.exports = {
     filename: "[name]",
   },
   resolve: {
-    extensions: ['.js', '.jsx',]
+    extensions: ['.js']
   },
   plugins: [
     new ExtractTextPlugin('css/custom.css', {allChunks: true}),
@@ -24,10 +25,21 @@ module.exports = {
   ],
   externals: {
     $: 'jQuery',
-    EntryForm: 'EntryForm',
   },
   module: {
     rules: [
+      {
+        test: require.resolve('jquery'),
+        use: [
+          {
+            loader: 'expose-loader',
+            options: 'jQuery',
+          }, {
+            loader: 'expose-loader',
+            options: '$',
+          },
+        ],
+      },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
@@ -50,19 +62,6 @@ module.exports = {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         exclude: '/node_modules/',
         loader: 'url-loader?limit=100000',
-      }, {
-        test: /\.jsx?$/,
-        enforce: 'pre',
-        loader: 'jshint-loader',
-        exclude: '/node_modules/',
-        include: destDir,
-      }, {
-        test: /\.jsx?/,
-        include: sourceDir,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env', 'react',]
-        },
       },
     ]
   },

@@ -1,5 +1,4 @@
 var webpack = require('webpack')
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 var Promise = require('es6-promise').polyfill()
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -18,19 +17,10 @@ module.exports = {
     filename: "[name]"
   },
   resolve: {
-    extensions: ['.js', '.jsx',]
+    extensions: ['.js']
   },
   plugins: [
     new ExtractTextPlugin('css/custom.css', {allChunks: true}),
-    new BrowserSyncPlugin({
-      host: 'localhost',
-      notify: false,
-      port: 3000,
-      files: [
-        './scss/*.scss', './theme.tpl',
-      ],
-      proxy: 'localhost/phpwebsite/'
-    }),
     new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
   ],
   externals: {
@@ -71,19 +61,6 @@ module.exports = {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         exclude: '/node_modules/',
         loader: 'url-loader?limit=100000',
-      }, {
-        test: /\.jsx?$/,
-        enforce: 'pre',
-        loader: 'jshint-loader',
-        exclude: '/node_modules/',
-        include: destDir,
-      }, {
-        test: /\.jsx?/,
-        include: sourceDir,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env', 'react',]
-        },
       },
     ]
   },

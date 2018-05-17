@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Bootstrap 4 theme for Canopy",
   "scripts": {
-    "dev": "webpack --config webpack.config.js -d --watch",
-    "prod": "webpack --config webpack.production.config.js -p"
+    "dev": "webpack --mode=development --config webpack.config.js --watch",
+    "prod": "webpack --mode=production --config webpack.config.js"
   },
   "repository": {
     "type": "git",

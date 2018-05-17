@@ -41,9 +41,6 @@ class Menu {
         }
 
         $GLOBALS['Pinned_Menus'] = $result;
-        \Layout::addJSHeader("<script type='text/javascript' src='" .
-                PHPWS_SOURCE_HTTP . "javascript/responsive_img/responsive-img.min.js'></script>",
-                81);
         foreach ($result as $menu) {
             if ($menu->assoc_image && !\PHPWS_Core::atHome()) {
                 Layout::set($menu->showAssocImage(), 'menu', 'image');
@@ -67,7 +64,6 @@ class Menu {
         $link_list = self::getLinkList();
 
         if ($key && !$key->isDummy(true)) {
-            javascript('jquery');
             \Layout::addJSHeader('<script type="text/javascript" src="' .
                     PHPWS_SOURCE_HTTP . 'mod/menu/javascript/administrate/minilink.js"></script>');
             $found = false;
@@ -209,9 +205,6 @@ class Menu {
      */
     public static function show()
     {
-        \Layout::addJSHeader("<script type='text/javascript' src='" .
-                PHPWS_SOURCE_HTTP . "javascript/responsive_img/responsive-img.min.js'></script>",
-                81);
         $seen = array();
 
         $key = \Canopy\Key::getCurrent();

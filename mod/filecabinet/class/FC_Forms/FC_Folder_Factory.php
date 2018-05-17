@@ -77,7 +77,6 @@ abstract class FC_Folder_Factory
 
     protected function loadJavascript()
     {
-        javascript('jquery');
         javascript('dropzone');
         javascript('authkey', null, null, true);
         $accepted_files = $this->getAllowedFileTypes();

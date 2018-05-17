@@ -61,7 +61,6 @@ class User_Settings {
     public static function userForm(PHPWS_User $user, $message = NULL)
     {
         require_once PHPWS_SOURCE_DIR . 'core/class/Time.php';
-        javascript('jquery');
         $form = new PHPWS_Form;
 
         $form->addHidden('module', 'users');

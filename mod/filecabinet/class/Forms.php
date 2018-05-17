@@ -21,7 +21,6 @@ class Cabinet_Form
 
     public function getFolders($type)
     {
-        javascript('jquery');
         $src = PHPWS_SOURCE_HTTP . 'mod/filecabinet/javascript/folder_options/folders.js';
         \Layout::addJSHeader("<script type='text/javascript' src='$src'></script>", 'folder-options');
 
@@ -273,7 +272,6 @@ class Cabinet_Form
     public function folderContents($folder)
     {
         $links = array();
-        javascript('jquery');
         $src = PHPWS_SOURCE_HTTP . 'mod/filecabinet/javascript/folder_options/contents.js';
         \Layout::addJSHeader("<script type='text/javascript' src='$src'></script>", 'folder-options');
         Layout::addStyle('filecabinet');

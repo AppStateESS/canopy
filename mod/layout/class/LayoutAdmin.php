@@ -286,7 +286,6 @@ class Layout_Admin
         $template['CLEAR_CACHE'] = PHPWS_Text::secureLink('Clear cache', 'layout', $vars, null, null, 'btn btn-primary');
         $template['CLEAR_CACHE_DESC'] = 'Clears all Cache Lite files. Good to try if module updates do not display.';
 
-        javascript('jquery');
         $script = '<script type="text/javascript" src="' . PHPWS_SOURCE_HTTP . 'mod/layout/javascript/move_boxes.js"></script>';
         \Layout::addJSHeader($script, 'moveboxes');
         $modal = new \phpws2\Modal('box-move', '', 'Move boxes');

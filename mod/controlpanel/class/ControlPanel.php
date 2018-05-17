@@ -425,7 +425,6 @@ class PHPWS_ControlPanel
             return $reg_link->get();
         }
 
-        javascript('jquery');
         javascriptMod('controlpanel', 'subpanel');
 
         $reg_link->setId('cp-panel-link');

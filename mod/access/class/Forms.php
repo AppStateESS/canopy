@@ -21,7 +21,6 @@ class Access_Forms {
         $button = '<button class="btn btn-success" id="save-shortcut">Save</button>';
         $modal->addButton($button);
         \Layout::add((string) $modal);
-        javascript('jquery');
         \Layout::includeJavascript('mod/access/javascript/access.min.js');
 
         \phpws\PHPWS_Core::initModClass('access', 'Shortcut.php');

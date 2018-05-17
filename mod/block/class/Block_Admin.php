@@ -216,7 +216,6 @@ class Block_Admin
 
     public static function edit(Block_Item $block, $js = FALSE)
     {
-        javascript('jquery');
         javascript('ckeditor');
 
         $form = new PHPWS_Form('block-form');

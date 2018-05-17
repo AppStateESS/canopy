@@ -6,7 +6,6 @@
  * @package Global
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
-javascript('jquery');
 
 $wrap_header = $wrap_body = true;
 

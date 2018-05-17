@@ -1369,7 +1369,6 @@ class Calendar_Admin
 
     public static function includeScheduleJS()
     {
-        javascript('jquery');
         $filename = PHPWS_SOURCE_HTTP . 'mod/calendar/javascript/schedule.js';
         $authkey = \Current_User::getAuthKey();
         $script = "<script type='text/javascript' src='$filename'></script>" .
@@ -1393,7 +1392,6 @@ class Calendar_Admin
 
     public static function includeEventJS()
     {
-        javascript('jquery');
         self::includeAuthkey();
         $filename = PHPWS_SOURCE_HTTP . 'mod/calendar/javascript/event.js';
         $script = "<script type='text/javascript' src='$filename'></script>";

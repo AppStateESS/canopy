@@ -55,7 +55,6 @@ class PS_Forms
      */
     public function pageLayout()
     {
-        javascript('jquery');
         javascript('jquery_ui');
         javascript('ckeditor');
 
@@ -140,7 +139,6 @@ class PS_Forms
 
     private function listOrphans($orphans)
     {
-        javascript('jquery');
         javascriptMod('pagesmith', 'delete_orphan');
         $tpl = array();
         $tpl['TITLE'] = 'Orphaned content';
@@ -405,7 +403,6 @@ class PS_Forms
 
     public function purge()
     {
-        javascript('jquery');
         $script = PHPWS_SOURCE_HTTP . 'mod/pagesmith/javascript/purge/script.js';
         \phpws2\Pager::prepare();
         \Layout::addJSHeader("<script type='text/javascript' src='$script'><script>");

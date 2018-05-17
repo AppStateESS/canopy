@@ -363,7 +363,6 @@ class RSS_Admin
     {
         $source_http = PHPWS_SOURCE_HTTP;
         $script = "<script src='{$source_http}mod/rss/javascript/feed.js'></script>";
-        javascript('jquery');
         \Layout::addJSHeader($script);
         \phpws\PHPWS_Core::requireConfig('rss');
 

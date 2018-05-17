@@ -1627,7 +1627,6 @@ class PHPWS_Form
         $encode = $this->getEncode();
 
         if (function_exists('javascript') && $this->required_field) {
-            javascript('jquery');
             javascript('required_input');
         }
 

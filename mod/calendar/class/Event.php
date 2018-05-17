@@ -450,7 +450,6 @@ EOF;
 
     public function getTpl()
     {
-        javascript('jquery');
         $tpl = $this->tplFormatTime();
 
         if ($this->show_busy && !$this->_schedule->checkPermissions()) {

@@ -4,7 +4,6 @@
  * @license http://opensource.org/licenses/lgpl-3.0.html
  * @author Matthew McNaney <mcnaney at gmail dot com>
  */
-javascript('jquery');
 
 $home_http = PHPWS_SOURCE_HTTP;
 if (isset($data['development']) && $data['development']) {

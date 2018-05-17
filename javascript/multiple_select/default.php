@@ -1,9 +1,7 @@
 <?php
 /**
- * @version $Id$
  * @author Matthew McNaney <mcnaney at gmail dot com>
  */
-javascript('jquery');
 if (isset($data['match']) && is_array($data['match'])) {
 
     foreach ($data['match'] as $match) {

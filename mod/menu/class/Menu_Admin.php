@@ -809,7 +809,6 @@ class Menu_Admin
     private function menuList()
     {
         \Layout::addStyle('menu', 'admin.css');
-        javascript('jquery');
         javascript('jquery_ui');
 
         $template = new \phpws2\Template;

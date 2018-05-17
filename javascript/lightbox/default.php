@@ -18,6 +18,5 @@
  * @package
  * @license http://opensource.org/licenses/gpl-3.0.html
  */
-javascript('jquery');
 $default['txtImage'] = 'Image';
 $default['txtOf']  = 'of';

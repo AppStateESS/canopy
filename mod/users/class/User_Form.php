@@ -485,7 +485,6 @@ class User_Form
 
     public static function userForm(PHPWS_User $user, $message = NULL)
     {
-        javascript('jquery');
         javascriptMod('users', 'generate');
         $form = new PHPWS_Form('edit-user');
         if ($user->getId() > 0) {

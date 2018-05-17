@@ -116,8 +116,6 @@ class Pager
 
     public function __construct()
     {
-        javascript('jquery');
-
         $request = \Canopy\Server::getCurrentRequest();
         if ($request->isVar('sort_by') && $request->isVar('direction')) {
             $column = $request->getVar('sort_by');
@@ -149,7 +147,6 @@ class Pager
 
     public static function prepare()
     {
-        javascript('jquery');
         $source_http = PHPWS_SOURCE_HTTP;
         $header = "<script type='text/javascript' src='{$source_http}src-phpws2/templates/Pager/pager.js'></script>";
         \Layout::addJSHeader($header);

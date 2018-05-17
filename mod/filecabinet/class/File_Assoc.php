@@ -390,7 +390,6 @@ class FC_File_Assoc
     public function loadCarousel($count)
     {
         static $repeats = array();
-        javascript('jquery');
         $max_size = PHPWS_Settings::get('filecabinet', 'max_thumbnail_size');
         $total_size = $this->getTotalCarouselSize();
 

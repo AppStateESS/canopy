@@ -503,7 +503,6 @@ class FC_File_Manager
      */
     public function folderContentView()
     {
-        javascript('jquery');
         \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
         javascript('confirm'); // needed for deletion
 

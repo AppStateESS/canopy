@@ -1,2 +1,0 @@
-<?php
-javascript('jquery');

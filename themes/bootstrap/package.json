@@ -1,6 +1,6 @@
 {
   "name": "bootstrap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Bootstrap 4 theme for Canopy",
   "scripts": {
     "dev": "webpack --mode development --config webpack.config.js --watch",
@@ -44,6 +44,7 @@
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "transfer-webpack-plugin": "^0.1.4",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.1",
     "webpack-cli": "^2.1.3"

@@ -6,27 +6,28 @@ const sourceDir = path.resolve(__dirname, 'js')
 const destDir = path.resolve(__dirname, 'dist')
 const sourceSassDir = path.resolve(__dirname, 'scss')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = (env, argv) => {
   const inProduction = argv.mode === 'production'
   const inDevelopment = argv.mode === 'development'
-  
+
   const settings = {
     entry: {
       'js/custom.js': sourceDir + '/index.js',
       'js/base.js': sourceDir + '/base.js',
-      'css/custom.css': sourceSassDir + '/main.scss'
+      'css/custom.css': sourceSassDir + '/main.scss',
     },
     output: {
       path: destDir,
-      filename: "[name]",
+      filename: "[name]"
     },
     resolve: {
       extensions: ['.js']
     },
     plugins: [
       new ExtractTextPlugin('css/custom.css', {allChunks: true}),
-      new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery",}),
+      new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery"}),
     ],
     externals: {
       $: 'jQuery'
@@ -38,12 +39,12 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: 'expose-loader',
-              options: 'jQuery'
+              options: 'jQuery',
             }, {
               loader: 'expose-loader',
-              options: '$'
+              options: '$',
             },
-          ]
+          ],
         }, {
           test: /\.scss$/,
           use: ExtractTextPlugin.extract({
@@ -53,28 +54,28 @@ module.exports = (env, argv) => {
                 loader: 'css-loader',
                 options: {
                   sourceMap: true
-                },
+                }
               }, {
                 loader: 'sass-loader',
                 options: {
                   sourceMap: true
-                },
+                }
               },
-            ]
-          })
+            ],
+          }),
         }, {
           test: /\.(png|woff|woff2|eot|ttf|svg)$/,
           exclude: '/node_modules/',
-          loader: 'url-loader?limit=100000'
+          loader: 'url-loader?limit=100000',
         },
       ]
-    }
+    },
   }
-  
+
   if (inDevelopment) {
     settings.devtool = 'inline-source-map'
   }
-  
+
   if (inProduction) {
     settings.plugins.push(new OptimizeCssAssetsPlugin({
       assetNameRegExp: /css\/custom\.css$/g,
@@ -84,8 +85,10 @@ module.exports = (env, argv) => {
           removeAll: true
         }
       },
-      canPrint: true,
+      canPrint: true
     }))
+
+    settings.plugins.push(new UglifyJsPlugin({extractComments: true}))
   }
   return settings
 }

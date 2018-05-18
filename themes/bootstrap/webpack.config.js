@@ -68,8 +68,11 @@ module.exports = (env, argv) => {
           loader: 'url-loader?limit=100000'
         },
       ]
-    },
-    devtool: 'source-map',
+    }
+  }
+  
+  if (inDevelopment) {
+    settings.devtool = 'inline-source-map'
   }
   
   if (inProduction) {

@@ -50,6 +50,11 @@ class DateVar extends IntegerVar
         $this->format = $format;
     }
 
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
     public function toDatabase()
     {
         return $this->value;
@@ -57,7 +62,7 @@ class DateVar extends IntegerVar
 
     public function __toString()
     {
-        return (string)$this->get($this->format);
+        return (string) $this->get($this->format);
     }
 
     public function stamp()
@@ -65,15 +70,17 @@ class DateVar extends IntegerVar
         $this->set(time());
     }
 
-    public function get($format = null)
+    public function get($format = true)
     {
         if (empty($this->value) && !$this->printEmpty) {
             return '';
         } else {
-            if (empty($format)) {
-                return $this->value;
-            } else {
+            if (is_string($format)) {
                 return strftime($format, $this->value);
+            } elseif ($format === true && !empty($this->format)) {
+                return strftime($this->format, $this->value);
+            } else {
+                return $this->value;
             }
         }
     }

@@ -85,12 +85,16 @@ class Layout
         Layout::_loadBox($text, $module, $content_var);
     }
 
-    public static function plug($content, $theme_var)
+    public static function plug($content, $theme_var, $overwrite=false)
     {
         if (empty($content) || empty($theme_var) || preg_match('/\W/', $theme_var)) {
             return false;
         }
-        $GLOBALS['Layout_Plugs'][strtoupper($theme_var)][] = $content;
+        if ($overwrite) {
+            $GLOBALS['Layout_Plugs'][strtoupper($theme_var)] = array($content);
+        } else {
+            $GLOBALS['Layout_Plugs'][strtoupper($theme_var)][] = $content;
+        }
     }
 
     public function getPlugs()

@@ -70,7 +70,7 @@ class DateVar extends IntegerVar
         $this->set(time());
     }
 
-    public function get($format = true)
+    public function get($format = false)
     {
         if (empty($this->value) && !$this->printEmpty) {
             return '';

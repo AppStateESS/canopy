@@ -23,14 +23,6 @@ define('SITE_HASH', '{site_hash}');
 define('PHPWS_DSN', '{dsn}');
 
 
-<!-- BEGIN pre -->
-/**
- * Defining the below will prefix each phpwebsite table with the
- * chosen characters.
- */
-define('PHPWS_TABLE_PREFIX', '{dbprefix}');
-<!-- END pre -->
-
 /**
  * Added 11/16/2006
  * If your provider does not allow you to create indexes then
@@ -68,7 +60,7 @@ define('CORE_COOKIE_TIMEOUT', 2592000);
 
 /********************** Security Settings *********************/
 /**
- * If CHECK_DIRECTORY_PERMISSIONS is TRUE the phpwebsite WILL
+ * If CHECK_DIRECTORY_PERMISSIONS is TRUE the Canopy WILL
  * NOT let you run the site until the following directories are
  * made non writable.
  * config/
@@ -86,7 +78,7 @@ define('CHECK_DIRECTORY_PERMISSIONS', FALSE);
 /**
  * Added 11/13/2006
  * Determines if you want to use captcha and if so which version.
- * phpWebSite ships with freecap by default which is supplied by
+ * Canopy ships with freecap by default which is supplied by
  * http://www.puremango.co.uk/
  *
  */
@@ -97,7 +89,7 @@ define('CAPTCHA_NAME', 'freecap');
 
 /************************ Time Zone **************************/
 /**
- * If SERVER_TIME_ZONE is commented out, phpWebSite will use the
+ * If SERVER_TIME_ZONE is commented out, Canopy will use the
  * server's default time zone (recommended). If you wish to force
  * a server timezone, uncomment the line and add the appropriate
  * setting -12 to 14. Half hours should be set with decimals (e.g.
@@ -151,7 +143,7 @@ define('MAX_POST_TRACK', 10);
 
 /*********************** CONFIG FILES **************************/
 /**
- * By default, phpWebSite checks configuration files in the
+ * By default, Canopy checks configuration files in the
  * config directory when getConfigFile is called. If you wish
  * core to only grab mod configuration files, set the below
  * to TRUE.
@@ -161,7 +153,7 @@ define('FORCE_MOD_CONFIG', FALSE);
 /********************** PEAR SETTINGS **************************/
 
 /**
- * phpWebSite ships with a 'known working version' of pear. This
+ * Canopy ships with a 'known working version' of pear. This
  * means it works for us. You may decide to alter this depending
  * on how your server is setup. Do not edit it unless you
  * know what you are doing.
@@ -183,7 +175,7 @@ define('PHPWS_LIST_TOGGLE_CLASS', ' class="bgcolor1"');
 /************************ EDITOR *******************************/
 /*
  * If you have downloaded a wysiwyg editor or editors for
- * phpwebsite, you may enable their use below. You can also
+ * Canopy, you may enable their use below. You can also
  * choose which editor you want to use as the default.
  *
  * Example: define('DEFAULT_EDITOR_TOOL', 'ckeditor');
@@ -208,7 +200,7 @@ define('ABSOLUTE_UPLOAD_LIMIT', '5000000');
 
 /******************** CACHING **********************************/
 /**
- * There are two forms of caching in phpWebSite, both developed by
+ * There are two forms of caching in Canopy, both developed by
  * the PEAR team:
  * 1) Cache_Lite - a data caching method
  * 2) Sigma      - a template caching method

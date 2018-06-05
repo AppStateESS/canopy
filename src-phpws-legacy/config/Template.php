@@ -22,7 +22,7 @@ define('FORCE_THEME_TEMPLATES', false);
 /**
  * Normally, if the the Pear template class can't fill in at least one
  * tag in a template, it will return NULL. Setting the below to TRUE,
- * causes the phpWebSite to still return template WITHOUT the tag
+ * causes the Canopy to still return template WITHOUT the tag
  * substitutions. This should normally be set to FALSE unless you are
  * testing code.
  */

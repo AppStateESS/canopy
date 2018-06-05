@@ -628,7 +628,7 @@ class PHPWS_Core
     }
 
     /**
-     * returns the full phpwebsite release version
+     * returns the full Canopy release version
      */
     public static function releaseVersion()
     {

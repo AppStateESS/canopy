@@ -1,7 +1,7 @@
 <?php
 
 /**
- * core modules for a phpwebsite installation
+ * core modules for a Canopy installation
  *
  * @author Matthew McNaney <mcnaney at gmail dot com>
  * @version $Id$

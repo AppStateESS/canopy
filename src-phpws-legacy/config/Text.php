@@ -1,7 +1,7 @@
 <?php
 
 /**
- * WARNING!! This file helps phpwebsite filter profanity. As such, the
+ * WARNING!! This file helps Canopy filter profanity. As such, the
  * profanity is listed in this file. Stop reading now if this offends you.
  *
  * This file contains the default text settings for the PHPWS_Text class.
@@ -10,7 +10,7 @@
  */
 
 /**
- * These are the default tags that phpWebSite will allow from
+ * These are the default tags that Canopy will allow from
  * form entries. If a tag is NOT on this list, it will be stripped
  * from the entry.
  */
@@ -40,14 +40,14 @@ define('ENCODE_PARSED_TEXT', true);
 /**
  * The output text parsers will attempt to substitute breaks for newlines
  * in your content. This is a hold-over from the previous version
- * of phpWebSite which did not have wysiwyg. You can turn this feature
+ * of Canopy which did not have wysiwyg. You can turn this feature
  * off by changing the below to FALSE.
  */
 define('USE_BREAKER', false);
 
 /*********************** FILTERS *******************************
- * phpWebSite filters outgoing text with a BB filter by default.
- * You can decide which filters, if any, phpWebSite uses.
+ * Canopy filters outgoing text with a BB filter by default.
+ * You can decide which filters, if any, Canopy uses.
  * If you use more than one filter, separate them with commas
  * (e.g. 'bb,wiki') in the TEXT_FILTERS define. Be aware that order
  * is important!

@@ -2,7 +2,7 @@
 namespace phpws;
 
 /**
- * Base class for items used in phpWebSite's 0.x  modules.
+ * Base class for items used in Canopy's 0.x  modules.
  *
  * This class exists to supply backward compatibility with 0.x
  * modules.

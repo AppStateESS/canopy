@@ -4,7 +4,7 @@ namespace phpws;
  * Controls templates
  *
  * An extention of Pear's HTML_Template_IT class.
- * Fills in information specific to phpWebSite
+ * Fills in information specific to Canopy
  *
  * @version $Id$
  * @author  Matt McNaney <mcnaney at gmail dot com>

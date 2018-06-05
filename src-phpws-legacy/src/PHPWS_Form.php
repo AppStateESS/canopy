@@ -11,7 +11,7 @@ namespace phpws;
  *
  * This class allows you to easily create a form and then fetch elements of
  * that form. It also allows you to export a template of the form that you
- * can use within phpWebSite.
+ * can use within Canopy.
  *
  * Once the object is created just start adding elements to it with the add function.
  * Example:
@@ -1360,8 +1360,8 @@ class PHPWS_Form
     /**
      * sets the 'action' or destination directory for a form
      *
-     * If you are using this class in phpWebSite, the default directory will be
-     * phpwebsite's home address/index.php
+     * If you are using this class in Canopy, the default directory will be
+     * Canopy's home address/index.php
      *
      * If you need to send the form elsewhere, set the directory here.
      *
@@ -1430,7 +1430,7 @@ class PHPWS_Form
      * Hidden variables will be added on to START_FORM. They will NOT have their own template tag.
      *
      * @author                     Matthew McNaney<mcnaney at gmail dot com>
-     * @param  boolean phpws       If true and the action is missing, phpWebSite will attempt to use your directory settings instead
+     * @param  boolean phpws       If true and the action is missing, Canopy will attempt to use your directory settings instead
      * @param  boolean helperTags  If true START and END_FORM tags will be created, otherwise they will not
      * @param  array   template    If a current template is supplied, form will add to it.
      * @return array   template    Array of completed form

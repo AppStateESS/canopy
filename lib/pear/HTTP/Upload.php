@@ -27,7 +27,7 @@
  *  $upload->isMissing(). Instead you'll
  *  get the error when do a check for $file->isError().
  *  
- *  >> Note for phpWebSite users - this is changed. Don't do it.
+ *  >> Note for Canopy users - this is changed. Don't do it.
  *     Use $file->hasError() instead
  *
  *  Example:

@@ -216,7 +216,7 @@ WHERE information_schema.columns.table_name = \'' . $this->getFullName(false) .
 
     /**
      * Returns the last id from the PEAR sequence table. Always assumes it will
-     * be in the "id" column per previous PhpWebSite workings.
+     * be in the "id" column per previous Canopy workings.
      * Returns false if the sequence table does not exist or if it is empty.
      *
      * @return integer|false

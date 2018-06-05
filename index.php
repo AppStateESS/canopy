@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Main file for loading phpwebsite. Loads configuration
+ * Main file for loading Canopy. Loads configuration
  * and creates inital object to start execution.
  *
- * @link http://phpwebsite.appstate.edu/
+ * @link http://Canopy.appstate.edu/
  * @package phpws
  * @author Matthew McNaney <mcnaneym dot appstate dot edu>,
  * @author Hilmar Runge <hi at dc4db dot net>
@@ -45,7 +45,7 @@ if (!\phpws\PHPWS_Core::checkBranch()) {
 \Canopy\Log::loadTimeZone();
 
 $request = \Canopy\Server::getCurrentRequest();
-$controller = new \Canopy\PhpwebsiteController();
+$controller = new \Canopy\CanopyController();
 $controller->execute($request);
 
 /**

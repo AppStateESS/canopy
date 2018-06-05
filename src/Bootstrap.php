@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Require this file to bootstrap phpWebSite.
+ * Require this file to bootstrap Canopy.
  * @author Matthew McNaney <mcnaneym at appstate dot edu>
  * @author Jeff Tickle <ticklejw at appstate dot edu>
  */
@@ -56,7 +56,7 @@ require_once PHPWS_SOURCE_DIR . 'src/Http.php';
 require_once PHPWS_SOURCE_DIR . 'src/Log.php';
 require_once PHPWS_SOURCE_DIR . 'src/Key.php';
 require_once PHPWS_SOURCE_DIR . 'src/Controller.php';
-require_once PHPWS_SOURCE_DIR . 'src/PhpwebsiteController.php';
+require_once PHPWS_SOURCE_DIR . 'src/CanopyController.php';
 require_once PHPWS_SOURCE_DIR . 'src/Module.php';
 require_once PHPWS_SOURCE_DIR . 'src/CompatibilityModule.php';
 require_once PHPWS_SOURCE_DIR . 'src/GlobalModule.php';

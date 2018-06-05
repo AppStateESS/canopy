@@ -2,7 +2,7 @@
 namespace Canopy;
 
 /**
- * Default module class for old phpWebsite modules.
+ * Default module class for old Canopy modules.
  *
  * @author Matthew McNaney <mcnaney at gmail dot com>
  * @license http://opensource.org/licenses/lgpl-3.0.html

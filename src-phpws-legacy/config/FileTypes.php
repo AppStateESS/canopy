@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is the listing of file types known by phpwebsite. It is
+ * This is the listing of file types known by Canopy. It is
  * not complete but sufficient for basic use.
  * File Cabinet uses this file to determine a file's mime type. Without
  * it, File Cabinet will refuse a file's inclusion to the system.

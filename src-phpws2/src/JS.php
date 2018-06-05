@@ -15,7 +15,7 @@ class JS {
     private static $singleton;
 
     /**
-     * Loads one of the globally available javascripts included with phpwebsite
+     * Loads one of the globally available javascripts included with Canopy
      *
      * @param string $name
      */

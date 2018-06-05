@@ -1,4 +1,4 @@
-<h1>phpWebSite {PHPWS_VERSION}</h1>
+<h1>Canopy {PHPWS_VERSION}</h1>
 <!-- BEGIN directories -->
 <div
     style="height: 80px; overflow: auto; border: 1px solid black; padding: 3px"

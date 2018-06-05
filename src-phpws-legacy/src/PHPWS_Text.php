@@ -3,7 +3,7 @@
 namespace phpws;
 
 /**
- * Controls the text parsing and profanity controls for phpWebSite
+ * Controls the text parsing and profanity controls for Canopy
  * Also contains extra HTML utilities
  *
  * See core/conf/text_settings.php for configuration options
@@ -579,7 +579,7 @@ class PHPWS_Text
     }
 
     /**
-     * Allows a quick link function for phpWebSite modules to the index.php.
+     * Allows a quick link function for Canopy modules to the index.php.
      *
      * For local links ONLY. It adds the hub web address and index.php automatically.
      * You supply the name of the module and the variables.
@@ -602,7 +602,7 @@ class PHPWS_Text
 // END FUNC moduleLink()
 
     /**
-     * Creates a css-styled link button for phpWebSite modules.
+     * Creates a css-styled link button for Canopy modules.
      *
      * For local links ONLY. It adds the hub web address and index.php automatically.
      * You supply the name of the module and the variables.

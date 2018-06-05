@@ -13,7 +13,7 @@ if (!defined('PHPWS_SOURCE_DIR')) {
     exit();
 }
 
-// Moodle does not play nice with phpWebSite when installed on the
+// Moodle does not play nice with Canopy when installed on the
 // same domain.  Here is a hack to make sure the MOODLEID cookies
 // aren't a problem.
 // TODO: Find out why our security code chokes on some Moodle

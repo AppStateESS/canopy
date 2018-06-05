@@ -8,7 +8,7 @@
  * PLEASE NOTE: WE DO NOT RECOMMEND EDITING THIS FILE.  If you
  * need to change it, copy it first to core/conf/defines.php,
  * and that file will be loaded instead.  Otherwise, next time
- * you update phpWebSite, this file will be replaced and your
+ * you update Canopy, this file will be replaced and your
  * changes lost.
  *
  * @author Matthew McNaney <mcnaney at gmail dot com>
@@ -64,14 +64,14 @@ if (!defined('DEFAULT_LANGUAGE')) {
 }
 
 /**
- *  If set to true, phpWebSite will not try to translate anything.
+ *  If set to true, Canopy will not try to translate anything.
  *  All content will display in its native language.
  */
 define('DISABLE_TRANSLATION', false);
 
 
 /**
- * If set to true, phpWebSite will ALWAYS use the default language
+ * If set to true, Canopy will ALWAYS use the default language
  * no matter what the user settings.
  *
  * If your DEFAULT_LANGUAGE is not set correctly, you may have site
@@ -80,13 +80,13 @@ define('DISABLE_TRANSLATION', false);
 define('FORCE_DEFAULT_LANGUAGE', false);
 
 /**
- * If set to true, phpWebSite will ignore the browser language settings
+ * If set to true, Canopy will ignore the browser language settings
  * but WILL obey the user cookie
  */
 define('IGNORE_BROWSER_LANGUAGE', false);
 
 /**
- * If true, phpWebSite will use the putenv function to set
+ * If true, Canopy will use the putenv function to set
  * LANGUAGE and LANG environment variables.
  * This may cause problems with some servers.
  * Default is "false"
@@ -144,7 +144,7 @@ define('CORE_COOKIE_TIMEOUT', 2592000);
 
 /* * ********************** Time Zone ************************* */
 /**
- * If SERVER_TIME_ZONE is commented out, phpWebSite will use the
+ * If SERVER_TIME_ZONE is commented out, Canopy will use the
  * server's default time zone (recommended). If you wish to force
  * a server timezone, uncomment the line and add the appropriate
  * setting -12 to 14. Half hours should be set with decimals (e.g.
@@ -196,7 +196,7 @@ define('MAX_POST_TRACK', 10);
 /* * ******************** PEAR SETTINGS ************************* */
 
 /**
- * phpWebSite ships with a 'known working version' of pear. This
+ * Canopy ships with a 'known working version' of pear. This
  * means it works for us. You may decide to alter this depending
  * on how your server is setup. Do not edit it unless you
  * know what you are doing.
@@ -220,7 +220,7 @@ define('ABSOLUTE_UPLOAD_LIMIT', '500000000');
 
 /* * ****************** CACHING ********************************* */
 /**
- * There are two forms of caching in phpWebSite, both developed by
+ * There are two forms of caching in Canopy, both developed by
  * the PEAR team:
  * 1) Cache_Lite - a data caching method
  * 2) Sigma      - a template caching method
@@ -275,7 +275,7 @@ define('UTF8_MODE', false);
 /* * ********************** EDITOR ****************************** */
 /*
  * If you have downloaded a wysiwyg editor or editors for
- * phpwebsite, you may enable their use below. You can also
+ * Canopy, you may enable their use below. You can also
  * choose which editor you want to use as the default.
  *
  * Example: define('DEFAULT_EDITOR_TOOL', 'ckeditor');

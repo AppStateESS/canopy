@@ -406,7 +406,6 @@ class Layout
                 }
             }
         }
-
         if (isset($themeVarList)) {
             foreach ($themeVarList as $theme_var) {
                 ksort($unsortedLayout[$theme_var]);
@@ -587,13 +586,13 @@ class Layout
         }
 
         // Say it loud
-        $metatags[] = '<meta name="generator" content="phpWebSite" />';
+        $metatags[] = '<meta name="generator" content="Canopy" />';
 
         $metatags[] = '<meta content="text/html; charset=UTF-8"  http-equiv="Content-Type" />';
         if (!empty($author)) {
             $metatags[] = '<meta name="author" content="' . $meta_author . '" />';
         } else {
-            $metatags[] = '<meta name="author" content="phpWebSite" />';
+            $metatags[] = '<meta name="author" content="Canopy" />';
         }
 
         if (!empty($meta_keywords)) {

@@ -130,12 +130,12 @@ abstract class Module extends Data implements Controller
 
     /**
      * After the primary module has completed execution, this method is called
-     * by the ModuleManager, right before phpWebSite terminates.  Override and
+     * by the ModuleManager, right before Canopy terminates.  Override and
      * implement this method if you would like for your module to run code at
      * the end of any request.  By default, it does nothing.
      *
      * NOTE: Not to be confused with __destruct, this is NOT called upon
-     * garbage collection, it is called at the end of phpWebSite execution.
+     * garbage collection, it is called at the end of Canopy execution.
      */
     public function destruct()
     {
@@ -143,7 +143,7 @@ abstract class Module extends Data implements Controller
     }
 
     /**
-     * This method is how your module tells phpWebSite which controller to run
+     * This method is how your module tells Canopy which controller to run
      * for a particular request.  We highly recommend using the Request object
      * to ensure that every single possible interaction with your module happens
      * using proper HTTP URLs, and we strongly discourage using query string

@@ -16,9 +16,9 @@ require_once(PHPWS_SOURCE_DIR . 'src-phpws-legacy/src/Pager.php');
  * File Name: manager.php
  * This file must be located in the conf/ directory for the module passed to
  * PHPWS_Manager::setModule()
- * For an example look in the docs/developer/ directory of your phpwebsite base
+ * For an example look in the docs/developer/ directory of your Canopy base
  *
- * Note: this file was modified to work under phpWebSite 1.x.
+ * Note: this file was modified to work under Canopy 1.x.
  *
  * @version $Id$
  * @author  Steven Levin
@@ -603,10 +603,10 @@ class PHPWS_Manager {
                 foreach($this->_listColumns[$this->listName] as $listColumn => $listLabel) {
                     $column = strtoupper($listColumn);
                     if($listColumn == 'created') {
-                        /* Set created date using phpwebsite's default date and time formats */
+                        /* Set created date using Canopy's default date and time formats */
                         $rowTags['CREATED'] = date(PHPWS_DATE_FORMAT . ' ' . PHPWS_TIME_FORMAT, $item['created']);
                     } else if($listColumn == 'updated') {
-                        /* Set updated date using phpwebsite's default date and time formats */
+                        /* Set updated date using Canopy's default date and time formats */
                         $rowTags['UPDATED'] = date(PHPWS_DATE_FORMAT . ' ' . PHPWS_TIME_FORMAT, $item['updated']);
                     } else if($listColumn == 'hidden') {
                         /* Setting message depending if this item is hidden or not */

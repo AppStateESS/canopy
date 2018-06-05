@@ -8,7 +8,7 @@ namespace Canopy;
  * @version $Id$
  */
 /**
- * phpWebsite will not work properly after Mon, 18 Jan 2038
+ * Canopy will not work properly after Mon, 18 Jan 2038
  * Hopefully, it was a good ride.
  */
 define('HIDE_CEILING', 2147400000);

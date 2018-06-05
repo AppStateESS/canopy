@@ -2,10 +2,9 @@
 
 /**
  * @author Matthew McNaney <mcnaney at gmail dot com>
- * @version $Id$
  */
-$proper_name = 'phpWebSite Core';
-$version = '2.10.1';
-$version_http = 'http://phpwebsite.appstate.edu/downloads/modules/base/check.xml';
+$proper_name = 'Canopy Core';
+$version = '3.0.0';
+$version_http = null;
 $dependency = false;
 $about = true;

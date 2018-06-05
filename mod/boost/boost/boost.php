@@ -6,6 +6,5 @@
  */
 $proper_name = 'Boost';
 $version = '2.3.8';
-$version_http = 'http://phpwebsite.appstate.edu/downloads/modules/boost/check.xml';
 $dependency = true;
 $about = true;

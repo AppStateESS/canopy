@@ -9,7 +9,6 @@ $version      = '2.8.2';
 $register     = TRUE;
 $unregister   = TRUE;
 $import_sql   = TRUE;
-$version_http = 'http://phpwebsite.appstate.edu/downloads/modules/users/check.xml';
 $about        = TRUE;
 $priority     = 10;
 $dependency   = TRUE;

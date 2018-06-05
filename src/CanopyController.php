@@ -2,7 +2,7 @@
 namespace Canopy;
 
 /*
- * Main controller class for phpWebSite.  Implements Controller, so it can be
+ * Main controller class for Canopy.  Implements Controller, so it can be
  * used like any other Controller in the system.
  *
  * @author Jeff Tickle
@@ -11,7 +11,7 @@ namespace Canopy;
  * @package
  */
 
-class PhpwebsiteController implements Controller
+class CanopyController implements Controller
 {
 
     private $module_array_all;

@@ -443,8 +443,7 @@ class Cabinet
 
         $folder = new Folder($document->folder_id);
         if (!$folder->allow()) {
-            $content = dgettext('filecabinet',
-                    'Sorry, the file you requested is off limits.');
+            $content = 'Sorry, the file you requested is off limits.';
             Layout::add($content);
             return;
         }
@@ -527,8 +526,7 @@ class Cabinet
         $folder = new Folder($image->folder_id);
 
         if (!$folder->allow()) {
-            $content = dgettext('filecabinet',
-                    'Sorry, the file you requested is off limits.');
+            $content = 'Sorry, the file you requested is off limits.';
             Layout::add($content);
             return;
         }
@@ -595,8 +593,7 @@ class Cabinet
 
         $folder = new Folder($multimedia->folder_id);
         if (!$folder->allow()) {
-            $content = dgettext('filecabinet',
-                    'Sorry, the file you requested is off limits.');
+            $content = 'Sorry, the file you requested is off limits.';
             Layout::add($content);
             return;
         }
@@ -823,8 +820,7 @@ class Cabinet
 
 
             if (!@rename($incoming_file, $folder_directory)) {
-                $errors[$filename] = sprintf(dgettext('filecabinet',
-                                'Could not move file "%s" to "%s" folder directory.'),
+                $errors[$filename] = sprintf('Could not move file "%s" to "%s" folder directory.',
                         $filename, $folder->title);
                 PHPWS_Error::log(FC_FILE_MOVE, 'filecabinet',
                         'Cabinet::classifyFiles', $folder_directory);
@@ -934,8 +930,7 @@ class Cabinet
 
         $tpl['CLOSE'] = javascript('close_window');
         $thumb = PHPWS_Settings::get('filecabinet', 'max_thumbnail_size');
-        $warnings[] = sprintf(dgettext('filecabinet',
-                        'Max thumbnail size : %sx%s.'), $thumb, $thumb);
+        $warnings[] = sprintf('Max thumbnail size : %sx%s.', $thumb, $thumb);
         if ($mm->isVideo()) {
             $warnings[] = 'Image must be a jpeg file.';
         }
@@ -1189,7 +1184,7 @@ class Cabinet
         }
 
         if ($add_default) {
-            $resizes[0] = sprintf(dgettext('filecabinet', 'Default (%spx)'),
+            $resizes[0] = sprintf('Default (%spx)',
                     PHPWS_Settings::get('filecabinet', 'max_image_dimension'));
         }
 

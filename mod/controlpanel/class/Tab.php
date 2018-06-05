@@ -58,9 +58,9 @@ class PHPWS_Panel_Tab {
     public function getTitle($noBreak=true)
     {
         if ($noBreak) {
-            return str_replace(' ', '&nbsp;', dgettext($this->itemname, $this->title));
+            return str_replace(' ', '&nbsp;', $this->title);
         } else {
-            return dgettext($this->itemname, $this->title);
+            return $this->title;
         }
     }
 

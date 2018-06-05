@@ -333,7 +333,7 @@ class FC_File_Assoc
             $tpl['files'][] = $document->getTag(true, true);
         }
 
-        $tpl['DOWNLOAD'] = sprintf(dgettext('filecabinet', 'Download from %s'), $folder->title);
+        $tpl['DOWNLOAD'] = sprintf('Download from %s', $folder->title);
         return PHPWS_Template::process($tpl, 'filecabinet', 'multi_doc_download.tpl');
     }
 

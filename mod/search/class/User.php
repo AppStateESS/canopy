@@ -149,7 +149,7 @@ class Search_User {
         $form->addSubmit('Search');
         $form->addText('search', $search_phrase);
         $form->setSize('search', 40);
-        $form->setLabel('search', dgettext('search', 'Search for:'));
+        $form->setLabel('search', 'Search for:');
 
         $form->addCheck('exact_only', 1);
         $form->setLabel('exact_only', 'Exact matches only');

@@ -682,8 +682,7 @@ class PHPWS_User
     public static function disallow($message = null)
     {
         if (!isset($message)) {
-            $message = dgettext('users',
-                    'Improper permission level for action requested.');
+            $message = 'Improper permission level for action requested.';
         }
         Security::log($message);
         \phpws\PHPWS_Core::errorPage('403');
@@ -806,8 +805,7 @@ class PHPWS_User
 
         if (Current_User::isDeity() && !Current_User::isUser($this->id)) {
             if ($this->isDeity()) {
-                $dvars['QUESTION'] = dgettext('users',
-                        'Are you sure you want to remove deity status?');
+                $dvars['QUESTION'] = 'Are you sure you want to remove deity status?';
                 $dvars['ADDRESS'] = PHPWS_Text::linkAddress('users',
                                 array('action' => 'admin', 'command' => 'mortalize_user', 'user_id' => $this->id),
                                 1);
@@ -815,8 +813,7 @@ class PHPWS_User
                         'Deity');
                 $links[] = javascript('confirm', $dvars);
             } else {
-                $dvars['QUESTION'] = dgettext('users',
-                        'Are you sure you want to deify this user?');
+                $dvars['QUESTION'] = 'Are you sure you want to deify this user?';
                 $dvars['ADDRESS'] = PHPWS_Text::linkAddress('users',
                                 array('action' => 'admin', 'command' => 'deify_user', 'user_id' => $this->id),
                                 1);
@@ -832,8 +829,7 @@ class PHPWS_User
         if ($this->isActive()) {
             if (!$this->deity) {
                 $linkVar['command'] = 'deactivateUser';
-                $template['ACTIVE'] = PHPWS_Text::secureLink(dgettext('users',
-                                        'Yes'), 'users', $linkVar, null,
+                $template['ACTIVE'] = PHPWS_Text::secureLink('Yes', 'users', $linkVar, null,
                                 'Deactivate this user');
             } else {
                 $template['ACTIVE'] = 'Yes';
@@ -841,8 +837,7 @@ class PHPWS_User
         } else {
             if (!$this->deity) {
                 $linkVar['command'] = 'activateUser';
-                $template['ACTIVE'] = PHPWS_Text::secureLink(dgettext('users',
-                                        'No'), 'users', $linkVar, null,
+                $template['ACTIVE'] = PHPWS_Text::secureLink('No', 'users', $linkVar, null,
                                 'Activate this user');
             } else {
                 $template['ACTIVE'] = 'No';

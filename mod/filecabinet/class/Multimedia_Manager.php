@@ -155,7 +155,7 @@ class FC_Multimedia_Manager
 
         $tpl = $form->getTemplate();
 
-        $this->title = dgettext('filecabinet', 'Create/Update RTMP Stream');
+        $this->title = 'Create/Update RTMP Stream';
 
         $this->content = PHPWS_Template::process($tpl, 'filecabinet',
                         'Forms/rtmp_edit.tpl');
@@ -261,15 +261,13 @@ class FC_Multimedia_Manager
         }
 
         if ($max_size >= 1000000) {
-            $template['MAX_SIZE'] = sprintf(dgettext('filecabinet',
-                            '%dMB (%d bytes)'), floor($max_size / 1000000),
+            $template['MAX_SIZE'] = sprintf('%dMB (%d bytes)', floor($max_size / 1000000),
                     $max_size);
         } elseif ($max_size >= 1000) {
-            $template['MAX_SIZE'] = sprintf(dgettext('filecabinet',
-                            '%dKB (%d bytes)'), floor($max_size / 1000),
+            $template['MAX_SIZE'] = sprintf('%dKB (%d bytes)', floor($max_size / 1000),
                     $max_size);
         } else {
-            $template['MAX_SIZE'] = sprintf(dgettext('filecabinet', '%d bytes'),
+            $template['MAX_SIZE'] = sprintf('%d bytes',
                     $max_size);
         }
 

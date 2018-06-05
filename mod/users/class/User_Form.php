@@ -57,7 +57,7 @@ class User_Form
         if ($logout_link) {
             $template['LOGOUT'] = $logout_link;
         } else {
-            $template['LOGOUT'] = PHPWS_Text::moduleLink(dgettext('users', '<span class="fas sign-out-alt"></span> Log Out'), 'users', array('action' => 'user', 'command' => 'logout'));
+            $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out', 'users', array('action' => 'user', 'command' => 'logout'));
         }
         $template['HOME_USER_PANEL'] = $template['HOME'] = PHPWS_Text::moduleLink('Home');
 
@@ -103,7 +103,7 @@ class User_Form
         }
 
         $fg_vars = array('action' => 'user', 'command' => 'forgot_password');
-        $template['FORGOT'] = PHPWS_Text::moduleLink(dgettext('users', 'Forgot password?'), 'users', $fg_vars);
+        $template['FORGOT'] = PHPWS_Text::moduleLink('Forgot password?', 'users', $fg_vars);
 
         $usermenu = PHPWS_User::getUserSetting('user_menu');
 
@@ -273,9 +273,9 @@ class User_Form
         $groups = $db->select('col');
 
         if (empty($groups)) {
-            $groups[] = dgettext('users', '-- All --');
+            $groups[] = '-- All --';
         } else {
-            $groups = array(dgettext('users', '-- All --')) + $groups;
+            $groups = array('-- All --') + $groups;
         }
 
         $form->addSelect('search_group', $groups);
@@ -616,15 +616,15 @@ class User_Form
         if (!$_SESSION['User']->isDeity() || ($user->getId() == $_SESSION['User']->getId())) {
             $content[] = 'Only another deity can create a deity.';
         } else {
-            $content[] = dgettext('users', 'Are you certain you want this user to have complete control of this web site?');
+            $content[] = 'Are you certain you want this user to have complete control of this web site?';
 
             $values['user'] = $user->getId();
             $values['action'] = 'admin';
             $values['command'] = 'deify';
             $values['authorize'] = '1';
-            $content[] = PHPWS_Text::secureLink(dgettext('users', 'Yes, make them a deity.'), 'users', $values);
+            $content[] = PHPWS_Text::secureLink('Yes, make them a deity.', 'users', $values);
             $values['authorize'] = '0';
-            $content[] = PHPWS_Text::secureLink(dgettext('users', 'No, leave them as a mortal.'), 'users', $values);
+            $content[] = PHPWS_Text::secureLink('No, leave them as a mortal.', 'users', $values);
         }
 
         return implode('<br />', $content);
@@ -641,9 +641,9 @@ class User_Form
             $values['action'] = 'admin';
             $values['command'] = 'mortalize';
             $values['authorize'] = '1';
-            $content[] = PHPWS_Text::secureLink(dgettext('users', 'Yes, make them a mortal.'), 'users', $values);
+            $content[] = PHPWS_Text::secureLink('Yes, make them a mortal.', 'users', $values);
             $values['authorize'] = '0';
-            $content[] = PHPWS_Text::secureLink(dgettext('users', 'No, leave them as a deity.'), 'users', $values);
+            $content[] = PHPWS_Text::secureLink('No, leave them as a deity.', 'users', $values);
         }
 
         return implode('<br />', $content);
@@ -809,9 +809,9 @@ class User_Form
 
         $groups = $db->select('col');
         if (PHPWS_Error::logIfError($groups)) {
-            $groups = array(0 => dgettext('users', '- None -'));
+            $groups = array(0 => '- None -');
         } else {
-            $groups = array("0" => dgettext('users', '- None -')) + $groups;
+            $groups = array("0" => '- None -') + $groups;
         }
 
         foreach ($auth_list as $auth) {
@@ -867,7 +867,7 @@ class User_Form
             $getVars['command'] = 'dropScript';
 
             if ($filename != 'local.php' && $filename != 'global.php') {
-                $vars['QUESTION'] = dgettext('users', 'Are you sure you want to drop this authorization script?');
+                $vars['QUESTION'] = 'Are you sure you want to drop this authorization script?';
                 $vars['ADDRESS'] = sprintf('index.php?module=users&action=admin&command=dropAuthScript&script_id=%s&authkey=%s', $id, Current_User::getAuthKey());
                 $vars['LINK'] = 'Drop';
                 $links[1] = javascript('confirm', $vars);
@@ -962,11 +962,11 @@ class User_Form
 
             $form->addRadioAssoc('allow_new_users', array(1 => 'Yes', 0 => 'No'));
             $form->setMatch('allow_new_users', PHPWS_Settings::get('users', 'allow_new_users'));
-            $form->addTplTag('ALLOW_NEW_USERS_LABEL', dgettext('users', 'Allow new user creation?'));
+            $form->addTplTag('ALLOW_NEW_USERS_LABEL', 'Allow new user creation?');
         }
 
         $form->addTextArea('forbidden_usernames', PHPWS_Settings::get('users', 'forbidden_usernames'));
-        $form->setLabel('forbidden_usernames', dgettext('users', 'Forbidden usernames (one per line)'));
+        $form->setLabel('forbidden_usernames', 'Forbidden usernames (one per line)');
 
         $form->addCheckbox('session_warning', 1);
         $form->setMatch('session_warning', PHPWS_Settings::get('users', 'session_warning'));
@@ -1112,7 +1112,7 @@ class User_Form
         $form->setExtra('view_permission', 'onclick="hideSelect(this.value)"');
         $form->setLabel('view_permission', array('All visitors',
             'Logged visitors',
-            dgettext('users', 'Specific group(s)')));
+            'Specific group(s)'));
         $form->setMatch('view_permission', $key->restricted);
         $form->addSubmit('Save permissions');
 
@@ -1210,7 +1210,7 @@ class User_Form
 
         $form->addText('fg_email');
         $form->setSize('fg_email', 40);
-        $form->setLabel('fg_email', dgettext('users', 'Forgotten your user name? Enter your email address instead.'));
+        $form->setLabel('fg_email', 'Forgotten your user name? Enter your email address instead.');
 
         if (ALLOW_CAPTCHA) {
             $form->addTplTag('CAPTCHA_IMAGE', Captcha::get());

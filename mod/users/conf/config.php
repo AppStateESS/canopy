@@ -9,7 +9,7 @@ define('BAD_PASSWORDS', serialize(array('pass',
     'pssword',
     'asdfg',
     'qwerty',
-    'phpwebsite',
+    'Canopy',
     'admin',
     'phpws',
     'asdlkj'
@@ -50,9 +50,9 @@ define('DISPLAY_NAME_LENGTH', 4);
 define('GROUPNAME_LENGTH', 4);
 
 define('LOGIN_BUTTON', 'Login');
-define('USER_SIGNUP_QUESTION', dgettext('users', 'Want to join?'));
+define('USER_SIGNUP_QUESTION', 'Want to join?');
 
-// phpWebSite uses Pear's graphic confirmation class
+// Canopy uses Pear's graphic confirmation class
 // You must set the correct font path and file for it to
 // function
 define('ENABLE_GRAPHIC_CONFIRMATION', TRUE);
@@ -83,7 +83,7 @@ define('REMEMBER_ME_LIFE', 365);
 /**
  * The default value for this is false. Deities should not
  * have their passwords reset. They should be able to fix them manually.
- * That said, if you set this to true, phpWebSite will allow the
+ * That said, if you set this to true, Canopy will allow the
  * reset. It should be changed back to false after logging in.
  */
 define('ALLOW_DEITY_FORGET', false);

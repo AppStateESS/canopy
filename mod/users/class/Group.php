@@ -305,11 +305,9 @@ class PHPWS_Group
                         $linkVar, NULL, 'Edit Group');
 
         $linkVar['command'] = 'setGroupPermissions';
-        $links[] = PHPWS_Text::secureLink('<i class="fa fa-key" title="' . dgettext('users',
-                                'Permissions') . '"></i>', 'users', $linkVar);
+        $links[] = PHPWS_Text::secureLink('<i class="fa fa-key" title="' . 'Permissions' . '"></i>', 'users', $linkVar);
         $linkVar['command'] = 'manageMembers';
-        $links[] = PHPWS_Text::secureLink('<i class="fa fa-user" title="' . dgettext('users',
-                                'Members') . '"></i>', 'users', $linkVar);
+        $links[] = PHPWS_Text::secureLink('<i class="fa fa-user" title="' . 'Members' . '"></i>', 'users', $linkVar);
 
         $linkVar['command'] = 'remove_group';
         $removelink['ADDRESS'] = PHPWS_Text::linkAddress('users', $linkVar, TRUE);

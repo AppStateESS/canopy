@@ -50,13 +50,11 @@ class Users_Permission
             }
             $result = $db->addTableColumn($perm_name, $columnSetting);
             if (PHPWS_Error::isError($result)) {
-                $content[] = sprintf(dgettext('users',
-                                'Could not create "%s" permission column.'),
+                $content[] = sprintf('Could not create "%s" permission column.',
                         $perm_name);
                 PHPWS_Error::log($result);
             } else {
-                $content[] = sprintf(dgettext('users',
-                                '"%s" permission column created.'), $perm_name);
+                $content[] = sprintf('"%s" permission column created.', $perm_name);
             }
         }
 

@@ -285,7 +285,7 @@ class Search_Admin {
         $js_vars['value'] = 'Go';
         $js_vars['select_id'] = $form->getId('command');
         $js_vars['action_match'] = 'delete_keyword';
-        $js_vars['message'] = dgettext('search', 'Are you sure you want to delete the checked item(s)?');
+        $js_vars['message'] = 'Are you sure you want to delete the checked item(s)?';
         $template['SUBMIT'] = javascript('select_confirm', $js_vars);
 
         $template['CHECK_ALL'] = javascript('check_all', array('checkbox_name' => 'keyword[]'));
@@ -335,7 +335,7 @@ class Search_Admin {
         $js_vars['value'] = 'Go';
         $js_vars['select_id'] = 'command';
         $js_vars['action_match'] = 'delete_keyword';
-        $js_vars['message'] = dgettext('search', 'Are you sure you want to delete the checked item(s)?');
+        $js_vars['message'] = 'Are you sure you want to delete the checked item(s)?';
 
         $template['SUBMIT'] = javascript('select_confirm', $js_vars);
 

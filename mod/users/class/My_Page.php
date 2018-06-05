@@ -20,12 +20,10 @@ class My_Page {
 
         if (PHPWS_Error::isError($result)) {
             PHPWS_Error::log($result);
-            Layout::add(PHPWS_ControlPanel::display(dgettext('users',
-                                    'The is a problem with My Page.')));
+            Layout::add(PHPWS_ControlPanel::display('The is a problem with My Page.'));
             return;
         } elseif (!$result) {
-            Layout::add(PHPWS_ControlPanel::display(dgettext('users',
-                                    'No modules are registered to My Page.')));
+            Layout::add(PHPWS_ControlPanel::display('No modules are registered to My Page.'));
             return;
         }
 
@@ -34,8 +32,7 @@ class My_Page {
         $module = $panel->getCurrentTab();
 
         if (!$this->moduleIsRegistered($module)) {
-            Layout::add(dgettext('users',
-                            'This module is not registered with My Page'));
+            Layout::add('This module is not registered with My Page');
             return;
         }
 

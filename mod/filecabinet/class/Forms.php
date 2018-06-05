@@ -124,7 +124,7 @@ class Cabinet_Form
         $classify_dir = $this->cabinet->getClassifyDir();
 
         if (empty($classify_dir) || !is_dir($classify_dir)) {
-            $this->cabinet->content = dgettext('filecabinet', 'Unable to locate the classify directory. Please check your File Cabinet settings, configuration file and directory permissions.');
+            $this->cabinet->content = 'Unable to locate the classify directory. Please check your File Cabinet settings, configuration file and directory permissions.';
             return;
         }
         $allowed_file_types = $this->cabinet->getAllowedTypes();
@@ -166,7 +166,7 @@ class Cabinet_Form
         }
 
 
-        $options['classify'] = dgettext('filecabinet', '-- Pick option --');
+        $options['classify'] = '-- Pick option --';
         $options['classify_file'] = 'Classify checked';
         $options['delete_incoming'] = 'Delete checked';
 
@@ -176,7 +176,7 @@ class Cabinet_Form
         $js_vars['value'] = 'Go';
         $js_vars['select_id'] = 'classify_file_list_aop';
         $js_vars['action_match'] = 'delete_incoming';
-        $js_vars['message'] = dgettext('filecabinet', 'Are you sure you wish to delete these files?');
+        $js_vars['message'] = 'Are you sure you wish to delete these files?';
         $tpl['SUBMIT'] = javascript('select_confirm', $js_vars);
 
         $tpl['CHECK_ALL'] = javascript('check_all', array('checkbox_name' => 'file_list'));
@@ -209,7 +209,7 @@ class Cabinet_Form
             }
 
             $vars['aop'] = 'delete_incoming';
-            $cnf_js['QUESTION'] = dgettext('filecabinet', 'Are you sure you want to delete this file?');
+            $cnf_js['QUESTION'] = 'Are you sure you want to delete this file?';
             $cnf_js['ADDRESS'] = PHPWS_Text::linkAddress('filecabinet', $vars, true);
             $cnf_js['LINK'] = 'Delete';
             $links[] = javascript('confirm', $cnf_js);
@@ -370,7 +370,7 @@ EOF;
     {
         $key = new \Canopy\Key($key_id);
 
-        $this->cabinet->title = sprintf(dgettext('filecabinet', 'Pin folder to "%s"'), $key->title);
+        $this->cabinet->title = sprintf('Pin folder to "%s"', $key->title);
 
         $db = new PHPWS_DB('folders');
         $db->addWhere('public_folder', 1);
@@ -423,23 +423,23 @@ EOF;
         $form->setSize('max_image_dimension', 4, 4);
 
         $form->addText('max_image_size', $sizes['image']);
-        $form->setLabel('max_image_size', dgettext('filecabinet', 'Maximum image file size (in bytes)'));
+        $form->setLabel('max_image_size', 'Maximum image file size (in bytes)');
         $form->setSize('max_image_size', 10, 10);
 
         $form->addText('max_document_size', $sizes['document']);
-        $form->setLabel('max_document_size', dgettext('filecabinet', 'Maximum document file size (in bytes)'));
+        $form->setLabel('max_document_size', 'Maximum document file size (in bytes)');
         $form->setSize('max_document_size', 10, 10);
 
         $form->addText('max_multimedia_size', $sizes['multimedia']);
-        $form->setLabel('max_multimedia_size', dgettext('filecabinet', 'Maximum multimedia file size (in bytes)'));
+        $form->setLabel('max_multimedia_size', 'Maximum multimedia file size (in bytes)');
         $form->setSize('max_multimedia_size', 10, 10);
 
         $form->addText('max_pinned_images', PHPWS_Settings::get('filecabinet', 'max_pinned_images'));
-        $form->setLabel('max_pinned_images', dgettext('filecabinet', 'Maximum pinned images shown (0 for all)'));
+        $form->setLabel('max_pinned_images', 'Maximum pinned images shown (0 for all)');
         $form->setSize('max_pinned_images', 3, 3);
 
         $form->addText('max_pinned_documents', PHPWS_Settings::get('filecabinet', 'max_pinned_documents'));
-        $form->setLabel('max_pinned_documents', dgettext('filecabinet', 'Maximum pinned documents shown (0 for all)'));
+        $form->setLabel('max_pinned_documents', 'Maximum pinned documents shown (0 for all)');
         $form->setSize('max_pinned_documents', 3, 3);
 
         $form->addText('crop_threshold', PHPWS_Settings::get('filecabinet', 'crop_threshold'));
@@ -472,7 +472,7 @@ EOF;
         $ffmpeg_directory = PHPWS_Settings::get('filecabinet', 'ffmpeg_directory');
         if (empty($ffmpeg_directory) || !is_file($ffmpeg_directory . 'ffmpeg')) {
             $form->setDisabled('use_ffmpeg');
-            $form->setLabel('use_ffmpeg', dgettext('filecabinet', 'Enable FFMpeg thumbnails (enabled on ffmpeg confirmation)'));
+            $form->setLabel('use_ffmpeg', 'Enable FFMpeg thumbnails (enabled on ffmpeg confirmation)');
         } else {
             $form->setLabel('use_ffmpeg', 'Enable FFMpeg thumbnails');
         }
@@ -512,9 +512,9 @@ EOF;
 
         if (Current_User::isDeity()) {
             $link = new PHPWS_Link(null, 'filecabinet', array('aop' => 'fix_document_dir'), true);
-            $js = array('question' => dgettext('filecabinet', 'This process will update all of your document files with the current base directory.
+            $js = array('question' => 'This process will update all of your document files with the current base directory.
 Do not run this process unless you are sure it will fix download problems.
-If you are sure, type Y-E-S below.'),
+If you are sure, type Y-E-S below.',
                 'address' => $link->getAddress(),
                 'value_name' => 'confirm',
                 'link' => 'Reindex document directories'
@@ -532,7 +532,7 @@ If you are sure, type Y-E-S below.'),
         $classify_dir = $this->cabinet->getClassifyDir();
 
         if (empty($classify_dir) || !is_dir($classify_dir)) {
-            $this->cabinet->content = dgettext('filecabinet', 'Unable to locate the classify directory. Please check your File Cabinet settings, configuration file and directory permissions.');
+            $this->cabinet->content = 'Unable to locate the classify directory. Please check your File Cabinet settings, configuration file and directory permissions.';
             return;
         }
 
@@ -706,7 +706,7 @@ If you are sure, type Y-E-S below.'),
         } else {
             $max_image_size = (int) $_POST['max_image_size'];
             if (($max_image_size / 1000000) > ((int) $max_file_upload)) {
-                $errors[] = sprintf(dgettext('filecabinet', 'Your maximum image size exceeds the server limit of %sMB.'), $max_file_upload);
+                $errors[] = sprintf('Your maximum image size exceeds the server limit of %sMB.', $max_file_upload);
             } else {
                 PHPWS_Settings::set('filecabinet', 'max_image_size', $max_image_size);
             }
@@ -717,7 +717,7 @@ If you are sure, type Y-E-S below.'),
         } else {
             $max_document_size = (int) $_POST['max_document_size'];
             if (($max_document_size / 1000000) > (int) $max_file_upload) {
-                $errors[] = sprintf(dgettext('filecabinet', 'Your maximum document size exceeds the server limit of %sMB.'), $max_file_upload);
+                $errors[] = sprintf('Your maximum document size exceeds the server limit of %sMB.', $max_file_upload);
             } else {
                 PHPWS_Settings::set('filecabinet', 'max_document_size', $max_document_size);
             }
@@ -728,7 +728,7 @@ If you are sure, type Y-E-S below.'),
         } else {
             $max_multimedia_size = (int) $_POST['max_multimedia_size'];
             if (($max_multimedia_size / 1000000) > (int) $max_file_upload) {
-                $errors[] = sprintf(dgettext('filecabinet', 'Your maximum multimedia size exceeds the server limit of %sMB.'), $max_file_upload);
+                $errors[] = sprintf('Your maximum multimedia size exceeds the server limit of %sMB.', $max_file_upload);
             } else {
                 PHPWS_Settings::set('filecabinet', 'max_multimedia_size', $max_multimedia_size);
             }

@@ -346,11 +346,11 @@ class File_Common
     public static function humanReadable($max_size)
     {
         if ($max_size >= 1000000) {
-            return sprintf(dgettext('filecabinet', '%dMB (%d bytes)'), floor($max_size / 1000000), $max_size);
+            return sprintf('%dMB (%d bytes)', floor($max_size / 1000000), $max_size);
         } elseif ($max_size >= 1000) {
-            return sprintf(dgettext('filecabinet', '%dKB (%d bytes)'), floor($max_size / 1000), $max_size);
+            return sprintf('%dKB (%d bytes)', floor($max_size / 1000), $max_size);
         } else {
-            return sprintf(dgettext('filecabinet', '%d bytes'), $max_size);
+            return sprintf('%d bytes', $max_size);
         }
     }
 

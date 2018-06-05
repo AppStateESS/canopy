@@ -33,8 +33,7 @@ function my_page()
         case 'save_settings':
             Layout_User_Settings::save_settings();
             $_SESSION['Reset_Layout'] = 1;
-            $_SESSION['Layout_User_Message'] = dgettext('layout',
-                    'Settings saved');
+            $_SESSION['Layout_User_Message'] = 'Settings saved';
             \phpws\PHPWS_Core::reroute('index.php?module=users&action=user&tab=layout');
             break;
     }

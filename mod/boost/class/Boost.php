@@ -2,7 +2,7 @@
 
 /**
  * Controls the installation, update, and uninstallation
- * of modules in phpwebsite
+ * of modules in Canopy
  *
  * @author Matthew McNaney <mcnaney at gmail dot com>
  * @version $Id$
@@ -176,7 +176,7 @@ class PHPWS_Boost
                     $this->registerModule($mod, $content);
                     $continue = true;
                 } elseif (PHPWS_Error::isError($result)) {
-                    $content[] = dgettext('boost', 'There was a problem in the installation file:');
+                    $content[] = 'There was a problem in the installation file:';
                     $content[] = '<b>' . $result->getMessage() . '</b>';
                     $content[] = '<br />';
                     PHPWS_Error::log($result);
@@ -184,7 +184,7 @@ class PHPWS_Boost
                 }
             } catch (\Exception $e) {
                 $content[] = implode('<br />', $content);
-                $content[] = dgettext('boost', 'There was a problem in the installation file:');
+                $content[] = 'There was a problem in the installation file:';
                 $content[] = '<b>' . $e->getMessage() . '</b>';
                 $content[] = '<br />';
                 \phpws2\Error::log($e);
@@ -195,7 +195,7 @@ class PHPWS_Boost
 
         if ($last_mod->title == $title) {
             // H0120
-            $content[] = dgettext('boost', 'Installation complete!');
+            $content[] = 'Installation complete!';
             $this->addLog($title, str_replace("\n\n\n", "\n", implode("\n", str_replace('<br />', "\n", $content))));
         }
         return implode('<br />', $content);
@@ -304,7 +304,7 @@ class PHPWS_Boost
                 $this->removeKeys($mod);
                 // H 0120
                 // $content[] = '<hr />';
-                $content[] = dgettext('boost', 'Finished uninstalling module!');
+                $content[] = 'Finished uninstalling module!';
                 break;
             } elseif ($result == -1) {
                 $this->setStatus($title, BOOST_DONE);
@@ -316,7 +316,7 @@ class PHPWS_Boost
                 $this->setStatus($title, BOOST_PENDING);
                 break;
             } elseif (PHPWS_Error::isError($result)) {
-                $content[] = dgettext('boost', 'There was a problem in the installation file:');
+                $content[] = 'There was a problem in the installation file:';
                 $content[] = '<b>' . $result->getMessage() . '</b>';
                 $content[] = '<br />';
                 PHPWS_Error::log($result);
@@ -372,7 +372,7 @@ class PHPWS_Boost
             $uninstallCnt[] = 'Processing uninstall file.';
             return $uninstallFunction($uninstallCnt);
         } else {
-            $this->addLog($mod->title, sprintf(dgettext('boost', 'Uninstall function "%s" was not found.'), $uninstallFunction));
+            $this->addLog($mod->title, sprintf('Uninstall function "%s" was not found.', $uninstallFunction));
             return true;
         }
     }
@@ -429,7 +429,7 @@ class PHPWS_Boost
                 $this->setStatus($title, BOOST_PENDING);
                 break;
             } elseif (PHPWS_Error::isError($result)) {
-                $content[] = dgettext('boost', 'There was a problem in the update file:');
+                $content[] = 'There was a problem in the update file:';
                 $content[] = $result->getMessage();
                 $content[] = '<br />';
                 PHPWS_Error::log($result);
@@ -437,7 +437,7 @@ class PHPWS_Boost
         }
 
         if (isset($result) && ($result === true || $result == -1)) {
-            $content[] = dgettext('boost', 'Update complete!');
+            $content[] = 'Update complete!';
             return true;
         } else {
             $content[] = 'Update not completed.';
@@ -480,21 +480,21 @@ class PHPWS_Boost
 
         $imageDir = $homeDir . 'images/' . $mod->title . '/';
         if ($mod->isImageDir() && is_dir($imageDir)) {
-            $content[] = sprintf(dgettext('boost', 'Removing directory %s'), $imageDir);
-            $this->addLog($mod->title, sprintf(dgettext('boost', 'Removing directory %s'), $imageDir));
+            $content[] = sprintf('Removing directory %s', $imageDir);
+            $this->addLog($mod->title, sprintf('Removing directory %s', $imageDir));
             if (!PHPWS_File::rmdir($imageDir)) {
                 $content[] = 'Failure to remove directory.';
-                $this->addLog($mod->title, sprintf(dgettext('boost', 'Unable to remove directory %s'), $imageDir));
+                $this->addLog($mod->title, sprintf('Unable to remove directory %s', $imageDir));
             }
         }
 
         $fileDir = $homeDir . 'files/' . $mod->title . '/';
         if ($mod->isFileDir() && is_dir($fileDir)) {
-            $content[] = sprintf(dgettext('boost', 'Removing directory %s'), $fileDir);
-            $this->addLog($mod->title, sprintf(dgettext('boost', 'Removing directory %s'), $fileDir));
+            $content[] = sprintf('Removing directory %s', $fileDir);
+            $this->addLog($mod->title, sprintf('Removing directory %s', $fileDir));
             if (!PHPWS_File::rmdir($fileDir)) {
                 $content[] = 'Failure to remove directory.';
-                $this->addLog($mod->title, sprintf(dgettext('boost', 'Unable to remove directory %s'), $fileDir));
+                $this->addLog($mod->title, sprintf('Unable to remove directory %s', $fileDir));
             }
         }
     }
@@ -670,7 +670,7 @@ class PHPWS_Boost
         $result = $registerFunc($register_mod->title, $content);
 
         if (PHPWS_Error::isError($result)) {
-            $content[] = sprintf(dgettext('boost', 'An error occurred while registering the %s module.'), $register_mod->getProperName());
+            $content[] = sprintf('An error occurred while registering the %s module.', $register_mod->getProperName());
             $content[] = PHPWS_Boost::addLog($register_mod->title, $result->getMessage());
             $content[] = PHPWS_Error::log($result);
         } elseif ($result == true) {
@@ -699,7 +699,7 @@ class PHPWS_Boost
         $result = $unregisterFunc($register_mod->title, $content);
 
         if (PHPWS_Error::isError($result)) {
-            $content[] = sprintf(dgettext('boost', 'An error occurred while unregistering the %s module.'), $register_mod->getProperName());
+            $content[] = sprintf('An error occurred while unregistering the %s module.', $register_mod->getProperName());
             PHPWS_Error::log($result);
             PHPWS_Boost::addLog($register_mod->title, $result->getMessage());
         } elseif ($result == true) {
@@ -852,13 +852,13 @@ class PHPWS_Boost
         }
 
         if (isset($dirExist)) {
-            $content[] = dgettext('boost', 'The following directories need to be created:');
+            $content[] = 'The following directories need to be created:';
             $content[] = implode("\n", $dirExist);
             $errorDir = false;
         }
 
         if (isset($writableDir)) {
-            $content[] = dgettext('boost', 'The following directories are not writable:');
+            $content[] = 'The following directories are not writable:';
             $content[] = implode(chr(10), $writableDir);
             $errorDir = false;
         }
@@ -866,7 +866,7 @@ class PHPWS_Boost
         $files = array('boost.log', 'error.log');
         foreach ($files as $log_name) {
             if (is_file('logs/' . $log_name) && (!is_readable('logs/' . $log_name) || !is_writable('logs/' . $log_name))) {
-                $content[] = sprintf(dgettext('boost', 'Your logs/%s file must be readable and writable.'), $log_name);
+                $content[] = sprintf('Your logs/%s file must be readable and writable.', $log_name);
                 $errorDir = false;
             }
         }
@@ -892,7 +892,7 @@ class PHPWS_Boost
                 foreach ($result as $branch) {
                     $contentTmp = array();
                     if (!PHPWS_Boost::checkDirectories($contentTmp, $branch['directory'], false)) {
-                        $content[] = sprintf(dgettext('boost', 'Checking branch "%s"'), $branch['branch_name']);
+                        $content[] = sprintf('Checking branch "%s"', $branch['branch_name']);
                         foreach ($contentTmp as $tmp)
                             $content[] = $tmp;
                         $content[] = '';
@@ -973,7 +973,7 @@ class PHPWS_Boost
             $branch_boost->loadModules($keys, false);
 
             $content[] = '<hr />';
-            $content[] = sprintf(dgettext('boost', 'Updating branch %s'), $branch->branch_name);
+            $content[] = sprintf('Updating branch %s', $branch->branch_name);
 
             $result = $branch_boost->update($content);
             if (PHPWS_Error::isError($result)) {
@@ -1021,8 +1021,8 @@ class PHPWS_Boost
     public static function uninstallLink($module)
     {
         $uninstallVars = array('opmod' => $module, 'action' => 'uninstall');
-        $js['question'] = dgettext('boost', 'Are you sure you want to uninstall this module? All data will be deleted.');
-        $js['question'] .= '\n' . sprintf(dgettext('boost', 'If sure, please type the name of the module below: %s'), $module);
+        $js['question'] = 'Are you sure you want to uninstall this module? All data will be deleted.';
+        $js['question'] .= '\n' . sprintf('If sure, please type the name of the module below: %s', $module);
         $js['address'] = PHPWS_Text::linkAddress('boost', $uninstallVars, TRUE);
         $js['value_name'] = 'confirm';
         $js['link'] = 'Uninstall';
@@ -1031,7 +1031,7 @@ class PHPWS_Boost
 
     /**
      * Used to copy files down to local directories and branches. After
-     * phpwebsite 1.7.0, no longer required. Kept here to prevent prior
+     * Canopy 1.7.0, no longer required. Kept here to prevent prior
      * updates from breaking.
      * @param mixed $dummy1
      * @param mixed $dummy2

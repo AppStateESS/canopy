@@ -43,8 +43,7 @@ class Access
         // In this case, an admin with full rights needs to log in
         if (empty($command)) {
             $title = 'Sorry';
-            $content = dgettext('access',
-                    'Access needs a higher administrator\'s attention before you may use it.');
+            $content = 'Access needs a higher administrator\'s attention before you may use it.';
         } else {
             switch ($command) {
                 case 'post_admin':
@@ -269,8 +268,7 @@ class Access
                     'Close window');
         } else {
             $tpl['TITLE'] = 'Access has saved your shortcut.';
-            $content[] = dgettext('access',
-                    'You can access this item with the following link:');
+            $content[] = 'You can access this item with the following link:';
             $url = $shortcut->getRewrite(true, false);
             $content[] = $url;
             $js['location'] = $url;
@@ -395,7 +393,7 @@ class Access
         $tabs['shortcuts'] = $link;
 
         if (Current_User::allow('access', 'admin_options')) {
-            $link['title'] = dgettext('access', 'Allow/Deny');
+            $link['title'] = 'Allow/Deny';
             $tabs['deny_allow'] = $link;
         }
 

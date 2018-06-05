@@ -309,7 +309,7 @@ class PHPWS_ControlPanel
                     return false;
                 }
             }
-            $content[] = sprintf(dgettext('controlpanel', 'Control Panel tabs created for %s.'), $module);
+            $content[] = sprintf('Control Panel tabs created for %s.', $module);
         } else {
             PHPWS_Boost::addLog($module, 'Control Panel tabs not implemented.');
         }
@@ -368,7 +368,7 @@ class PHPWS_ControlPanel
                 }
                 $db->resetWhere();
             }
-            $content[] = sprintf(dgettext('controlpanel', 'Control Panel links created for %s.'), $module);
+            $content[] = sprintf('Control Panel links created for %s.', $module);
         } else {
             PHPWS_Boost::addLog($module, 'No Control Panel links found.');
         }

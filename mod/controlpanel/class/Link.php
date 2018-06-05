@@ -66,12 +66,12 @@ class PHPWS_Panel_Link {
 
     public function getLabel()
     {
-        return dgettext($this->itemname, $this->label);
+        return $this->label;
     }
 
     public function getDescription()
     {
-        return dgettext($this->itemname, $this->description);
+        return $this->description;
     }
 
     public function setDescription($description)
@@ -99,7 +99,7 @@ class PHPWS_Panel_Link {
         $image_path = $this->getImageSrc();
         $image = sprintf('<img src="%s" title="%s" alt="%s" />', $image_path,
                 $this->getLabel(),
-                sprintf(dgettext('controlpanel', '%s module icon'),
+                sprintf('%s module icon',
                         $this->getLabel()));
 
         if ($linkable == true) {

@@ -191,15 +191,15 @@ class FC_File_Manager
          * Changed to allow anyone basic access
           if (!Current_User::allow('filecabinet')) {
           $placeholder_file = FC_NO_RIGHTS;
-          $title = dgettext('filecabinet', 'Add an image, media, or document file.');
+          $title = 'Add an image, media, or document file.';
           }
          * */
         if (!$this->lock_type) {
             $placeholder_file = FC_PLACEHOLDER;
-            $title = dgettext('filecabinet', 'Add an image, media, or document file.');
+            $title = 'Add an image, media, or document file.';
         } elseif (in_array(FC_IMAGE, $this->lock_type)) {
             $placeholder_file = PHPWS_SOURCE_HTTP . 'mod/filecabinet/img/file_manager/file_type/image200.png';
-            $title = dgettext('filecabinet', 'Add a image, an image folder, or a randomly changing image');
+            $title = 'Add a image, an image folder, or a randomly changing image';
         } elseif (in_array(FC_DOCUMENT, $this->lock_type)) {
             $placeholder_file = PHPWS_SOURCE_HTTP . 'mod/filecabinet/img/file_manager/file_type/document200.png';
             $title = 'Add a document or a document folder';
@@ -226,7 +226,7 @@ class FC_File_Manager
     public function get()
     {
         if (!Current_User::allow('filecabinet')) {
-            return '<em>' . dgettext('filecabinet', 'Sorry, you do not have File Cabinet rights.') . '</em>';
+            return '<em>' . 'Sorry, you do not have File Cabinet rights.' . '</em>';
         }
         javascript('flowplayer');
         Layout::addStyle('filecabinet', 'file_view.css');
@@ -354,7 +354,7 @@ class FC_File_Manager
         Layout::addStyle('filecabinet');
         $document_img = sprintf('<img src="%smod/filecabinet/img/file_manager/file_type/document200.png" title="%s"/>', PHPWS_SOURCE_HTTP, 'Add a document or a document folder');
 
-        $image_img = sprintf('<img src="%smod/filecabinet/img/file_manager/file_type/image200.png" title="%s"/>', PHPWS_SOURCE_HTTP, dgettext('filecabinet', 'Add a image, an image folder, or a randomly changing image'));
+        $image_img = sprintf('<img src="%smod/filecabinet/img/file_manager/file_type/image200.png" title="%s"/>', PHPWS_SOURCE_HTTP, 'Add a image, an image folder, or a randomly changing image');
 
         $media_img = sprintf('<img src="%smod/filecabinet/img/file_manager/file_type/media200.png" title="%s"/>', PHPWS_SOURCE_HTTP, 'Add a video or sound file');
 
@@ -532,7 +532,7 @@ class FC_File_Manager
                 $js = $link_info;
                 $js['authkey'] = Current_User::getAuthKey();
                 $js['failure_message'] = 'Unable to resize image.';
-                $js['confirmation'] = sprintf(dgettext('filecabinet', 'This image is larger than the %s x %s limit. Do you want to resize the image to fit?'), $this->max_width, $this->max_height);
+                $js['confirmation'] = sprintf('This image is larger than the %s x %s limit. Do you want to resize the image to fit?', $this->max_width, $this->max_height);
 
                 javascriptMod('filecabinet', 'pick_file', $js);
                 $db = new PHPWS_DB('images');
@@ -646,7 +646,7 @@ class FC_File_Manager
                             $tpl['ALT_HIGH3'] = ' no-use';
                         }
                     } else {
-                        $not_allowed = dgettext('filecabinet', 'Action not allowed - private folder');
+                        $not_allowed = 'Action not allowed - private folder';
                         $image1 = sprintf($image_string, $img_dir . $img1, $not_allowed, $img1_alt);
                         $image2 = sprintf($image_string, $img_dir . $img2, $not_allowed, $img2_alt);
                         $image3 = sprintf($image_string, $img_dir . $img3, $not_allowed, $img3_alt);
@@ -691,7 +691,7 @@ class FC_File_Manager
                         $tpl['ALT_HIGH1'] = ' no-use';
                     }
                 } else {
-                    $not_allowed = dgettext('filecabinet', 'Action not allowed - private folder');
+                    $not_allowed = 'Action not allowed - private folder';
                     $image1 = sprintf($image_string, $img_dir . $img1, $not_allowed, $img1_alt);
                     $tpl['ALT1'] = $image1;
                     $tpl['ALT_HIGH1'] = ' no-use';
@@ -702,7 +702,7 @@ class FC_File_Manager
                 $js = $link_info;
                 $js['authkey'] = Current_User::getAuthKey();
                 $js['failure_message'] = 'Unable to resize media.';
-                $js['confirmation'] = sprintf(dgettext('filecabinet', 'This media is larger than the %s x %s limit. Do you want to resize the media to fit?'), $this->max_width, $this->max_height);
+                $js['confirmation'] = sprintf('This media is larger than the %s x %s limit. Do you want to resize the media to fit?', $this->max_width, $this->max_height);
 
                 javascriptMod('filecabinet', 'pick_file', $js);
                 \phpws\PHPWS_Core::initModClass('filecabinet', 'Multimedia.php');

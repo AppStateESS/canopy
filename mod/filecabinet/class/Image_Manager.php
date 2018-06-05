@@ -149,7 +149,7 @@ class FC_Image_Manager
         if ($force_width && $force_height) {
             $form->addHidden('fw', $force_width);
             $form->addHidden('fh', $force_height);
-            $form->addTplTag('RESIZE_LABEL', dgettext('filecabinet', 'Images resized to:'));
+            $form->addTplTag('RESIZE_LABEL', 'Images resized to:');
             $form->addTplTag('RESIZE', sprintf('%s x %spx', $force_width, $force_height));
         } elseif (!$this->image->id) {
             $resizes = Cabinet::getResizes($max_width);

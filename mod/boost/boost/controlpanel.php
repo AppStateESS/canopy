@@ -7,8 +7,7 @@
 $link[] = array('label' => 'Boost',
     'restricted' => TRUE,
     'url' => 'index.php?module=boost&amp;action=admin',
-    'description' => dgettext('boost',
-            'Boost allows the installation and upgrading of modules.'),
+    'description' => 'Boost allows the installation and upgrading of modules.',
     'image' => 'boost.png',
     'tab' => 'admin'
 );

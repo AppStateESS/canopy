@@ -62,7 +62,7 @@ class Boost_Form
             if (isset($_SESSION['Boost_Needs_Update']['core'])) {
                 $link_title = $_SESSION['Boost_Needs_Update']['core'];
                 if (version_compare($core_file->version, $_SESSION['Boost_Needs_Update']['core'], '<')) {
-                    $link_title = sprintf(dgettext('boost', '%s - New'), $link_title);
+                    $link_title = sprintf('%s - New', $link_title);
                 }
             } else {
                 $link_title = 'Check';
@@ -91,7 +91,7 @@ class Boost_Form
                     } else {
                         $core_links[] = 'Update';
                     }
-                    $tpl['WARNING'] = dgettext('boost', 'The Core requires updating! You should do so before any modules.');
+                    $tpl['WARNING'] = 'The Core requires updating! You should do so before any modules.';
                     $core_update_needed = true;
                 } else {
                     $link_command['action'] = 'show_dependency';
@@ -118,7 +118,7 @@ class Boost_Form
         $tpl['VERSION_LABEL'] = 'Current version';
 
         if ($type == 'core_mods' && Current_User::isDeity() && DEITIES_CAN_UNINSTALL) {
-            $tpl['WARNING'] = dgettext('boost', 'WARNING: Only deities can uninstall core modules. Doing so may corrupt your installation!');
+            $tpl['WARNING'] = 'WARNING: Only deities can uninstall core modules. Doing so may corrupt your installation!';
         }
 
         if (empty($modList)) {
@@ -153,7 +153,7 @@ class Boost_Form
                 if (isset($_SESSION['Boost_Needs_Update'][$mod->title])) {
                     $link_title = $_SESSION['Boost_Needs_Update'][$mod->title];
                     if (version_compare($mod->version, $_SESSION['Boost_Needs_Update'][$mod->title], '<')) {
-                        $link_title = sprintf(dgettext('boost', '%s - New'), $link_title);
+                        $link_title = sprintf('%s - New', $link_title);
                     }
                 } else {
                     $link_title = 'Check';
@@ -196,7 +196,7 @@ class Boost_Form
                     $template['VERSION'] = $db_mod->version . ' &gt; ' . $mod->version;
                     if ($mod->checkDependency()) {
                         if ($title == 'boost' && !$core_update_needed) {
-                            $tpl['WARNING'] = dgettext('boost', 'Boost requires updating! You should do so before any other module!');
+                            $tpl['WARNING'] = 'Boost requires updating! You should do so before any other module!';
                         }
                         $link_title = 'Update';
                         $link_command['action'] = 'update';
@@ -219,7 +219,7 @@ class Boost_Form
                 if ($type != 'core_mods' || Current_User::isDeity() && DEITIES_CAN_UNINSTALL) {
                     if ($dependents = $mod->isDependedUpon()) {
                         $link_command['action'] = 'show_depended_upon';
-                        $depend_warning = sprintf(dgettext('boost', 'This module is depended upon by: %s'), implode(', ', $dependents));
+                        $depend_warning = sprintf('This module is depended upon by: %s', implode(', ', $dependents));
                         $links[] = PHPWS_Text::secureLink('Depended upon', 'boost', $link_command, NULL, $depend_warning);
                     } else {
                         $links[] = PHPWS_Boost::uninstallLink($title);
@@ -269,7 +269,7 @@ class Boost_Form
 
         $old_mods = & $GLOBALS['Boost_Old_Mods'];
 
-        $content[] = 'The following modules are from an earlier version of phpWebSite and will not function.';
+        $content[] = 'The following modules are from an earlier version of Canopy and will not function.';
         $content[] = 'Please remove them from the mod directory.';
         foreach ($old_mods as $mod) {
             include sprintf('%smod/%s/conf/boost.php', PHPWS_SOURCE_DIR, $mod);

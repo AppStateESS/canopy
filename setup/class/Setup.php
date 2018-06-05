@@ -73,25 +73,18 @@ class Setup
         } else {
             $configDir = PHPWS_SOURCE_DIR . 'config/core/';
             if (is_file($configDir . 'config.php')) {
-                $this->content[] = dgettext('core',
-                        'Your configuration file already exists.');
-                $this->content[] = dgettext('core',
-                        'Remove the following file and refresh to continue:');
+                $this->content[] = 'Your configuration file already exists.';
+                $this->content[] = 'Remove the following file and refresh to continue:';
                 $this->content[] = '<pre>' . $configDir . 'config.php</pre>';
             } elseif ($this->writeConfigFile()) {
                 \phpws\PHPWS_Core::killSession('configSettings');
-                $this->content[] = dgettext('core',
-                                'Your configuration file was written successfully!') . '<br />';
-                $this->content[] = '<a href="index.php?step=3">' . dgettext('core',
-                                'Move on to Step 3') . '</a>';
+                $this->content[] = 'Your configuration file was written successfully!' . '<br />';
+                $this->content[] = '<a href="index.php?step=3">' . 'Move on to Step 3' . '</a>';
             } else {
-                $this->content[] = dgettext('core',
-                        'Your configuration file could not be written into the following directory:');
+                $this->content[] = 'Your configuration file could not be written into the following directory:';
                 $this->content[] = "<pre>$configDir</pre>";
-                $this->content[] = dgettext('core',
-                        'Please check your directory permissions and try again.');
-                $this->content[] = '<a href="help/permissions.' . DEFAULT_LANGUAGE . '.txt">' . dgettext('core',
-                                'Permission Help') . '</a>';
+                $this->content[] = 'Please check your directory permissions and try again.';
+                $this->content[] = '<a href="help/permissions.' . DEFAULT_LANGUAGE . '.txt">' . 'Permission Help' . '</a>';
             }
         }
         $this->title = 'Create Configuration File';
@@ -124,8 +117,7 @@ class Setup
 
         $filename = $location . 'config.php';
         if (is_file($filename)) {
-            $this->messages[] = dgettext('core',
-                    'Configuration file already exists.');
+            $this->messages[] = 'Configuration file already exists.';
             return false;
         }
 
@@ -138,18 +130,16 @@ class Setup
         $config_file[] = sprintf("define('SITE_HASH', '%s');", md5(rand()));
         $config_file[] = sprintf("define('PHPWS_DSN', '%s');",
                 $_SESSION['configSettings']['dsn']);
-        if (isset($_SESSION['configSettings']['dbprefix'])) {
-            $config_file[] = sprintf("define('PHPWS_TABLE_PREFIX', '%s');",
-                    $_SESSION['configSettings']['dbprefix']);
-        }
         if (!file_put_contents($filename, implode("\n", $config_file))) {
             return false;
         } else {
             $source_http = sprintf("<?php\ndefine('PHPWS_SOURCE_HTTP', '//%s');\n?>",
-                    str_replace('setup/', '', \phpws\PHPWS_Core::getHomeHttp(false)));
+                    str_replace('setup/', '',
+                            \phpws\PHPWS_Core::getHomeHttp(false)));
             if (is_file($location . 'source.php')) {
                 $this->messages[] = 'source.php already exists! New copy saved as source.new.php';
-                return file_put_contents($location . 'source.new.php', $source_http);
+                return file_put_contents($location . 'source.new.php',
+                        $source_http);
             } else {
                 return file_put_contents($location . 'source.php', $source_http);
             }
@@ -167,8 +157,7 @@ class Setup
         if (empty($_POST['username']) || preg_match('/[^\w\.\-]/',
                         $_POST['username'])) {
             $aiw = false;
-            $this->messages[] = dgettext('users',
-                    'Username is improperly formatted.');
+            $this->messages[] = 'Username is improperly formatted.';
         } else {
             $_SESSION['User']->username = $_POST['username'];
         }
@@ -182,8 +171,7 @@ class Setup
 
         if (empty($_POST['email'])) {
             $aiw = false;
-            $this->messages[] = dgettext('core',
-                    'Please enter an email address.');
+            $this->messages[] = 'Please enter an email address.';
         } else {
             $_SESSION['User']->setEmail($_POST['email']);
         }
@@ -199,22 +187,19 @@ class Setup
         if (!empty($_POST['dbuser'])) {
             $this->setConfigSet('dbuser', $_POST['dbuser']);
         } else {
-            $this->messages['dbuser'] = dgettext('core',
-                    'Missing a database user name.');
+            $this->messages['dbuser'] = 'Missing a database user name.';
             $check = false;
         }
 
         if (!empty($_POST['dbpass'])) {
             if (preg_match('/[^\w\s\.!\?]/', $_POST['dbpass'])) {
-                $this->messages['dbpass'] = dgettext('core',
-                        'Database password may contain alphanumeric characters, punctuation, spaces and underscores only.');
+                $this->messages['dbpass'] = 'Database password may contain alphanumeric characters, punctuation, spaces and underscores only.';
                 $check = false;
             } else {
                 $this->setConfigSet('dbpass', $_POST['dbpass']);
             }
         } elseif (empty($currentPW)) {
-            $this->messages['dbpass'] = dgettext('core',
-                    'Missing a database password.');
+            $this->messages['dbpass'] = 'Missing a database password.';
             $check = false;
         }
 
@@ -223,19 +208,8 @@ class Setup
         if (!empty($_POST['dbname'])) {
             $this->setConfigSet('dbname', $_POST['dbname']);
         } else {
-            $this->messages['dbname'] = dgettext('core',
-                    'Missing a database name.');
+            $this->messages['dbname'] = 'Missing a database name.';
             $check = false;
-        }
-
-        if (!empty($_POST['dbprefix'])) {
-            if (preg_match('/\W/', $_POST['dbprefix'])) {
-                $this->messages['dbpref'] = dgettext('core',
-                        'Table prefix must be alphanumeric characters or underscores only');
-                $check = false;
-            } else {
-                $this->setConfigSet('dbprefix', $_POST['dbprefix']);
-            }
         }
 
         $this->setConfigSet('dbtype', $_POST['dbtype']);
@@ -270,21 +244,9 @@ class Setup
             $this->messages[] = 'Database found.';
             return true;
         } elseif ($checkConnection == 2) {
-            $sub[] = dgettext('core',
-                    'Canopy was able to connect, but the database already contained tables.');
-            if ($this->getConfigSet('dbprefix')) {
-                $sub[] = dgettext('core',
-                        'Since you set a table prefix, you may force an installation into this database.');
-                $sub[] = dgettext('core',
-                        'Click the link below to continue or change your connection settings.');
-                $sub[] = sprintf('<a href="index.php?step=7">%s</a>',
-                        dgettext('core',
-                                'I want to install Canopy in this database.'));
-            } else {
-                $sub[] = dgettext('core',
-                        'Create a new database, remove all tables from the database you want to use, or use table prefixing.');
-                $_SESSION['configSettings']['database'] = false;
-            }
+            $sub[] = 'Canopy was able to connect, but the database already contained tables.';
+            $sub[] = 'Create a new database, remove all tables from the database you want to use.';
+            $_SESSION['configSettings']['database'] = false;
             $this->messages['main'] = implode('<br />', $sub);
             return false;
         } elseif ($checkConnection == -1) {
@@ -296,10 +258,8 @@ class Setup
                 $this->databaseConfig();
             }
         } else {
-            $this->messages[] = dgettext('core',
-                    'Unable to connect to the database with the information provided.');
-            $this->messages[] = '<a href="help/database.' . DEFAULT_LANGUAGE . '.txt" target="index">' . dgettext('core',
-                            'Database Help') . '</a>';
+            $this->messages[] = 'Unable to connect to the database with the information provided.';
+            $this->messages[] = '<a href="help/database.' . DEFAULT_LANGUAGE . '.txt" target="index">' . 'Database Help' . '</a>';
             return false;
         }
     }
@@ -314,8 +274,7 @@ class Setup
         } catch (\Exception $e) {
             PHPWS_Error::log($e->getMessage());
             $this->messages[] = 'Unable to connect.';
-            $this->messages[] = dgettext('core',
-                    'Check your configuration settings.');
+            $this->messages[] = 'Check your configuration settings.';
             return false;
         }
 
@@ -324,10 +283,8 @@ class Setup
             $result = $db->exec($sql);
         } catch (\Exception $e) {
             PHPWS_Error::log($e->getMessage());
-            $this->messages[] = dgettext('core',
-                    'Unable to create the database.');
-            $this->messages[] = dgettext('core',
-                    'You will need to create it manually and rerun the setup.');
+            $this->messages[] = 'Unable to create the database.';
+            $this->messages[] = 'You will need to create it manually and rerun the setup.';
             return false;
         }
 
@@ -456,13 +413,10 @@ class Setup
 
         $databases = array('mysql' => 'MySQL', 'pgsql' => 'PostgreSQL');
 
-        $formTpl['DBTYPE_DEF'] = dgettext('core',
-                'Canopy supports MySQL and PostgreSQL. Choose the type your server currently is running.');
+        $formTpl['DBTYPE_DEF'] = 'Canopy supports MySQL and PostgreSQL. Choose the type your server currently is running.';
 
-        $formTpl['DBUSER_DEF'] = dgettext('core',
-                        'This is the user name that Canopy will use to access its database.')
-                . ' <br /><i>' . dgettext('core',
-                        'Note: it is a good idea to give each Canopy installation its own user.') . '</i>';
+        $formTpl['DBUSER_DEF'] = 'This is the user name that Canopy will use to access its database.'
+                . ' <br /><i>' . 'Note: it is a good idea to give each Canopy installation its own user.' . '</i>';
         if (isset($this->messages['dbuser'])) {
             $formTpl['DBUSER_ERR'] = $this->messages['dbuser'];
         }
@@ -473,25 +427,14 @@ class Setup
             $formTpl['DBPASS_ERR'] = $this->messages['dbpass'];
         }
 
+        $formTpl['DBHOST_DEF'] = 'If your database is on the same server as your Canopy installation, leave this as &#x22;localhost&#x22;.'
+                . '<br />' . 'Otherwise, enter the ip or dns to the database server.';
 
-        $formTpl['DBPREF_DEF'] = dgettext('core',
-                'If you are installing Canopy in a shared environment, you may assign a prefix to tables.<br />We recommend you run without one.');
-        if (isset($this->messages['dbpref'])) {
-            $formTpl['DBPREF_ERR'] = $this->messages['dbpref'];
-        }
-
-        $formTpl['DBHOST_DEF'] = dgettext('core',
-                        'If your database is on the same server as your Canopy installation, leave this as &#x22;localhost&#x22;.')
-                . '<br />' . dgettext('core',
-                        'Otherwise, enter the ip or dns to the database server.');
-
-        $formTpl['DBPORT_DEF'] = dgettext('core',
-                'If your host specification requires access via a specific port, enter it here.');
+        $formTpl['DBPORT_DEF'] = 'If your host specification requires access via a specific port, enter it here.';
 
         $formTpl['DBNAME_DEF'] = dgettext('core',
                         'The database\'s name into which you are installing Canopy.')
-                . '<br /><i>' . dgettext('core',
-                        'Note: if you have not made this database yet, you should do so before continuing.') . '</i>';
+                . '<br /><i>' . 'Note: if you have not made this database yet, you should do so before continuing.' . '</i>';
         if (isset($this->messages['dbname'])) {
             $formTpl['DBNAME_ERR'] = $this->messages['dbname'];
         }
@@ -508,10 +451,6 @@ class Setup
         $form->allowValue('dbpass');
         $form->setSize('dbpass', 20);
         $form->setLabel('dbpass', 'Database Password');
-
-        $form->addText('dbprefix', $this->getConfigSet('dbprefix'));
-        $form->setSize('dbprefix', 5, 5);
-        $form->setLabel('dbprefix', 'Table prefix');
 
         $form->addText('dbhost', $this->getConfigSet('dbhost'));
         $form->setSize('dbhost', 20);
@@ -549,7 +488,7 @@ class Setup
         $tpl = new PHPWS_Template;
         $tpl->setFile('setup/templates/setup.tpl', true);
         if (!isset($title)) {
-            $title = sprintf(dgettext('core', 'Canopy %s Setup'), $version);
+            $title = sprintf('Canopy %s Setup', $version);
         }
 
         if ($forward && AUTO_FORWARD) {
@@ -582,15 +521,12 @@ class Setup
 
         // step > 2; check for session
         if (!isset($_SESSION['session_check'])) {
-            $this->content[] = dgettext('core',
-                    'Canopy depends on sessions to move data between pages.');
+            $this->content[] = 'Canopy depends on sessions to move data between pages.';
             $this->content[] = sprintf('<a href="help/sessions.%s.txt">%s</a>',
                     DEFAULT_LANGUAGE, 'Sessions Help');
-            $this->content[] = sprintf(dgettext('core',
-                            'If you think your sessions are working properly, %syou can click here return to the beginning%s.'),
+            $this->content[] = sprintf('If you think your sessions are working properly, %syou can click here return to the beginning%s.',
                     '<a href="index.php">', '</a>');
-            $this->title = dgettext('core',
-                    'There is a problem with your sessions.');
+            $this->title = 'There is a problem with your sessions.';
             $this->display();
         }
     }
@@ -602,34 +538,26 @@ class Setup
         if (CONFIG_CREATED) {
             switch ($this->testDBConnect(PHPWS_DSN)) {
                 case '2':
-                    $this->content[] = dgettext('core',
-                            'Canopy configuration file and database have been found. We are assuming your installation is complete.');
-                    $this->content[] = dgettext('core',
-                            'You should move or delete the setup directory.');
-                    $this->content[] = dgettext('core',
-                            'If you are returning here from a previous incomplete installation, you will need to clear the database of all tables and try again.');
-                    $this->title = dgettext('core',
-                            'There is a problem with your database');
+                    $this->content[] = 'Canopy configuration file and database have been found. We are assuming your installation is complete.';
+                    $this->content[] = 'You should move or delete the setup directory.';
+                    $this->content[] = 'If you are returning here from a previous incomplete installation, you will need to clear the database of all tables and try again.';
+                    $this->title = 'There is a problem with your database';
                     $this->display();
                     exit();
 
                 case '-1':
                     $this->content[] = dgettext('core',
                             'The Canopy configuration file exists but it\'s specified database does not.');
-                    $this->content[] = dgettext('core',
-                            'Create the database set in the config file or delete the config file.');
-                    $this->title = dgettext('core',
-                            'There is a problem with your database');
+                    $this->content[] = 'Create the database set in the config file or delete the config file.';
+                    $this->title = 'There is a problem with your database';
                     $this->display();
                     exit();
 
                 case '0':
                     $this->content[] = dgettext('core',
                             'The Canopy configuration file exists but we could not connect to it\'s specified database.');
-                    $this->content[] = dgettext('core',
-                            'Check your dsn settings or delete the config file.');
-                    $this->title = dgettext('core',
-                            'There is a problem with your database');
+                    $this->content[] = 'Check your dsn settings or delete the config file.';
+                    $this->title = 'There is a problem with your database';
                     $this->display();
                     exit();
 
@@ -680,10 +608,8 @@ class Setup
 
         if (PHPWS_Error::isError($result)) {
             PHPWS_Error::log($result);
-            $this->content[] = dgettext('core',
-                    'Some errors occurred while creating the core database tables.');
-            $this->content[] = dgettext('core',
-                    'Please check your error log file.');
+            $this->content[] = 'Some errors occurred while creating the core database tables.';
+            $this->content[] = 'Please check your error log file.';
             return false;
         }
 
@@ -698,14 +624,11 @@ class Setup
 
             if (PHPWS_Error::isError($result)) {
                 PHPWS_Error::log($result);
-                $this->content[] = dgettext('core',
-                        'Some errors occurred while creating the core database tables.');
-                $this->content[] = dgettext('core',
-                        'Please check your error log file.');
+                $this->content[] = 'Some errors occurred while creating the core database tables.';
+                $this->content[] = 'Please check your error log file.';
                 return false;
             } else {
-                $this->content[] = dgettext('core',
-                        'Core installation successful.');
+                $this->content[] = 'Core installation successful.';
                 return true;
             }
         }
@@ -721,10 +644,8 @@ class Setup
 
         if (PHPWS_Error::isError($result)) {
             PHPWS_Error::log($result);
-            $this->content[] = dgettext('core',
-                            'An error occurred while trying to install your modules.')
-                    . ' ' . dgettext('core',
-                            'Please check your error logs and try again.');
+            $this->content[] = 'An error occurred while trying to install your modules.'
+                    . ' ' . 'Please check your error logs and try again.';
             return true;
         } else {
             $this->content[] = $result;
@@ -752,21 +673,15 @@ class Setup
     public function finish()
     {
         $this->content[] = '<hr />';
-        $this->content[] = dgettext('core',
-                        'Installation of Canopy is complete.') . '<br />';
-        $this->content[] = dgettext('core',
-                        'If you experienced any error messages, check your error.log file.') . '<br />';
+        $this->content[] = 'Installation of Canopy is complete.' . '<br />';
+        $this->content[] = 'If you experienced any error messages, check your error.log file.' . '<br />';
         if (CHECK_DIRECTORY_PERMISSIONS) {
-            $this->content[] = dgettext('core',
-                    'Check Directory Permissions is enabled so be sure to secure your config and templates directories!');
-            $this->content[] = dgettext('core',
-                    'If you do not change it now, your next page will be an error screen.');
+            $this->content[] = 'Check Directory Permissions is enabled so be sure to secure your config and templates directories!';
+            $this->content[] = 'If you do not change it now, your next page will be an error screen.';
         } else {
-            $this->content[] = dgettext('core',
-                    'After you finish installing your modules in Boost, you should make your config and template directories non-writable.');
+            $this->content[] = 'After you finish installing your modules in Boost, you should make your config and template directories non-writable.';
         }
-        $this->content[] = '<a href="../index.php">' . dgettext('core',
-                        'Go to my new website!') . '</a>' . '<br />';
+        $this->content[] = '<a href="../index.php">' . 'Go to my new website!' . '</a>' . '<br />';
     }
 
     public function display()
@@ -810,10 +725,8 @@ class Setup
         }
 
         $test['session_auto_start']['pass'] = !(bool) ini_get('session.auto_start'); // need 0
-        $test['session_auto_start']['fail'] = dgettext('core',
-                'session.auto_start must be set to 0 for Canopy to work. Please review your php.ini file.');
-        $test['session_auto_start']['name'] = dgettext('core',
-                'Session auto start disabled');
+        $test['session_auto_start']['fail'] = 'session.auto_start must be set to 0 for Canopy to work. Please review your php.ini file.';
+        $test['session_auto_start']['name'] = 'Session auto start disabled';
         $test['session_auto_start']['crit'] = true;
 
         $test['pear_files']['pass'] = is_file('vendor/autoload.php');
@@ -822,49 +735,42 @@ class Setup
         $test['pear_files']['crit'] = true;
 
         $test['gd']['pass'] = extension_loaded('gd');
-        $test['gd']['fail'] = sprintf(dgettext('core',
-                        'You need to compile the %sGD image library%s into PHP.'),
+        $test['gd']['fail'] = sprintf('You need to compile the %sGD image library%s into PHP.',
                 '<a href="http://www.libgd.org/Main_Page">', '</a>');
         $test['gd']['name'] = 'GD graphic libraries installed';
         $test['gd']['crit'] = true;
 
         $test['image_dir']['pass'] = is_dir('images/') && is_writable('images/');
-        $test['image_dir']['fail'] = sprintf(dgettext('core',
-                        '%s directory does not exist or is not writable.'),
+        $test['image_dir']['fail'] = sprintf('%s directory does not exist or is not writable.',
                 PHPWS_SOURCE_DIR . 'images/');
         $test['image_dir']['name'] = 'Image directory ready';
         $test['image_dir']['crit'] = true;
 
         $test['conf']['pass'] = is_dir('config/core/') && is_writable('config/core/');
-        $test['conf']['fail'] = sprintf(dgettext('core',
-                        '%s directory does not exist or is not writable.'),
+        $test['conf']['fail'] = sprintf('%s directory does not exist or is not writable.',
                 PHPWS_SOURCE_DIR . 'config/core/');
         $test['conf']['name'] = 'Config directory ready';
         $test['conf']['crit'] = true;
 
         $test['file_dir']['pass'] = is_dir('files/') && is_writable('files/');
-        $test['file_dir']['fail'] = sprintf(dgettext('core',
-                        '%s directory does not exist or is not writable.'),
+        $test['file_dir']['fail'] = sprintf('%s directory does not exist or is not writable.',
                 PHPWS_SOURCE_DIR . 'files/');
         $test['file_dir']['name'] = 'File directory ready';
         $test['file_dir']['crit'] = true;
 
         $test['log_dir']['pass'] = is_dir('logs/') && is_writable('logs/');
-        $test['log_dir']['fail'] = sprintf(dgettext('core',
-                        '%s directory does not exist or is not writable.'),
+        $test['log_dir']['fail'] = sprintf('%s directory does not exist or is not writable.',
                 PHPWS_SOURCE_DIR . 'logs/');
         $test['log_dir']['name'] = 'Log directory ready';
         $test['log_dir']['crit'] = true;
 
         $test['ffmpeg']['pass'] = is_file('/usr/bin/ffmpeg');
-        $test['ffmpeg']['fail'] = dgettext('core',
-                'You do not appear to have ffmpeg installed. File Cabinet will not be able to create thumbnail images from uploaded videos');
+        $test['ffmpeg']['fail'] = 'You do not appear to have ffmpeg installed. File Cabinet will not be able to create thumbnail images from uploaded videos';
         $test['ffmpeg']['name'] = 'FFMPEG installed';
         $test['ffmpeg']['crit'] = false;
 
         $test['mime_type']['pass'] = function_exists('finfo_open') || function_exists('mime_content_type') || !ini_get('safe_mode');
-        $test['mime_type']['fail'] = dgettext('core',
-                'Unable to detect MIME file type. You will need to compile finfo_open into PHP.');
+        $test['mime_type']['fail'] = 'Unable to detect MIME file type. You will need to compile finfo_open into PHP.';
         $test['mime_type']['name'] = 'MIME file type detection';
         $test['mime_type']['crit'] = true;
 
@@ -876,8 +782,7 @@ class Setup
 
         $test['php_version']['pass'] = version_compare($phpversion, '5.1.0',
                 '>=');
-        $test['php_version']['fail'] = sprintf(dgettext('core',
-                        'Your server must run PHP version 5.1.0 or higher. You are running version %s.'),
+        $test['php_version']['fail'] = sprintf('Your server must run PHP version 5.1.0 or higher. You are running version %s.',
                 $phpversion);
         $test['php_version']['name'] = 'PHP 5 version check';
         $test['php_version']['crit'] = true;
@@ -885,22 +790,19 @@ class Setup
         $memory_limit = (int) ini_get('memory_limit');
 
         $test['memory']['pass'] = ($memory_limit > 8);
-        $test['memory']['fail'] = dgettext('core',
-                'Your PHP memory limit is less than 8MB. You may encounter problems with the script at this level.');
+        $test['memory']['fail'] = 'Your PHP memory limit is less than 8MB. You may encounter problems with the script at this level.';
         $test['memory']['fail'] .= dgettext('core',
                 'We suggest raising the limit in your php.ini file or uncommenting the "ini_set(\'memory_limit\', \'10M\');" line in your config/core/config.php file after installation.');
         $test['memory']['name'] = 'Memory limit exceeded';
         $test['memory']['crit'] = false;
 
         $test['globals']['pass'] = !(bool) ini_get('register_globals');
-        $test['globals']['fail'] = dgettext('core',
-                'You have register_globals enabled. You should disable it.');
+        $test['globals']['fail'] = 'You have register_globals enabled. You should disable it.';
         $test['globals']['name'] = 'Register globals disabled';
         $test['globals']['crit'] = false;
 
         $test['magic_quotes']['pass'] = !get_magic_quotes_gpc() && !get_magic_quotes_runtime();
-        $test['magic_quotes']['fail'] = dgettext('core',
-                'Magic quotes is enabled. Please disable it in your php.ini file.');
+        $test['magic_quotes']['fail'] = 'Magic quotes is enabled. Please disable it in your php.ini file.';
         $test['magic_quotes']['name'] = 'Magic quotes disabled';
         $test['magic_quotes']['crit'] = true;
 
@@ -918,8 +820,7 @@ class Setup
         $content = array();
 
         if (!$allow_install) {
-            $this->title = dgettext('core',
-                    'Cannot install Canopy because of the following reasons:');
+            $this->title = 'Cannot install Canopy because of the following reasons:';
             $this->content = '<ul>' . PHPWS_Text::tag_implode('li', $crit) . '</ul>';
             $this->display();
         } else {
@@ -957,8 +858,7 @@ class Setup
             case '3':
                 if ($this->createCore()) {
                     if ($this->installCoreModules()) {
-                        $this->content[] = dgettext('core',
-                                'Core modules installed successfully.');
+                        $this->content[] = 'Core modules installed successfully.';
                         $this->content[] = sprintf('<a href="index.php?step=4">%s</a>',
                                 'Click to continue');
                     }
@@ -976,18 +876,15 @@ class Setup
                     if (empty($result)) {
                         $_SESSION['User']->setDisplayName('Administrator');
                         $_SESSION['User']->save();
-                        $this->content[] = dgettext('core',
-                                'New user created successfully.');
+                        $this->content[] = 'New user created successfully.';
                         $this->step = 6;
                         $this->goToStep();
                         break;
                     } elseif (PHPWS_Error::isError($result)) {
                         PHPWS_Error::log($result);
-                        $this->content[] = dgettext('core',
-                                'Sorry an error occurred. Please check your logs.');
+                        $this->content[] = 'Sorry an error occurred. Please check your logs.';
                     } else {
-                        $this->content[] = dgettext('core',
-                                'Cannot create a new user. Initial user already exists.');
+                        $this->content[] = 'Cannot create a new user. Initial user already exists.';
                         $this->display();
                     }
                 } else {
@@ -997,10 +894,8 @@ class Setup
 
             case '6':
                 if ($this->installContentModules()) {
-                    $this->content[] = dgettext('core',
-                            'Starting modules installed.');
-                    $this->content[] = dgettext('core',
-                            'The site should be ready for you to use.');
+                    $this->content[] = 'Starting modules installed.';
+                    $this->content[] = 'The site should be ready for you to use.';
                     //                    $this->content[] = sprintf('<a href="%s">%s</a>', PHPWS_SOURCE_HTTP, 'Continue to your new site...');
                     $this->content[] = sprintf('<a href="../">%s</a>',
                             'Continue to your new site...');

@@ -410,8 +410,7 @@ class PHPWS_Image extends File_Common
         $vars['image_id'] = $this->id;
         $vars['folder_id'] = $this->folder_id;
 
-        $js['QUESTION'] = dgettext('filecabinet',
-                'Are you sure you want to delete this image?');
+        $js['QUESTION'] = 'Are you sure you want to delete this image?';
         $js['ADDRESS'] = PHPWS_Text::linkAddress('filecabinet', $vars, true);
 
         if ($icon) {
@@ -557,8 +556,7 @@ EOF;
         exit('PHPWS_Image::resizeMenu disabled');
         $tpl['ID'] = $this->id;
 
-        $tpl['MESSAGE'] = sprintf(dgettext('filecabinet',
-                        'This image is larger than the %sx%s limit. What do you wish to do?'),
+        $tpl['MESSAGE'] = sprintf('This image is larger than the %sx%s limit. What do you wish to do?',
                 $fmanager->max_width, $fmanager->max_height);
         $vars = $fmanager->linkInfo(false);
         $vars['fop'] = 'pick_file';

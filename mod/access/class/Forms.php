@@ -47,27 +47,22 @@ class Access_Forms {
 
         $page_tags = $form->getTemplate();
 
-        $page_tags['MENU_FIX'] = PHPWS_Text::secureLink(dgettext('access',
-                                'Update menu links'), 'access',
+        $page_tags['MENU_FIX'] = PHPWS_Text::secureLink('Update menu links', 'access',
                         array('command' => 'menu_fix'));
-        $page_tags['PAGE_FIX'] = PHPWS_Text::secureLink(dgettext('access',
-                                'Shortcut all pages'), 'access',
+        $page_tags['PAGE_FIX'] = PHPWS_Text::secureLink('Shortcut all pages', 'access',
                         array('command' => 'page_fix'));
 
         if (PHPWS_Settings::get('access', 'forward_ids')) {
-            $page_tags['PAGE_FORWARDING'] = PHPWS_Text::secureLink(dgettext('access',
-                                    'Turn OFF autoforwarding of Pagesmith id pages'),
+            $page_tags['PAGE_FORWARDING'] = PHPWS_Text::secureLink('Turn OFF autoforwarding of Pagesmith id pages',
                             'access', array('command' => 'autoforward_off'));
         } else {
-            $page_tags['PAGE_FORWARDING'] = PHPWS_Text::secureLink(dgettext('access',
-                                    'Turn ON autoforwarding of Pagesmith id pages'),
+            $page_tags['PAGE_FORWARDING'] = PHPWS_Text::secureLink('Turn ON autoforwarding of Pagesmith id pages',
                             'access', array('command' => 'autoforward_on'));
         }
 
-        $page_tags['MENU_WARNING'] = dgettext('menu',
-                'This change is irreversable. Please backup menu_links prior to running it.');
+        $page_tags['MENU_WARNING'] = 'This change is irreversable. Please backup menu_links prior to running it.';
         $page_tags['URL_LABEL'] = 'Url';
-        $page_tags['ACTIVE_LABEL'] = dgettext('access', 'Active?');
+        $page_tags['ACTIVE_LABEL'] = 'Active?';
         $page_tags['ACTION_LABEL'] = 'Action';
         $page_tags['CHECK_ALL_SHORTCUTS'] = javascript('check_all',
                 array('checkbox_name' => 'shortcut[]'));
@@ -75,8 +70,7 @@ class Access_Forms {
         $js_vars['value'] = 'Go';
         $js_vars['select_id'] = $form->getId('list_action');
         $js_vars['action_match'] = 'delete';
-        $js_vars['message'] = dgettext('access',
-                'Are you sure you want to delete the checked shortcuts?');
+        $js_vars['message'] = 'Are you sure you want to delete the checked shortcuts?';
         $page_tags['SUBMIT'] = javascript('select_confirm', $js_vars);
 
         $pager->addPageTags($page_tags);
@@ -103,7 +97,7 @@ class Access_Forms {
         $form->setMatch('allow_deny_enabled',
                 PHPWS_Settings::get('access', 'allow_deny_enabled'));
         $form->setLabel('allow_deny_enabled',
-                dgettext('access', 'Allow/Deny enabled'));
+                'Allow/Deny enabled');
         $form->addSubmit('go', 'Go');
 
         $result = Access::getAllowDeny();
@@ -120,7 +114,7 @@ class Access_Forms {
         $db = new PHPWS_DB('access_allow_deny');
         $result = $db->getObjects('Access_Allow_Deny');
 
-        $options['none'] = dgettext('access', '-- Choose option --');
+        $options['none'] = '-- Choose option --';
         $options['active'] = 'Activate';
         $options['deactive'] = 'Deactivate';
         $options['delete'] = 'Delete';
@@ -149,19 +143,16 @@ class Access_Forms {
         $template = $form->getTemplate();
 
         if ($allow_all) {
-            $template['ALLOW_ALL_MESSAGE'] = dgettext('access',
-                    'You have "Allow all" enabled. All rows below will be ignored.');
+            $template['ALLOW_ALL_MESSAGE'] = 'You have "Allow all" enabled. All rows below will be ignored.';
         }
 
         if ($deny_all) {
-            $template['DENY_ALL_MESSAGE'] = dgettext('access',
-                    'You have "Deny all" enabled. All rows below will be ignored.');
+            $template['DENY_ALL_MESSAGE'] = 'You have "Deny all" enabled. All rows below will be ignored.';
         }
 
         $js_vars['value'] = 'Go';
         $js_vars['action_match'] = 'delete';
-        $js_vars['message'] = dgettext('access',
-                'Are you sure you want to delete the checked ips?');
+        $js_vars['message'] = 'Are you sure you want to delete the checked ips?';
 
         $js_vars['select_id'] = 'allow_deny_allow_action';
         $template['ALLOW_ACTION_SUBMIT'] = javascript('select_confirm', $js_vars);
@@ -172,13 +163,10 @@ class Access_Forms {
 
         if (PHPWS_Error::isError($result)) {
             PHPWS_Error::log($result);
-            return dgettext('access',
-                    'An error occurred when trying to access the allowed and denied ip records. Please check your logs.');
+            return 'An error occurred when trying to access the allowed and denied ip records. Please check your logs.';
         } elseif (empty($result)) {
-            $template['DENY_MESSAGE'] = dgettext('access',
-                    'No denied ip addresses found.');
-            $template['ALLOW_MESSAGE'] = dgettext('access',
-                    'No allowed ip addresses found.');
+            $template['DENY_MESSAGE'] = 'No denied ip addresses found.';
+            $template['ALLOW_MESSAGE'] = 'No allowed ip addresses found.';
         } else {
             foreach ($result as $allow_deny) {
                 $action = PHPWS_Text::secureLink('Delete',
@@ -208,13 +196,11 @@ class Access_Forms {
             }
 
             if (empty($template['allow_rows'])) {
-                $template['ALLOW_MESSAGE'] = dgettext('access',
-                        'No allowed ip addresses found.');
+                $template['ALLOW_MESSAGE'] = 'No allowed ip addresses found.';
             }
 
             if (empty($template['deny_rows'])) {
-                $template['DENY_MESSAGE'] = dgettext('access',
-                        'No denied ip addresses found.');
+                $template['DENY_MESSAGE'] = 'No denied ip addresses found.';
             }
         }
 
@@ -222,13 +208,12 @@ class Access_Forms {
                 array('checkbox_name' => 'allows'));
         $template['CHECK_ALL_DENY'] = javascript('check_all',
                 array('checkbox_name' => 'denys'));
-        $template['ACTIVE_LABEL'] = dgettext('access', 'Active?');
+        $template['ACTIVE_LABEL'] = 'Active?';
         $template['ALLOW_TITLE'] = 'Allowed IPs';
         $template['DENY_TITLE'] = 'Denied IPs';
         $template['ACTION_LABEL'] = 'Action';
         $template['IP_ADDRESS_LABEL'] = 'IP Address';
-        $template['WARNING'] = dgettext('access',
-                'Remember to "Update" your access file when finished changing IP rules.');
+        $template['WARNING'] = 'Remember to "Update" your access file when finished changing IP rules.';
 
         return PHPWS_Template::process($template, 'access',
                         'forms/allow_deny.tpl');

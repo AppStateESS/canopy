@@ -74,8 +74,7 @@ abstract class Javascript extends \Canopy\Data
         if (!isset($script_list[$script_name])) {
             $js_path = PHPWS_SOURCE_DIR . 'javascript/' . $script_name . '/factory.php';
             if (!is_file($js_path)) {
-                throw new \PEAR_Exception(dgettext('core',
-                        'Could not find javascript factory file.'));
+                throw new \PEAR_Exception('Could not find javascript factory file.');
             }
             require_once $js_path;
         }
@@ -245,7 +244,7 @@ EOF;
         $body_script = $this->getBodyScript();
         $example_code = $this->getDemoExample();
 
-        $title = dgettext('core', 'Javascript demonstration:') . " $this->script_name";
+        $title = 'Javascript demonstration:' . " $this->script_name";
         echo <<<EOF
 <html>
     <head>

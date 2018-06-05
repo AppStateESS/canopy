@@ -424,15 +424,13 @@ final class Current_User {
                                 'Current_User::loginUser');
             }
             if (!$user->loadScript()) {
-                Layout::add(dgettext('users',
-                                'Could not load authentication script. Please contact site administrator.'));
+                Layout::add('Could not load authentication script. Please contact site administrator.');
                 return false;
             }
         }
 
         if (!Current_User::loadAuthorization($user)) {
-            Layout::add(dgettext('users',
-                            'Could not load authentication script. Please contact site administrator.'));
+            Layout::add('Could not load authentication script. Please contact site administrator.');
             return false;
         }
 
@@ -515,8 +513,7 @@ final class Current_User {
 
         $username = strtolower($rArray['username']);
         if (preg_match('/\'|"/', html_entity_decode($username, ENT_QUOTES))) {
-            Security::log(dgettext('users',
-                            'User tried to login using Remember Me with a malformed cookie.'));
+            Security::log('User tried to login using Remember Me with a malformed cookie.');
             return false;
         }
 

@@ -753,21 +753,21 @@ EOF;
                 break;
 
             case 'signup_user':
-                $title = dgettext('users', 'New Account Sign-up');
+                $title = 'New Account Sign-up';
                 if (Current_User::isLogged()) {
                     $content = 'You already have an account.';
                     break;
                 }
                 $user = new PHPWS_User;
                 if (PHPWS_User::getUserSetting('new_user_method') == 0) {
-                    $content = dgettext('users', 'Sorry, we are not accepting new users at this time.');
+                    $content = 'Sorry, we are not accepting new users at this time.';
                     break;
                 }
                 $content = User_Form::signup_form($user);
                 break;
 
             case 'submit_new_user':
-                $title = dgettext('users', 'New Account Sign-up');
+                $title = 'New Account Sign-up';
                 $user_method = PHPWS_User::getUserSetting('new_user_method');
                 if ($user_method == 0) {
                     Current_User::disallow('New user signup not allowed.');
@@ -804,12 +804,12 @@ EOF;
                     \phpws\PHPWS_Core::home();
                 }
                 if (User_Action::confirmUser()) {
-                    $title = dgettext('users', 'Welcome!');
+                    $title = 'Welcome!';
                     $content = 'Your account has been successfully activated. Please log in.';
                 } else {
                     $title = 'Sorry';
-                    $content = dgettext('users', 'This authentication does not exist.<br />
- If you did not log in within the time frame specified in your email, please apply for another account.');
+                    $content = 'This authentication does not exist.<br />
+ If you did not log in within the time frame specified in your email, please apply for another account.';
                 }
                 User_Action::cleanUpConfirm();
                 break;
@@ -843,7 +843,7 @@ EOF;
                 switch ($pw_result) {
                     case PHPWS_Error::isError($pw_result):
                         $title = 'Reset my password';
-                        $content = dgettext('users', 'Passwords were not acceptable for the following reason:');
+                        $content = 'Passwords were not acceptable for the following reason:';
                         $content .= '<br />' . $pw_result->getmessage() . '<br />';
                         $content .= User_Form::resetPassword($_POST['user_id'], $_POST['authhash']);
                         break;
@@ -886,7 +886,7 @@ EOF;
     {
         $hash = $_GET['hash'];
         if (preg_match('/\W/', $hash)) {
-            Security::log(sprintf(dgettext('users', 'User tried to send bad hash (%s) to confirm user.'), $hash));
+            Security::log(sprintf('User tried to send bad hash (%s) to confirm user.', $hash));
             \phpws\PHPWS_Core::errorPage('400');
         }
         $db = new PHPWS_DB('users_signup');
@@ -934,7 +934,7 @@ EOF;
                 $result = User_Action::saveNewUser($user, true);
                 if ($result) {
                     User_Action::assignDefaultGroup($user);
-                    $content[] = dgettext('users', 'Account created successfully!');
+                    $content[] = 'Account created successfully!';
                     $content[] = 'You will return to the home page in five seconds.';
                     $content[] = PHPWS_Text::moduleLink('Click here if you are not redirected.');
                     Layout::metaRoute();
@@ -1266,7 +1266,7 @@ EOF;
                 }
 
                 if ($user_search['authorize'] != 1) {
-                    $content = sprintf(dgettext('users', 'Sorry but your authorization is not checked on this site. Please contact %s for information on reseting your password.'), PHPWS_User::getUserSetting('site_contact'));
+                    $content = sprintf('Sorry but your authorization is not checked on this site. Please contact %s for information on reseting your password.', PHPWS_User::getUserSetting('site_contact'));
                     return false;
                 }
 
@@ -1353,12 +1353,12 @@ EOF;
         $url = \phpws\PHPWS_Core::getHomeHttp();
         $hash = md5(time() . $email);
 
-        $message[] = dgettext('users', 'Did you forget your password at our site?');
-        $message[] = dgettext('users', 'If so, you may click the link below to reset it.');
+        $message[] = 'Did you forget your password at our site?';
+        $message[] = 'If so, you may click the link below to reset it.';
         $message[] = '';
         $message[] = sprintf('%sindex.php?module=users&action=user&command=rp&auth=%s', $url, $hash);
         $message[] = '';
-        $message[] = dgettext('users', 'If you did not wish to reset your password, you may ignore this message.');
+        $message[] = 'If you did not wish to reset your password, you may ignore this message.';
         $message[] = 'You have one hour to respond.';
 
         $body = implode("\n", $message);
@@ -1366,7 +1366,7 @@ EOF;
         \phpws\PHPWS_Core::initCoreClass('Mail.php');
         $mail = new PHPWS_Mail;
         $mail->addSendTo($email);
-        $mail->setSubject(dgettext('users', 'Forgot your password?'));
+        $mail->setSubject('Forgot your password?');
         $site_contact = PHPWS_User::getUserSetting('site_contact');
         $mail->setFrom(sprintf('%s<%s>', $page_title, $site_contact));
         $mail->setMessageBody($body);
@@ -1392,17 +1392,17 @@ EOF;
         $url = \phpws\PHPWS_Core::getHomeHttp();
         $hash = md5(time() . $email);
 
-        $message[] = dgettext('users', 'Did you forget your user name at our site?');
-        $message[] = sprintf(dgettext('users', 'The user name associated with your email address is "%s"'), $username);
+        $message[] = 'Did you forget your user name at our site?';
+        $message[] = sprintf('The user name associated with your email address is "%s"', $username);
         $message[] = '';
-        $message[] = dgettext('users', 'Here is the address to return to our site:');
+        $message[] = 'Here is the address to return to our site:';
         $message[] = $url;
         $body = implode("\n", $message);
 
         \phpws\PHPWS_Core::initCoreClass('Mail.php');
         $mail = new PHPWS_Mail;
         $mail->addSendTo($email);
-        $mail->setSubject(dgettext('users', 'Forgot your user name?'));
+        $mail->setSubject('Forgot your user name?');
         $site_contact = PHPWS_User::getUserSetting('site_contact');
         $mail->setFrom(sprintf('%s<%s>', $page_title, $site_contact));
         $mail->setMessageBody($body);
@@ -1486,7 +1486,7 @@ EOF;
 
         foreach ($result as $mod_title) {
             $content[] = '<br />';
-            $content[] = sprintf(dgettext('users', 'Checking %s module'), $mod_title);
+            $content[] = sprintf('Checking %s module', $mod_title);
 
             $result = Users_Permission::registerPermissions($mod_title, $content);
             if (!$result) {
@@ -1542,16 +1542,16 @@ EOF;
         $page_title = Layout::getPageTitle(true);
 
 
-        $body[] = sprintf(dgettext('users', '%s created an user account for you.'), $page_title);
-        $body[] = dgettext('users', 'You may log-in using the following information:');
-        $body[] = sprintf(dgettext('users', 'Site address: %s'), \phpws\PHPWS_Core::getHomeHttp());
-        $body[] = sprintf(dgettext('users', 'Username: %s'), $user->username);
-        $body[] = sprintf(dgettext('users', 'Password: %s'), $password);
+        $body[] = sprintf('%s created an user account for you.', $page_title);
+        $body[] = 'You may log-in using the following information:';
+        $body[] = sprintf('Site address: %s', \phpws\PHPWS_Core::getHomeHttp());
+        $body[] = sprintf('Username: %s', $user->username);
+        $body[] = sprintf('Password: %s', $password);
         $body[] = 'Please change your password immediately after logging in.';
 
         $mail = new PHPWS_Mail;
         $mail->addSendTo($user->email);
-        $mail->setSubject(sprintf(dgettext('users', '%s account created'), $page_title));
+        $mail->setSubject(sprintf('%s account created', $page_title));
         $mail->setFrom(PHPWS_User::getUserSetting('site_contact'));
         $mail->setReplyTo(PHPWS_User::getUserSetting('site_contact'));
         $mail->setMessageBody(implode("\n\n", $body));

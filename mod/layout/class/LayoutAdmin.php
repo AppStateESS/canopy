@@ -125,8 +125,8 @@ class Layout_Admin
 
             case 'demo_theme':
                 $title = 'Confirm Theme Change';
-                $content[] = dgettext('layout', 'If you are happy with the change, click the appropiate button.');
-                $content[] = dgettext('layout', 'Failure to respond in ten seconds, reverts phpWebSite to the default theme.');
+                $content[] = 'If you are happy with the change, click the appropiate button.';
+                $content[] = 'Failure to respond in ten seconds, reverts Canopy to the default theme.';
                 $content[] = Layout_Admin::confirmThemeChange();
                 break;
 
@@ -192,7 +192,7 @@ class Layout_Admin
         if (empty($styles) || !isset($_REQUEST['key_id'])) {
             return false;
         }
-        $styles[0] = dgettext('layout', '-- Use default style --');
+        $styles[0] = '-- Use default style --';
         ksort($styles, SORT_NUMERIC);
 
         $key_id = (int) $_REQUEST['key_id'];

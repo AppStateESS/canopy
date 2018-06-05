@@ -62,7 +62,7 @@ class Folder
 
     public function deleteLink($mode = 'link')
     {
-        $vars['QUESTION'] = dgettext('filecabinet', 'Are you certain you want to delete this folder and all its contents?');
+        $vars['QUESTION'] = 'Are you certain you want to delete this folder and all its contents?';
         $vars['ADDRESS'] = PHPWS_Text::linkAddress('filecabinet', array('aop' => 'delete_folder', 'folder_id' => $this->id), true);
         $label = 'Delete';
         if ($mode == 'image') {
@@ -116,7 +116,7 @@ class Folder
     {
         $vars['action'] = 'delete_image';
         $vars['image_id'] = $this->id;
-        $js['QUESTION'] = dgettext('filecabinet', 'Are you sure you want to delete this image?');
+        $js['QUESTION'] = 'Are you sure you want to delete this image?';
         $js['ADDRESS'] = PHPWS_Text::linkAddress('filecabinet', $vars, true);
         $js['LINK'] = 'Delete';
         $links[] = javascript('confirm', $js);
@@ -207,7 +207,7 @@ class Folder
                 break;
 
             case 'icon':
-                $vars['label'] = '<i class="fa fa-upload" title="' . 'Upload' . '"></i>';
+                $vars['label'] = '<i class="fa fa-upload" title="Upload"></i>';
                 break;
 
             default:

@@ -25,8 +25,7 @@ function my_page()
     switch ($subcommand) {
         case 'updateSettings':
             if (isset($_GET['save'])) {
-                $template['MESSAGE'] = dgettext('users',
-                        'User settings updated.');
+                $template['MESSAGE'] = 'User settings updated.';
             }
 
             $content = User_Settings::userForm($user);
@@ -41,8 +40,7 @@ function my_page()
                 $content = User_Settings::userForm($user, $result);
             } else {
                 if (PHPWS_Error::logIfError($user->save())) {
-                    $content = dgettext('users',
-                            'An error occurred while updating your user account.');
+                    $content = 'An error occurred while updating your user account.';
                 } else {
                     $_SESSION['User'] = $user;
                     \phpws\PHPWS_Core::reroute('index.php?module=users&action=user&tab=users&save=1');
@@ -78,8 +76,7 @@ class User_Settings {
             $tpl['DISPLAY_NAME'] = javascript('slider',
                     array('link' => $user->display_name,
                 'id' => 'name-info',
-                'message' => dgettext('users',
-                        'Once you change your display name, you may not change it again until reset by the site administrator.')));
+                'message' => 'Once you change your display name, you may not change it again until reset by the site administrator.'));
         }
 
         if ($user->canChangePassword()) {

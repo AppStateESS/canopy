@@ -67,8 +67,7 @@ switch ($_REQUEST['action']) {
         $result = Boost_Action::installModule($_REQUEST['opmod']);
         if (PHPWS_Error::isError($result)) {
             PHPWS_Error::log($result);
-            $content[] = dgettext('boost',
-                            'An error occurred while installing this module.') .
+            $content[] = 'An error occurred while installing this module.' .
                     ' ' . 'Please check your error logs.';
         } else {
             $content[] = $result;

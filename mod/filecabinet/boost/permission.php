@@ -9,4 +9,4 @@ $use_permissions = TRUE;
 $item_permissions = TRUE;
 
 $permissions['edit_folders']     = 'Edit folders';
-$permissions['delete_folders']   = dgettext('filecabinet', 'Delete folders (Unrestricted only)');
+$permissions['delete_folders']   = 'Delete folders (Unrestricted only)';

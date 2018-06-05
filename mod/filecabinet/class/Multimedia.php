@@ -265,8 +265,7 @@ EOF;
         $vars['multimedia_id'] = $this->id;
         $vars['folder_id'] = $this->folder_id;
 
-        $js['QUESTION'] = dgettext('filecabinet',
-                'Are you sure you want to delete this multimedia file?');
+        $js['QUESTION'] = 'Are you sure you want to delete this multimedia file?';
         $js['ADDRESS'] = PHPWS_Text::linkAddress('filecabinet', $vars, true);
 
         if ($icon) {

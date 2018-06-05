@@ -84,7 +84,7 @@ class FC_Document_Manager
                         $shortcut->setUrl('filecabinet', $this->document->getViewLink());
                         $shortcut->save();
                         $success = true;
-                        $message = '<p>' . dgettext('filecabinet', 'Access shortcut successful!') . '</p>';
+                        $message = '<p>' . 'Access shortcut successful!' . '</p>';
                         $message .= '<a href="' . \phpws\PHPWS_Core::getHomeHttp() . $shortcut->keyword . '">' . \phpws\PHPWS_Core::getHomeHttp() . $shortcut->keyword . '</a>';
                     }
                 } else {
@@ -155,9 +155,9 @@ class FC_Document_Manager
         $sys_size = $sys_size * 1000000;
 
         if ((int) $sys_size < (int) $this->max_size) {
-            $template['MAX_SIZE'] = sprintf(dgettext('filecabinet', '%d bytes (system wide)'), $sys_size);
+            $template['MAX_SIZE'] = sprintf('%d bytes (system wide)', $sys_size);
         } else {
-            $template['MAX_SIZE'] = sprintf(dgettext('filecabinet', '%d bytes'), $this->max_size);
+            $template['MAX_SIZE'] = sprintf('%d bytes', $this->max_size);
         }
 
         $this->content = PHPWS_Template::process($template, 'filecabinet', 'Forms/document_edit.tpl');
@@ -193,7 +193,7 @@ class FC_Document_Manager
         } elseif ($result) {
             $result = $this->document->save();
             if (PHPWS_Error::logIfError($result)) {
-                $content = dgettext('filecabinet', '<p>Could not upload file to folder. Please check your directory permissions.</p>');
+                $content = '<p>Could not upload file to folder. Please check your directory permissions.</p>';
                 $content .= sprintf('<a href="#" onclick="window.close(); return false">%s</a>', 'Close this window');
                 Layout::nakedDisplay($content);
                 exit();

@@ -155,7 +155,7 @@ class Access_Shortcut
 
     public function rowTags()
     {
-        $js['QUESTION'] = dgettext('access', 'Are you sure you want to delete this shortcut?');
+        $js['QUESTION'] = 'Are you sure you want to delete this shortcut?';
         $js['ADDRESS'] = sprintf('index.php?module=access&amp;command=delete_shortcut&amp;shortcut_id=%s&amp;authkey=%s', $this->id, Current_User::getAuthKey());
         $js['LINK'] = '<button class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete</button>';
         $tags[] = javascript('confirm', $js);

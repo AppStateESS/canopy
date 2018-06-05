@@ -27,8 +27,7 @@ class Boost_Action {
 
         $template['LOCAL_VERSION_LABEL'] = 'Local version';
         $template['LOCAL_VERSION'] = $module->getVersion();
-        $template['STABLE_VERSION_LABEL'] = dgettext('boost',
-                'Current stable version');
+        $template['STABLE_VERSION_LABEL'] = 'Current stable version';
         if (!isset($version_info['VERSION'])) {
             $template['STABLE_VERSION'] = 'Source XML error';
             $version_info['VERSION'] = $module->getVersion();
@@ -40,8 +39,7 @@ class Boost_Action {
         if (version_compare($version_info['VERSION'], $module->getVersion(), '>')) {
             $template['CHANGES_LABEL'] = 'Changes';
             $template['CHANGES'] = '<pre>' . htmlspecialchars($version_info['CHANGES']) . '</pre>';
-            $template['UPDATE_AVAILABLE'] = dgettext('boost',
-                            'An update is available!') . '<br />';
+            $template['UPDATE_AVAILABLE'] = 'An update is available!' . '<br />';
             $template['UPDATE_PATH_LABEL'] = 'Download here';
             $template['UPDATE_PATH'] = '<a href="' . $version_info['DOWNLOAD'] . '">' . $version_info['DOWNLOAD'] . '</a>';
             $template['MD5_LABEL'] = 'MD5 Sum';
@@ -50,8 +48,7 @@ class Boost_Action {
             if (isset($version_info['DEPENDENCY'][0]['MODULE'])) {
                 $template['DEPENDENCY_LABEL'] = 'Dependencies';
                 $template['DEP_TITLE_LABEL'] = 'Module title';
-                $template['DEP_VERSION_LABEL'] = dgettext('boost',
-                        'Version required');
+                $template['DEP_VERSION_LABEL'] = 'Version required';
                 $template['DEP_STATUS_LABEL'] = 'Status';
 
                 foreach ($version_info['DEPENDENCY'][0]['MODULE'] as $dep_mod) {
@@ -65,7 +62,7 @@ class Boost_Action {
                         $status = 'Needs upgrading';
                         $row['DEP_STATUS_CLASS'] = 'red';
                     } else {
-                        $status = dgettext('boost', 'Passed!');
+                        $status = 'Passed!';
                         $row['DEP_STATUS_CLASS'] = 'green';
                     }
                     $row['DEP_TITLE'] = $dep_mod['PROPERNAME'];
@@ -124,18 +121,15 @@ class Boost_Action {
             $result = $db->update();
             if (PHPWS_Error::isError($result)) {
                 PHPWS_Error::log($result);
-                $content[] = dgettext('boost',
-                        'An error occurred updating the core.');
+                $content[] = 'An error occurred updating the core.';
             } else {
                 $content[] = 'Core successfully updated.';
             }
         } elseif (PHPWS_Error::isError($result)) {
             PHPWS_Error::log($result);
-            $content[] = dgettext('boost',
-                    'An error occurred updating the core.');
+            $content[] = 'An error occurred updating the core.';
         } else {
-            $content[] = dgettext('boost',
-                    'An error occurred updating the core.');
+            $content[] = 'An error occurred updating the core.';
         }
 
         return implode('<br />', $content);
@@ -163,11 +157,10 @@ class Boost_Action {
             return 'This module does not have dependents.';
         }
 
-        $template['TITLE'] = sprintf(dgettext('boost', '%s Dependencies'),
+        $template['TITLE'] = sprintf('%s Dependencies',
                 $module->getProperName());
         $content[] = PHPWS_Text::backLink() . '<br />';
-        $content[] = dgettext('boost',
-                'The following modules depend on this module to function:');
+        $content[] = 'The following modules depend on this module to function:';
         foreach ($dependents as $mod) {
             $dep_module = new PHPWS_Module($mod);
             $content[] = $dep_module->getProperName();
@@ -184,7 +177,7 @@ class Boost_Action {
         \phpws\PHPWS_Core::initCoreClass('Module.php');
         $module = new PHPWS_Module($base_module_title);
         $depend = $module->getDependencies();
-        $template['TITLE'] = sprintf(dgettext('boost', '%s Module Dependencies'),
+        $template['TITLE'] = sprintf('%s Module Dependencies',
                 $module->getProperName());
 
         $template['MODULE_NAME_LABEL'] = 'Module Needed';
@@ -218,7 +211,7 @@ class Boost_Action {
                     $module['URL'], 'More info');
 
             if ($pass) {
-                $tpl['STATUS_GOOD'] = dgettext('boost', 'Passed!');
+                $tpl['STATUS_GOOD'] = 'Passed!';
             } else {
                 $tpl['STATUS_BAD'] = 'Failed';
             }

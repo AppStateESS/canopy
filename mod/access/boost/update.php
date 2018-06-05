@@ -112,7 +112,7 @@ function access_update(&$content, $version)
             $content[] = implode("\n", $files);
             $content[] = '1.0.0 changes
 ---------------
-+ Rewritten for phpwebsite 1.5.0 changes.
++ Rewritten for Canopy 1.5.0 changes.
 + addIP and removeIP allow modules to restrict users.
 </pre>';
 

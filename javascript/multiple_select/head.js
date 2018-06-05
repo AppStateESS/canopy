@@ -4,7 +4,7 @@
  * Uses a set of options to create a more user friendly multiple select.
  *
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 function add_value(id, sname) {

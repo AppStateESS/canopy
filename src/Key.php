@@ -4,7 +4,7 @@ namespace Canopy;
 /**
  * Small class to help modules plug in features from other modules
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 /**

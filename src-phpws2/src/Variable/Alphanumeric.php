@@ -6,7 +6,7 @@ namespace phpws2\Variable;
  * String variable that is alphanumeric with underlines only. Value must begin
  * with a letter.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 

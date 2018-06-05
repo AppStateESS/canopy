@@ -1,7 +1,7 @@
 <?php
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 define('LAYOUT_THEME_EXEC', true);

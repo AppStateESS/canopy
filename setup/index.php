@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 //ini_set('display_errors', 'On');

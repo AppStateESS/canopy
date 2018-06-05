@@ -6,7 +6,7 @@ namespace phpws2;
 /**
  * Logs activity occuring in system
  *
- * @author Matt McNaney <mcnaney at gmail dot com>
+ * @author Matt McNaney <mcnaneym@appstate.edu>
  */
 class Activity extends \phpws2\Resource {
 

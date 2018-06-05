@@ -6,7 +6,7 @@ namespace Canopy;
  * against user submissions.
 
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 if (!defined('PHPWS_SOURCE_DIR')) {

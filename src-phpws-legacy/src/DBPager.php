@@ -23,7 +23,7 @@ if (!defined('UTF8_MODE')) {
  * This pager pulls only the data it needs for display.
  *
  * @version $Id$
- * @author  Matt McNaney <mcnaney at gmail dot com>
+ * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 class DBPager

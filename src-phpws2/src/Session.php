@@ -31,7 +31,7 @@ namespace phpws2;
  * If a session variable is not set (or unset) and get is called on it an
  * exception will be thrown.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */

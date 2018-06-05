@@ -10,7 +10,7 @@ if (!defined('DB_PERSISTENT_CONNECTION')) {
  * The DB class object helps construct a database query. It is abstract and meant
  * for extension by different database engines in the Engine directory.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */

@@ -7,7 +7,7 @@ namespace phpws2\Variable;
  * 
  * This version only works with offsite urls, not relative.
  * 
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage Variable
  * @license http://opensource.org/licenses/lgpl-3.0.html

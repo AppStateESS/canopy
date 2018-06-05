@@ -5,7 +5,7 @@ namespace phpws\DB;
  * Mysqli specific library
  * This is a test factory class. Not sure if it works.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 class mysqli_PHPWS_SQL {

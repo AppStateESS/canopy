@@ -6,7 +6,7 @@
  * http://pear.php.net/manual/en/package.mail.mail.intro.php
  *
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 /**

@@ -3,7 +3,7 @@
 /**
  * Tracks and displays the statistics of searches
  *
- * @author Matthew McNaney <mcnaney at gmail dot com
+ * @author Matthew McNaney <mcnaneym@appstate.edu
  * @version $Id$
  */
 

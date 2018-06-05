@@ -4,7 +4,7 @@
  * Controls the installation, update, and uninstallation
  * of modules in Canopy
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 \phpws\PHPWS_Core::initCoreClass('Module.php');

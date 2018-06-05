@@ -2,7 +2,7 @@
 namespace phpws2\Http;
 /**
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 abstract class MovedPermanentlyResponse extends RedirectResponse

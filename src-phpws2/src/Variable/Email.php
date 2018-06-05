@@ -4,7 +4,7 @@ namespace phpws2\Variable;
 
 /**
  * A string extension suitable for using an email address.
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage Variable
  * @todo Expand functionality

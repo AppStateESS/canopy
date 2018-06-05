@@ -7,7 +7,7 @@ namespace phpws2;
  * Assists with type restrictions, form generation, file configuration creation,
  * and database entry.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */

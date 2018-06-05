@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  * @modified Hilmar 2011-06-22
  */

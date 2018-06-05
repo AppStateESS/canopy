@@ -2,7 +2,7 @@
 /**
  * Array of allowed embeds. Used as a security check.
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 $allowed_embeds[] = 'youtube';

@@ -1,7 +1,7 @@
 <?php
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 $data['ur_label1'] = 'Uncheck all unrestricted';

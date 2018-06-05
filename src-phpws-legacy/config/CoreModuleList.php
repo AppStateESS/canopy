@@ -3,7 +3,7 @@
 /**
  * core modules for a Canopy installation
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 $core_modules = array('users',

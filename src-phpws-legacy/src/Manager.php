@@ -23,7 +23,7 @@ require_once(PHPWS_SOURCE_DIR . 'src-phpws-legacy/src/Pager.php');
  * @version $Id$
  * @author  Steven Levin
  * @author  Adam Morton
- * @modified Matthew McNaney <mcnaney at gmail dot com>
+ * @modified Matthew McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 class PHPWS_Manager {

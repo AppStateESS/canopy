@@ -5,7 +5,7 @@ namespace phpws2\Http;
 /**
  * Description
  * @author Jeff Tickle <jtickle at tux dot appstate dot edu>
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 

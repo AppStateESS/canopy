@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id: runtime.php 7776 2010-06-11 13:52:58Z jtickle $
  */
 if (!class_exists('PHPWS_User')) {

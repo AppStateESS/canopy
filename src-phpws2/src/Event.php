@@ -6,7 +6,7 @@ namespace phpws2;
 /**
  * Event is a class that is used to add Javascript events to Tags
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */

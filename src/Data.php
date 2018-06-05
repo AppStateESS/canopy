@@ -5,7 +5,7 @@ namespace Canopy;
  * Foundation abstract class for any data type object. Note: for overload to work
  * all variables in the parent object have to be protected.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage Form
  * @license http://opensource.org/licenses/lgpl-3.0.html

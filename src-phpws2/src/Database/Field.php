@@ -10,7 +10,7 @@ namespace phpws2\Database;
  * Not to be confused with Value which is used in INSERT and UPDATE.
  *
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage DB
  * @license http://opensource.org/licenses/lgpl-3.0.html

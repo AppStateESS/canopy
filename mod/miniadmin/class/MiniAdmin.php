@@ -3,7 +3,7 @@
 /**
  * Simple class to add a module's administrator commands to a box
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 \phpws\PHPWS_Core::requireConfig('miniadmin');

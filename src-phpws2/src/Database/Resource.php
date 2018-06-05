@@ -6,7 +6,7 @@ namespace phpws2\Database;
  * A Resource is an database entity from which information is derived or
  * manipulated. A table is an example and a database subselect is another.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage DB
  * @abstract

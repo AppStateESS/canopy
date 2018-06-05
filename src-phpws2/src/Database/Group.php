@@ -3,7 +3,7 @@
 namespace phpws2\Database;
 
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage DB
  * @license http://opensource.org/licenses/lgpl-3.0.html

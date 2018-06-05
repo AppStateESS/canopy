@@ -11,7 +11,7 @@
  * you update Canopy, this file will be replaced and your
  * changes lost.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 

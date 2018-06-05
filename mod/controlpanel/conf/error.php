@@ -1,7 +1,7 @@
 <?php
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 $errors = array (CP_BAD_TABS       => 'Tabs must be in an array.',

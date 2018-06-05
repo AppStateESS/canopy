@@ -5,7 +5,7 @@ namespace phpws;
  * The PHPWS_Time class is mainly for the parsing of timestamps
  * into and out of UTC time.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 
@@ -187,7 +187,7 @@ class PHPWS_Time {
 	 * Relative time calculation
 	 *
 	 * @author René C. Kiesler <http://www.kiesler.at/>
-	 * @modified Matthew McNaney <mcnaney at gmail dot com>
+	 * @modified Matthew McNaney <mcnaneym@appstate.edu>
 	 * @date   2006-02-03
 	 *
 	 */

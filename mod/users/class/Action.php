@@ -4,7 +4,7 @@
  * Controls results from forms and administration functions
  *
  * @version $Id$
- * @author  Matt McNaney <mcnaney at gmail dot com>
+ * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 require_once PHPWS_SOURCE_DIR . 'mod/users/inc/errorDefines.php';

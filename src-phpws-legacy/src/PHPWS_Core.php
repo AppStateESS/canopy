@@ -7,7 +7,7 @@ namespace phpws;
  *
  * Loads modules and their respective files.
  * @version $Id$
- * @author  Matt McNaney <mcnaney at gmail dot com>
+ * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 if (!defined('FORCE_MOD_CONFIG')) {

@@ -4,7 +4,7 @@ namespace phpws2\Form\Input;
 
 /**
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage Form
  * @subpackage Input

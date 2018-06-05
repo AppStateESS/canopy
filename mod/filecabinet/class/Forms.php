@@ -2,7 +2,7 @@
 
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
 \phpws\PHPWS_Core::initModClass('filecabinet', 'Document.php');

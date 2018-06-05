@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 if (isset($data['match']) && is_array($data['match'])) {
 

@@ -6,7 +6,7 @@ namespace phpws2\Database;
  * This is a conditional class for use in limiting update, delete, or select
  * queries. It is used in both where and having clauses.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage DB
  * @license http://opensource.org/licenses/lgpl-3.0.html

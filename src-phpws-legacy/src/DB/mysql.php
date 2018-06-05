@@ -4,7 +4,7 @@ namespace phpws\DB;
 /**
  * Mysql specific library
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 class mysql_PHPWS_SQL {

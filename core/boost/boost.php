@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $proper_name = 'Canopy Core';
 $version = '3.0.0';

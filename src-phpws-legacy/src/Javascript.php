@@ -5,7 +5,7 @@ namespace phpws;
 /**
  *
  * @version $Id$
- * @author  Matt McNaney <mcnaney at gmail dot com>
+ * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 \phpws\PHPWS_Core::initCoreClass('jsmin.php');

@@ -4,7 +4,7 @@ namespace phpws2;
 
 
 /**
- * @author Matt McNaney <mcnaney at gmail dot com>
+ * @author Matt McNaney <mcnaneym@appstate.edu>
  */
 class PageCache extends \Canopy\Data
 {

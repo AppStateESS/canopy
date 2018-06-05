@@ -10,7 +10,7 @@ namespace phpws;
  * @version $Id$
  * @author  Steven Levin <steven at tux dot appstate dot edu>
  * @author  Adam Morton
- * @author  Matthew McNaney <mcnaney at gmail dot com>
+ * @author  Matthew McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 

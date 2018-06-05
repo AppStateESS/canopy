@@ -6,7 +6,7 @@ namespace phpws2\Form\Choice;
  * The Select input is an extension of the Choice class. It builds a multiple
  * choice, drop-down select box.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage Form
  * @license http://opensource.org/licenses/lgpl-3.0.html

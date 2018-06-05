@@ -2,7 +2,7 @@
 
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $proper_name = 'Boost';
 $version = '2.3.8';

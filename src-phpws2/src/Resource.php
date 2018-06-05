@@ -5,7 +5,7 @@ namespace phpws2;
 /**
  *  Abstract class forming the basis of content objects
  * @todo See Database/Object
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */

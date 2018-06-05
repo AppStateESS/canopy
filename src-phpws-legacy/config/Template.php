@@ -2,7 +2,7 @@
 /**
  * Config file for template class
  *
- * @author Matt McNaney <mcnaney at gmail dot com>
+ * @author Matt McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 

@@ -2,7 +2,7 @@
 
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 // if TRUE then only deities can access boost
 define('DEITY_ACCESS_ONLY', FALSE);

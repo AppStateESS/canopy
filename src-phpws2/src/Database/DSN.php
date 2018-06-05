@@ -6,7 +6,7 @@ use \Canopy\Translation;
 /**
  * The DSN object stores information used to create a database connection.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage DB
  * @license http://opensource.org/licenses/lgpl-3.0.html

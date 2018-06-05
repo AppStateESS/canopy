@@ -2,7 +2,7 @@
 namespace phpws2\View;
 /**
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 class HtmlView implements \phpws2\View {

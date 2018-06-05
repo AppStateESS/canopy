@@ -14,7 +14,7 @@ namespace phpws;
  * The second part orders the data into an associative array
  *
  * @author raphael at schwarzschmid dot de
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 

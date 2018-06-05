@@ -5,7 +5,7 @@ namespace phpws2;
 /**
  * Class for creating DB objects and initializing the database connection.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 

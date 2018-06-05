@@ -6,7 +6,7 @@ namespace phpws;
  * Prevents modules from having to load their config tables
  * per page.
  *
- * @author Matt McNaney <mcnaney at gmail dot com>
+ * @author Matt McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 class PHPWS_Settings

@@ -8,7 +8,7 @@ namespace phpws2\Variable;
  * @package phpws2
  * @subpackage Variable
  * @subpackage String
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 class Attribute extends \phpws2\Variable\StringVar {

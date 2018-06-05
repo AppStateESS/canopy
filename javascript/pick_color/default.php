@@ -1,5 +1,5 @@
 <?php
 /**
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $data['rand_id'] = 'cp' . rand();

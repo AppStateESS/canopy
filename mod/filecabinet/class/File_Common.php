@@ -3,7 +3,7 @@
 /**
  * Factory file for files.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 \phpws\PHPWS_Core::initCoreClass('File.php');

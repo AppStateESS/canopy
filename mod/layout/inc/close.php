@@ -2,7 +2,7 @@
 
 /**
  * Crutch display of old modules
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 

@@ -4,7 +4,7 @@
  * Class to control the user permissioning
  *
  * @version $Id$
- * @author Matt McNaney <mcnaney at gmail dot com>
+ * @author Matt McNaney <mcnaneym@appstate.edu>
  * @package User Module
  */
 class Users_Permission

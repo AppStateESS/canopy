@@ -3,7 +3,7 @@ namespace phpws;
 
 /**
  * Write, reads, and deletes cookies under one site index
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 

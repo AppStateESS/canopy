@@ -2,7 +2,7 @@
 
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $settings = array('default_authorization' => 1,
     'new_user_method' => 0,

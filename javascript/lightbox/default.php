@@ -14,7 +14,7 @@
  *
  *
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package
  * @license http://opensource.org/licenses/gpl-3.0.html
  */

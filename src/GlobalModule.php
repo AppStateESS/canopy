@@ -4,7 +4,7 @@ namespace Canopy;
 /**
  * This is a faux module used for purposes of extracting site settings.
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
 

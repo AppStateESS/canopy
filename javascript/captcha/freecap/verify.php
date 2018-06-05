@@ -8,7 +8,7 @@
  *
  * @version $Id$
  * @author Howard Yeend
- * @modified Matthew McNaney <mcnaney at gmail dot com>
+ * @modified Matthew McNaney <mcnaneym@appstate.edu>
  */
 function verify($return_value=false)
 {

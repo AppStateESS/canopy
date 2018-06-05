@@ -3,7 +3,7 @@
 /**
  * Class containing all user information
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 if (!defined('USERS_AUTH_PATH')) {

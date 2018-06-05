@@ -3,7 +3,7 @@
 /**
  * Main administrative control class for Access
  *
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 define('SHORTCUT_BAD_KEYWORD', 1);

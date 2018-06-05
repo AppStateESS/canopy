@@ -5,7 +5,7 @@ namespace phpws;
  * Used to load DHTML editors. Plugin files must be available.
  *
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
 \phpws\PHPWS_Core::initCoreClass('File.php');

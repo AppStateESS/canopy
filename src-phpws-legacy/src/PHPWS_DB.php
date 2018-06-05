@@ -6,7 +6,7 @@ namespace phpws;
  * A database class
  *
  * @version $Id$
- * @author  Matt McNaney <mcnaney at gmail dot com>
+ * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
 require_once PHPWS_SOURCE_DIR . 'src-phpws-legacy/src/DB/DB_Group_In.php';
@@ -2273,7 +2273,7 @@ class PHPWS_DB
     }
 
     /**
-     * @author Matt McNaney <mcnaney at gmail dot com>
+     * @author Matt McNaney <mcnaneym@appstate.edu>
      * @param  object $object        Object variable filled with result.
      * @param  object $require_where If true, require a where parameter or
      *                               have the id set
@@ -2327,7 +2327,7 @@ class PHPWS_DB
      * } // end constuctor
      * } //end class
      *
-     * @author Matthew McNaney <mcnaney at gmail dot com>
+     * @author Matthew McNaney <mcnaneym@appstate.edu>
      * @param string $class_name Name of class used in object
      * @return array $items      Array of objects
      * @access public

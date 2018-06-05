@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Matt McNaney <mcnaney at gmail dot com>
+ * @author Matt McNaney <mcnaneym@appstate.edu>
  */
 
 namespace phpws2\Variable;

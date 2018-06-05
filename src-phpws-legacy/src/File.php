@@ -4,7 +4,7 @@ namespace phpws;
 
 /**
  * @version $Id$
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 class PHPWS_File
 {
@@ -15,7 +15,7 @@ class PHPWS_File
      * Is called recursively is recursive is true.
      *
      * @param boolean with_root If true, return results prefixed with the root dir
-     * @author Matthew McNaney <mcnaney at gmail dot com>
+     * @author Matthew McNaney <mcnaneym@appstate.edu>
      * @return array directories Array of directories if successful, NULL if nothing found
      */
     public static function listDirectories($root_dir, $with_root = false,
@@ -143,7 +143,7 @@ class PHPWS_File
     /**
      * Recursively copies files from one directory to another.
      *
-     * @author Matthew McNaney <mcnaney at gmail dot com>
+     * @author Matthew McNaney <mcnaneym@appstate.edu>
      */
     public static function copy_directory($source_directory, $dest_directory,
             $overwrite = true, $hidden = false)

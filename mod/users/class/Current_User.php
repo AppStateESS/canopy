@@ -6,7 +6,7 @@
  * logged into the system. Current_User is actually pathing through
  * the current user session.
  *
- * @author  Matthew McNaney <mcnaney at gmail dot com>
+ * @author  Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
 \phpws\PHPWS_Core::initModClass('users', 'Authorization.php');

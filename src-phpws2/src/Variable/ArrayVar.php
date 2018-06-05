@@ -5,7 +5,7 @@ namespace phpws2\Variable;
 /**
  * Variable extender for arrays. Cannot be named "Array" because that is
  * reserved, even with namespaces.
- * @author Matthew McNaney <mcnaney at gmail dot com>
+ * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package phpws2
  * @subpackage Variable
  * @license http://opensource.org/licenses/lgpl-3.0.html

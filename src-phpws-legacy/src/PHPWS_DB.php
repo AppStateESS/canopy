@@ -114,12 +114,11 @@ class PHPWS_DB
      * Loads a connection
      *
      * @param string $dsn
-     * @param string $tbl_prefix
      * @param boolean $force_reconnect
      * @param boolean $show_error
      * @return boolean
      */
-    public static function loadDB($dsn = null, $tbl_prefix = null, $force_reconnect = false, $show_error = true)
+    public static function loadDB($dsn = null, $force_reconnect = false, $show_error = true)
     {
         if (!isset($dsn)) {
 
@@ -128,9 +127,6 @@ class PHPWS_DB
             }
 
             $dsn = PHPWS_DSN;
-            if (defined('PHPWS_TABLE_PREFIX')) {
-                $tbl_prefix = PHPWS_TABLE_PREFIX;
-            }
         }
 
         /**
@@ -180,7 +176,6 @@ class PHPWS_DB
         $GLOBALS['PHPWS_DB']['lib'] = $dblib;
         $GLOBALS['PHPWS_DB']['dsn'] = $dsn;
         $GLOBALS['PHPWS_DB']['connection'] = $connect;
-        $GLOBALS['PHPWS_DB']['tbl_prefix'] = $tbl_prefix;
         $GLOBALS['PHPWS_DB']['type'] = $type;
 
         return true;
@@ -195,25 +190,17 @@ class PHPWS_DB
         \phpws\PHPWS_Core::log($sql, 'db.log');
     }
 
-    public static function exec($sql, $prefix = true)
+    public static function exec($sql)
     {
         \phpws\PHPWS_DB::touchDB();
-        if ($prefix) {
-            $sql = \phpws\PHPWS_DB::prefixQuery($sql);
-        }
-
         \phpws\PHPWS_DB::logDB($sql);
 
         return $GLOBALS['PHPWS_DB']['connection']->exec($sql);
     }
 
-    public static function query($sql, $prefix = true)
+    public static function query($sql)
     {
         \phpws\PHPWS_DB::touchDB();
-        if ($prefix) {
-            $sql = \phpws\PHPWS_DB::prefixQuery($sql);
-        }
-
         \phpws\PHPWS_DB::logDB($sql);
 
         return $GLOBALS['PHPWS_DB']['connection']->query($sql);
@@ -286,8 +273,6 @@ class PHPWS_DB
                 return \phpws\PHPWS_Error::get(PHPWS_DB_ERROR_TABLE, 'core', '\phpws\PHPWS_DB::getTableColumns');
             }
 
-            $table = $this->addPrefix($table);
-
             $GLOBALS['PHPWS_DB']['connection']->loadModule('Reverse', null, true);
             $columns = $GLOBALS['PHPWS_DB']['connection']->tableInfo($table);
 
@@ -344,7 +329,6 @@ class PHPWS_DB
         \phpws\PHPWS_DB::touchDB();
         $tables = \phpws\PHPWS_DB::listTables();
 
-        $table = \phpws\PHPWS_DB::addPrefix($table);
         return in_array($table, $tables);
     }
 
@@ -418,7 +402,6 @@ class PHPWS_DB
             $table = $this->getTable(false);
         }
 
-        $table = $this->addPrefix($table);
         $GLOBALS['PHPWS_DB']['connection']->loadModule('Reverse');
         $columns = $GLOBALS['PHPWS_DB']['connection']->tableInfo($table);
 
@@ -1259,10 +1242,9 @@ class PHPWS_DB
             if (\phpws\PHPWS_Error::isError($idColumn)) {
                 return $idColumn;
             } elseif (isset($idColumn)) {
-                $check_table = $this->addPrefix($table);
-                $maxID = $GLOBALS['PHPWS_DB']['connection']->nextID($check_table);
+                $maxID = $GLOBALS['PHPWS_DB']['connection']->nextID($table);
                 if (!empty($this->_joined_tables)) {
-                    $values[$check_table . '.' . $idColumn] = $maxID;
+                    $values[$table . '.' . $idColumn] = $maxID;
                 } else {
                     $values[$idColumn] = $maxID;
                 }
@@ -1427,8 +1409,6 @@ class PHPWS_DB
         } else {
             $mode = MDB2_FETCHMODE_ASSOC;
         }
-
-        $sql = \phpws\PHPWS_DB::prefixQuery($sql);
 
         if ($this->_test_mode) {
             exit($sql);
@@ -1750,7 +1730,6 @@ class PHPWS_DB
 
     public static function isSequence($table)
     {
-        $table = \phpws\PHPWS_DB::addPrefix($table);
         return is_numeric($GLOBALS['PHPWS_DB']['connection']->nextId($table));
     }
 
@@ -2148,7 +2127,7 @@ class PHPWS_DB
     public function export($structure = true, $contents = true)
     {
         \phpws\PHPWS_DB::touchDB();
-        $table = $this->addPrefix($this->tables[0]);
+        $table = $this->tables[0];
 
         if ($structure == true) {
             $GLOBALS['PHPWS_DB']['connection']->loadModule('Reverse', null, true);
@@ -2514,7 +2493,7 @@ class PHPWS_DB
         if ($max_id > 0) {
             $seq_table = $this->getTable(false) . '_seq';
             if (!$this->isTable($seq_table)) {
-                $table = $this->addPrefix($this->getTable(false));
+                $table = $this->getTable(false);
                 $GLOBALS['PHPWS_DB']['connection']->nextId($table);
             }
 
@@ -2533,69 +2512,6 @@ class PHPWS_DB
         }
 
         return true;
-    }
-
-    public static function addPrefix($table)
-    {
-        if (isset($GLOBALS['PHPWS_DB']['tbl_prefix'])) {
-            return $GLOBALS['PHPWS_DB']['tbl_prefix'] . $table;
-        }
-        return $table;
-    }
-
-    public static function getPrefix()
-    {
-        if (isset($GLOBALS['PHPWS_DB']['tbl_prefix'])) {
-            return $GLOBALS['PHPWS_DB']['tbl_prefix'];
-        }
-        return null;
-    }
-
-    /**
-     * @author Matthew McNaney
-     * @author Hilmar
-     */
-    public static function prefixQuery($sql)
-    {
-        if (!$GLOBALS['PHPWS_DB']['tbl_prefix']) {
-            return $sql;
-        }
-        $tables = \phpws\PHPWS_DB::pullTables($sql);
-
-        if (empty($tables)) {
-            return $sql;
-        }
-
-        foreach ($tables as $tbl) {
-            $tbl = trim($tbl);
-            $sql = \phpws\PHPWS_DB::prefixVary($sql, $tbl);
-        }
-        return $sql;
-    }
-
-    /**
-     * Prefix tablenames, but not within 'quoted values', called from prefixQuery
-     * @author Hilmar
-     */
-    public static function prefixVary($sql, $tbl)
-    {
-        $repl = true;
-        $ar = explode("'", $sql);
-
-        foreach ($ar as $v) {
-            if ($repl) {
-                $subsql[] = preg_replace("/([\s\W])$tbl(\W)|([\s\W])$tbl$/", '$1${3}' . $GLOBALS['PHPWS_DB']['tbl_prefix'] . $tbl . '$2', $v);
-                $repl = false;
-            } else {
-                $subsql[] = $v;
-                if (substr($v, -1, 1) == "\\")
-                    continue;
-                $repl = true;
-            }
-        }
-        $sql = implode('\'', $subsql);
-
-        return $sql;
     }
 
     public static function pullTables($sql)

@@ -43,7 +43,6 @@ abstract class Table extends Resource
 
     /**
      * Name of table after prefixed
-     * @see DB::$tbl_prefix
      * @var string
      * @access protected
      */
@@ -250,8 +249,7 @@ abstract class Table extends Resource
             throw new \Exception('Improper table name' . ': ' . $name);
         }
 
-        $this->name = $name;
-        $this->full_name = $this->db->getTablePrefix() . $this->name;
+        $this->full_name = $this->name = $name;
     }
 
     /**

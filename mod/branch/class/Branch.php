@@ -4,7 +4,8 @@
  * @author Matthew McNaney <mcnaney at gmail dot com>
  * @version $Id$
  */
-class Branch {
+class Branch
+{
 
     public $id = null;
     public $branch_name = null;
@@ -12,7 +13,6 @@ class Branch {
     public $url = null;
     public $site_hash = null;
     public $dsn = null;
-    public $prefix = null;
 
     public function __construct($id = 0, $load_dsn = false)
     {
@@ -26,7 +26,7 @@ class Branch {
     }
 
     /**
-     * Loads the branch's DSN and table prefix into the objects
+     * Loads the branch's DSN into the objects
      *
      * @return boolean  True on success, false on failure
      */
@@ -37,12 +37,6 @@ class Branch {
         $config_contents = file_get_contents($config_file);
         $config = explode("\n", $config_contents);
 
-        if (preg_match('/phpws_table_prefix/i', $config_contents)) {
-            $prefix_used = true;
-        } else {
-            $prefix_used = false;
-        }
-
         foreach ($config as $row) {
             if (preg_match('/phpws_dsn/i', $row) && preg_match('/^define/i',
                             $row)) {
@@ -50,13 +44,7 @@ class Branch {
                 $this->dsn = preg_replace("@'|\);$@", '', trim($sub[1]));
             }
 
-            if (preg_match('/phpws_table_prefix/i', $row) && preg_match('/^define/i',
-                            $row)) {
-                $this->prefix = preg_replace('/phpws_table_prefix|define|[\s\'"(),;]/i',
-                        '', trim($row));
-            }
-
-            if (!empty($this->dsn) && (!$prefix_used || !empty($this->prefix))) {
+            if (!empty($this->dsn)) {
                 return true;
             }
         }
@@ -167,8 +155,7 @@ class Branch {
         $links[] = PHPWS_Text::secureLink(Icon::show('edit'), 'branch',
                         array('command' => 'edit_branch', 'branch_id' => $this->id));
 
-        $js['question'] = dgettext('branch',
-                'Removing this branch will make it inaccessible.\nThe database and files will remain behind.\nIf you are sure you want to remove the branch, type the branch name:');
+        $js['question'] = 'Removing this branch will make it inaccessible.\nThe database and files will remain behind.\nIf you are sure you want to remove the branch, type the branch name:';
         $js['address'] = sprintf('index.php?module=branch&command=remove_branch&branch_id=%s&authkey=%s',
                 $this->id, Current_User::getAuthKey());
         $js['value_name'] = 'branch_name';
@@ -180,27 +167,6 @@ class Branch {
                 $this->directory, PHPWS_Text::shortenUrl($this->directory));
         $tpl['ACTION'] = implode(' ', $links);
         return $tpl;
-    }
-
-    public static function getHubPrefix()
-    {
-        $handle = @fopen(PHPWS_SOURCE_DIR . 'config/core/config.php', 'r');
-        if ($handle) {
-            $search_for = '^define\(\'PHPWS_TABLE_PREFIX\',';
-            while (!feof($handle)) {
-                $buffer = fgets($handle, 4096);
-                $buffer = str_replace(' ', '', $buffer);
-                if (preg_match('/' . $search_for . '/', $buffer)) {
-                    $prefix = preg_replace('/^define\(\'PHPWS_TABLE_PREFIX\',\'(.*)\'\);/Ui',
-                            '\\1', $buffer);
-                    return trim($prefix);
-                    break;
-                }
-            }
-            return null;
-        } else {
-            return null;
-        }
     }
 
     public static function getHubDSN()
@@ -234,16 +200,13 @@ class Branch {
             \phpws\PHPWS_DB::loadDB();
         }
         $GLOBALS['Branch_Temp']['dsn'] = $GLOBALS['PHPWS_DB']['dsn'];
-        $GLOBALS['Branch_Temp']['prefix'] = $GLOBALS['PHPWS_DB']['tbl_prefix'];
         $dsn = Branch::getHubDSN();
         if (empty($dsn)) {
             throw new \Exception('Could not get hub DSN');
         }
 
-        $prefix = Branch::getHubPrefix();
-
-        PHPWS_DB::loadDB($dsn, $prefix);
-        \phpws2\Database::phpwsDSNLoader($dsn, $prefix);
+        PHPWS_DB::loadDB($dsn);
+        \phpws2\Database::phpwsDSNLoader($dsn);
     }
 
     /**
@@ -255,8 +218,8 @@ class Branch {
         if (empty($this->dsn)) {
             return false;
         }
-        \phpws2\Database::phpwsDSNLoader($this->dsn, $this->prefix);
-        return PHPWS_DB::loadDB($this->dsn, $this->prefix, false, false);
+        \phpws2\Database::phpwsDSNLoader($this->dsn);
+        return PHPWS_DB::loadDB($this->dsn, false, false);
     }
 
     /**
@@ -265,18 +228,13 @@ class Branch {
     public static function restoreBranchDB()
     {
         if (isset($GLOBALS['Branch_Temp'])) {
-            $prefix = $dsn = null;
+            $dsn = null;
             extract($GLOBALS['Branch_Temp']);
-            PHPWS_DB::loadDB($dsn, $prefix);
-            \phpws2\Database::phpwsDSNLoader($dsn, $prefix);
+            PHPWS_DB::loadDB($dsn);
+            \phpws2\Database::phpwsDSNLoader($dsn);
         } else {
-            if (defined('PHPWS_TABLE_PREFIX')) {
-                $prefix = PHPWS_TABLE_PREFIX;
-            } else {
-                $prefix = null;
-            }
-            PHPWS_DB::loadDB(PHPWS_DSN, $prefix);
-            \phpws2\Database::phpwsDSNLoader(PHPWS_DSN, $prefix);
+            PHPWS_DB::loadDB(PHPWS_DSN);
+            \phpws2\Database::phpwsDSNLoader(PHPWS_DSN);
         }
     }
 
@@ -366,12 +324,6 @@ class Branch {
             return FALSE;
         }
 
-        $prefix = Branch::getHubPrefix();
-
-        if ($prefix) {
-            $GLOBALS['PHPWS_TABLE_PREFIX'] = $prefix;
-        }
-
         $connection = DB::connect($dsn);
 
         if (PHPWS_Error::isError($connection)) {
@@ -406,4 +358,3 @@ class Branch {
     }
 
 }
-

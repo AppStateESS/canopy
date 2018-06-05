@@ -44,13 +44,6 @@ class DSN extends \Canopy\Data {
     protected $host;
 
     /**
-     * Character prefix set before table names to allow multiple installations
-     * per database.
-     * @var Variable\StringVar
-     */
-    protected $table_prefix;
-
-    /**
      * Port of access for database
      * @var Variable\Integer
      */
@@ -85,12 +78,6 @@ class DSN extends \Canopy\Data {
         $this->password->setLabel(Translation::t('Database password'));
         $this->password->setInputType('password');
 
-        $this->table_prefix = \phpws2\Variable::factory('StringVar', null, 'table_prefix');
-        $this->table_prefix->allowNull(true);
-        $this->table_prefix->setLimit(5);
-        $this->table_prefix->setLabel(Translation::t('Table prefix'));
-        $this->table_prefix->wordCharactersOnly();
-
         $this->host = \phpws2\Variable::factory('StringVar', null, 'host');
         $this->host->setLimit(255);
         $this->host->setLabel('Database host');
@@ -124,16 +111,6 @@ class DSN extends \Canopy\Data {
     public function getDatabaseName()
     {
         return (string) $this->database_name;
-    }
-
-    public function getTablePrefix()
-    {
-        return $this->table_prefix;
-    }
-
-    public function hasPrefix()
-    {
-        return !empty($this->table_prefix);
     }
 
     public function getHost()
@@ -191,11 +168,6 @@ class DSN extends \Canopy\Data {
     public function setDatabaseType($database_type)
     {
         $this->database_type->set($database_type);
-    }
-
-    public function setTablePrefix($table_prefix)
-    {
-        $this->table_prefix->set($table_prefix);
     }
 
     public function setHost($host)

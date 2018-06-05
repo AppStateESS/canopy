@@ -11,8 +11,6 @@
 {DBUSER_DEF}</p>
 <p>{DBPASS_LABEL} {DBPASS} <span class="error">{DBPASS_ERR}</span><br />
 {DBPASS_DEF}</p>
-<p>{DBPREFIX_LABEL} {DBPREFIX} <span class="error">{DBPREF_ERR}</span><br />
-{DBPREF_DEF}</p>
 <p>{DBPORT_LABEL} {DBPORT} <span class="error">{DBPORT_ERR}</span><br />
 {DBPORT_DEF}</p>
 <p>{DBHOST_LABEL} {DBHOST} <span class="error">{DBHOST_ERR}</span><br />

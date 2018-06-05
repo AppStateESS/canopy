@@ -40,9 +40,6 @@ class DB extends \phpws2\Database\DB
      */
     public function tableExists($table_name)
     {
-        if ($this->hasPrefix()) {
-            $table_name = $this->getTablePrefix() . $table_name;
-        }
         $this->loadStatement("SELECT table_name FROM information_schema.tables WHERE table_name='$table_name'");
         $result = $this->fetchAll();
         return (bool) $result;

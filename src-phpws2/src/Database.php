@@ -57,12 +57,7 @@ class Database
         if (is_null($dsn)) {
             if (empty(self::$default_dsn)) {
                 if (defined('PHPWS_DSN')) {
-                    if (defined('PHPWS_TABLE_PREFIX')) {
-                        $tbl_prefix = PHPWS_TABLE_PREFIX;
-                    } else {
-                        $tbl_prefix = null;
-                    }
-                    Database::phpwsDSNLoader(PHPWS_DSN, $tbl_prefix);
+                    Database::phpwsDSNLoader(PHPWS_DSN);
                     $dsn = self::$default_dsn;
                 } else {
                     throw new \Exception('Default DSN not set.');
@@ -103,7 +98,8 @@ class Database
      * @param string $port
      * @return \phpws2\Database\DSN
      */
-    public static function newDSN($database_type, $username, $password = null, $database_name = null, $host = null, $port = null)
+    public static function newDSN($database_type, $username, $password = null,
+            $database_name = null, $host = null, $port = null)
     {
         $dsn = new \phpws2\Database\DSN($database_type, $username, $password,
                 $database_name, $host, $port);
@@ -166,15 +162,12 @@ class Database
         return $dsn_array;
     }
 
-    public static function phpwsDSNLoader($dsn, $table_prefix = null)
+    public static function phpwsDSNLoader($dsn)
     {
         $dsn_array = self::parseDSN($dsn);
         extract($dsn_array);
         self::setDefaultDSN(self::newDSN($dbtype, $dbuser, $dbpass, $dbname,
                         $dbhost, $dbport));
-        if ($table_prefix) {
-            self::$default_dsn->setTablePrefix($table_prefix);
-        }
     }
 
     /**
@@ -204,7 +197,8 @@ class Database
         $port = null;
 
         if (!is_file($filename)) {
-            throw new \Exception(\Canopy\Translation::t('DSN file does not exist: %s', $filename));
+            throw new \Exception(\Canopy\Translation::t('DSN file does not exist: %s',
+                    $filename));
         }
         include $filename;
 

@@ -72,7 +72,6 @@ class pgsql_PHPWS_SQL
 
     public function renameColumn($table, $column_name, $new_name, $specs)
     {
-        $table = \phpws\PHPWS_DB::addPrefix($table);
         $sql = sprintf('ALTER TABLE %s RENAME COLUMN %s TO %s', $table,
                 $column_name, $new_name);
         return $sql;
@@ -115,7 +114,6 @@ class pgsql_PHPWS_SQL
 
     public function dropSequence($table)
     {
-        $table = \phpws\PHPWS_DB::addPrefix($table);
         $result = $GLOBALS['PHPWS_DB']['connection']->query("DROP SEQUENCE $table");
         if (\phpws\PHPWS_Error::isError($result)) {
             return $result;

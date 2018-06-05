@@ -44,12 +44,6 @@ abstract class DB extends \Canopy\Data
      */
     private $tables = array();
 
-    /**
-     * Current table prefix, if any
-     * @var string
-     * @access private
-     */
-    private $tbl_prefix = null;
     private $conditional;
 
     /**
@@ -250,15 +244,6 @@ abstract class DB extends \Canopy\Data
     public function __construct(\phpws2\Database\DSN $dsn)
     {
         $this->setDSN($dsn);
-    }
-
-    /**
-     * Returns the table prefix
-     * @return string
-     */
-    public function getTablePrefix()
-    {
-        return $this->dsn->getTablePrefix();
     }
 
     /**
@@ -632,20 +617,6 @@ abstract class DB extends \Canopy\Data
             'values', 'varbinary', 'varchar', 'varcharacter', 'varying', 'verbose', 'when',
             'where', 'while', 'with', 'write', 'xor', 'year_month', 'zerofill');
         return !in_array(strtolower($name), $reserved);
-    }
-
-    /**
-     * Sets the database's table prefix. These prefixes are added to the beginning
-     * of every table name.
-     * @access private
-     * @param string $tbl_prefix Prefix added to table names.
-     */
-    private function setTablePrefix($tbl_prefix)
-    {
-        if (preg_match('/\W/', $tbl_prefix)) {
-            throw new \Exception('Table prefix contains illegal characters');
-        }
-        $this->tbl_prefix = $tbl_prefix;
     }
 
     /**
@@ -1640,11 +1611,6 @@ abstract class DB extends \Canopy\Data
         static $operator_types = array('=', '<', '>', '>=', '<=', '<>', '!=', '!<',
             '!>');
         return in_array($operator, $operator_types);
-    }
-
-    public function hasPrefix()
-    {
-        return $this->dsn->hasPrefix();
     }
 
     /**

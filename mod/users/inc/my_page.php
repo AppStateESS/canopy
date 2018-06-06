@@ -71,12 +71,9 @@ class User_Settings {
             $form->setClass('display_name', 'form-control');
             $form->setLabel('display_name', 'Display Name');
         } else {
-            $form->addTplTag('DISPLAY_NAME_LABEL',
+            $form->addTplTag('DISPLAY_NAME_LABEL_TEXT',
                     'Display Name');
-            $tpl['DISPLAY_NAME'] = javascript('slider',
-                    array('link' => $user->display_name,
-                'id' => 'name-info',
-                'message' => 'Once you change your display name, you may not change it again until reset by the site administrator.'));
+            $tpl['DISPLAY_NAME'] = "<br /> {$user->display_name}<br /><small><em>Once set, display name may only be changed by an administrator.</em></small>";
         }
 
         if ($user->canChangePassword()) {
@@ -91,42 +88,6 @@ class User_Settings {
         if (isset($tpl)) {
             $form->mergeTemplate($tpl);
         }
-
-        $tz_list = PHPWS_Time::getTZList();
-
-        $timezones['server'] = dgettext('users', '-- Use server\'s time zone --');
-        foreach ($tz_list as $tz) {
-            if (!empty($tz['codes'])) {
-                $timezones[$tz['id']] = sprintf('%s : %s', $tz['id'],
-                        $tz['codes'][0]);
-            } elseif (!empty($tz['city'])) {
-                $timezones[$tz['id']] = sprintf('%s : %s', $tz['id'],
-                        $tz['city'][0]);
-            } else {
-                $timezones[$tz['id']] = $tz['id'];
-            }
-        }
-
-        if (isset($_REQUEST['timezone'])) {
-            $user_tz = $_REQUEST['timezone'];
-        } else {
-            $user_tz =  \phpws\PHPWS_Cookie::read('user_tz');
-        }
-
-        $form->addSelect('timezone', $timezones);
-        $form->setLabel('timezone', 'Time Zone');
-        $form->setMatch('timezone', $user_tz);
-        $form->setClass('timezone', 'form-control');
-
-        if (isset($_REQUEST['dst']) && $_REQUEST['timezone'] != 'server') {
-            $dst = $_REQUEST['dst'];
-        } else {
-            $dst =  \phpws\PHPWS_Cookie::read('user_dst');
-        }
-
-        $form->addCheckbox('dst', 1);
-        $form->setMatch('dst', $dst);
-        $form->setLabel('dst', 'Use Daylight Savings Time');
 
         if (isset($_POST['cp'])) {
             $cp = (int) $_POST['cp'];
@@ -149,23 +110,6 @@ class User_Settings {
         $form->addSubmit('submit', 'Update my information');
         $form->setClass('submit', 'btn btn-primary');
 
-        if (!DISABLE_TRANSLATION && !FORCE_DEFAULT_LANGUAGE) {
-            $language_file = \phpws\PHPWS_Core::getConfigFile('users', 'languages.php');
-
-            if ($language_file) {
-                include $language_file;
-                $form->addSelect('language', $languages);
-                $form->setClass('language', 'form-control');
-                $form->setLabel('language',
-                        'Language preference');
-                if (isset($_COOKIE['phpws_default_language'])) {
-                    $language = preg_replace('/\W/', '',
-                            $_COOKIE['phpws_default_language']);
-                    $form->setMatch('language', $language);
-                }
-            }
-        }
-
         $template = $form->getTemplate();
 
         if (isset($message)) {
@@ -174,8 +118,6 @@ class User_Settings {
             }
         }
 
-        $template['ACCT_INFO'] = 'Account Information';
-        $template['LOCAL_INFO'] = 'Localization';
         $template['PREF'] = 'Preferences';
 
         return PHPWS_Template::process($template, 'users',
@@ -187,28 +129,6 @@ class User_Settings {
      * @deprecated
      * @return type
      */
-    public static function setTZ()
-    {
-        if ($_POST['timezone'] != 'server' && preg_match('/[^0-9\-]/',
-                        $_POST['timezone'])) {
-            return;
-        }
-
-        if ($_POST['timezone'] == 'server') {
-             \phpws\PHPWS_Cookie::delete('user_tz');
-             \phpws\PHPWS_Cookie::delete('user_dst');
-            return;
-        } else {
-             \phpws\PHPWS_Cookie::write('user_tz', strip_tags($_POST['timezone']));
-        }
-
-
-        if (isset($_POST['dst'])) {
-             \phpws\PHPWS_Cookie::write('user_dst', 1);
-        } else {
-             \phpws\PHPWS_Cookie::delete('user_dst');
-        }
-    }
 
     public static function setCP()
     {

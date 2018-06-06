@@ -874,7 +874,7 @@ class DBPager
         }
 
         if ($total_pages == 1) {
-            return '<ul class="pagination"><li class="active"><a>1</a></li></ul>';
+            return '<ul class="pagination"><li class="page-item active"><a class="page-link">1</a></li></ul>';
         }
 
         $pentultimate = $total_pages - 1;
@@ -917,27 +917,27 @@ class DBPager
         if ($current_page > 1) {
             $count = $current_page - 1;
             $values['pg'] = $count;
-            $content[] = '<li>' . PHPWS_Text::moduleLink('&lt;', $module,
-                            $values, null, 'Back one page') . '</li>';
+            $content[] = '<li class="page-item">' . PHPWS_Text::moduleLink('&lt;', $module,
+                            $values, null, 'Back one page', 'page-link') . '</li>';
         }
 
         $values['pg'] = 1;
-        $current_page_class = $current_page == 1 ? ' class="active"' : null;
+        $current_page_class = $current_page == 1 ? ' class="page-item active"' : null;
         $content[] = "<li$current_page_class>" . PHPWS_Text::moduleLink('1',
-                        $module, $values) . "</li>";
+                        $module, $values, null, null, 'page-link') . "</li>";
 
         if ($total_pages > 1) {
             $values['pg'] = 2;
-            $current_page_class = $current_page == 2 ? ' class="active"' : null;
+            $current_page_class = $current_page == 2 ? ' class="page-item active"' : null;
             $content[] = "<li$current_page_class>" . PHPWS_Text::moduleLink('2',
-                            $module, $values) . "</li>";
+                            $module, $values, null, null, 'page-link') . "</li>";
         }
 
 
         if ($total_pages > 2) {
             // come back to here
             if ($left_select) {
-                $content[] = "<li><a href='javascript:void(0)' class='btn-disabled disabled'>&hellip;</a></li>";
+                $content[] = "<li class='page-item disabled'><a href='javascript:void(0)' class='page-link'>&hellip;</a></li>";
             }
             for ($i = $left; $i <= $right; $i++) {
                 if ($i < 3 || $i >= $pentultimate) {
@@ -945,42 +945,42 @@ class DBPager
                 }
                 $values['pg'] = $i;
                 if ($i == $current_page) {
-                    $content[] = "<li class='active'>" . PHPWS_Text::moduleLink($i,
+                    $content[] = "<li class='active page-item'>" . PHPWS_Text::moduleLink($i,
                                     $module, $values, null,
-                                    sprintf('Go to page %s', $i)) . "</li>";
+                                    sprintf('Go to page %s', $i), 'page-link') . "</li>";
                 } else {
-                    $content[] = "<li>" . PHPWS_Text::moduleLink($i, $module,
+                    $content[] = "<li class='page-item'>" . PHPWS_Text::moduleLink($i, $module,
                                     $values, null,
-                                    sprintf('Go to page %s', $i)) . "</li>";
+                                    sprintf('Go to page %s', $i), 'page-link') . "</li>";
                 }
             }
 
             // come back to here
             if ($right_select) {
-                $content[] = "<li><a href='javascript:void(0)' class='disabled'>&hellip;</a></li>";
+                $content[] = "<li class='page-item disabled'><a href='javascript:void(0)' class='page-link'>&hellip;</a></li>";
             }
 
             if ($pentultimate > 2) {
                 $values['pg'] = $pentultimate;
-                $current_page_class = $current_page == $pentultimate ? ' class="active"' : null;
+                $current_page_class = $current_page == $pentultimate ? ' class="page-item active"' : null;
                 $content[] = "<li$current_page_class>" . PHPWS_Text::moduleLink($pentultimate,
                                 $module, $values, null,
-                                sprintf('Go to page %s', $pentultimate)) . "</li>";
+                                sprintf('Go to page %s', $pentultimate), 'page-link') . "</li>";
             }
 
             $values['pg'] = $total_pages;
-            $current_page_class = $current_page == $total_pages ? ' class="active"' : null;
+            $current_page_class = $current_page == $total_pages ? ' class="page-item active"' : null;
             $content[] = "<li$current_page_class>" . PHPWS_Text::moduleLink($total_pages,
                             $module, $values, null,
-                            sprintf('Go to page %s', $total_pages)) . "</li>";
+                            sprintf('Go to page %s', $total_pages), 'page-link') . "</li>";
         }
         /*         * *************************************** */
         if ($current_page != $total_pages) {
             $forward = $current_page + 1;
             $values['pg'] = $forward;
-            $content[] = "<li>" . PHPWS_Text::moduleLink('&gt;', $module,
+            $content[] = "<li class='page-item'>" . PHPWS_Text::moduleLink('&gt;', $module,
                             $values, null,
-                            sprintf('Forward one page', $forward)) . "</li>";
+                            sprintf('Forward one page', $forward), 'page-link') . "</li>";
         }
         $content[] = '</ul>';
         return implode('', $content);

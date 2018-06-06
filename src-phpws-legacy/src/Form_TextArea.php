@@ -39,7 +39,8 @@ class Form_TextArea extends Form_Element
     public function setRows($rows)
     {
         if (!is_numeric($rows) || $rows < 1 || $rows > 100) {
-            return \phpws\PHPWS_Error::get(PHPWS_INVALID_VALUE, 'core', 'PHPWS_Form::setRows');
+            return \phpws\PHPWS_Error::get(PHPWS_INVALID_VALUE, 'core',
+                            'PHPWS_Form::setRows');
         }
 
         $this->rows = $rows;
@@ -58,7 +59,8 @@ class Form_TextArea extends Form_Element
     public function setCols($cols)
     {
         if (!is_numeric($cols) || $cols < 1 || $cols > 100) {
-            return \phpws\PHPWS_Error::get(PHPWS_INVALID_VALUE, 'core', 'PHPWS_Form::setCols');
+            return \phpws\PHPWS_Error::get(PHPWS_INVALID_VALUE, 'core',
+                            'PHPWS_Form::setCols');
         }
 
         $this->cols = $cols;
@@ -90,7 +92,8 @@ class Form_TextArea extends Form_Element
 
         if ($this->use_editor) {
             $text = PHPWS_Text::decodeText($this->value);
-            return javascript('ckeditor', array('ID' => $this->id, 'NAME' => $this->name, 'VALUE' => $text));
+            return javascript('ckeditor',
+                    array('ID' => $this->id, 'NAME' => $this->name, 'VALUE' => $text));
         }
 
         $value = preg_replace('/<br\s?\/?>(\r\n)?/', "\n", $this->value);
@@ -121,9 +124,10 @@ class Form_TextArea extends Form_Element
             $checkbox->_form = $this->_form;
             $checkbox->setLabel('Break newlines');
             $checkbox->setId($check_name);
-            $breaker = sprintf('<div class="textarea-breaker">%s %s</div>', $checkbox->get(), $checkbox->getLabel(true, true));
+            $breaker = sprintf('<div class="textarea-breaker">%s %s</div>',
+                    $checkbox->get(), $checkbox->getLabel(true, true));
         }
-
+        $required = $this->required ? ' required ' : null;
         return $breaker .
                 '<textarea '
                 . $this->getName(true)
@@ -131,6 +135,7 @@ class Form_TextArea extends Form_Element
                 . $this->getPlaceholder()
                 . $this->getDisabled()
                 . $this->getReadOnly()
+                . $required
                 . implode(' ', $dimensions) . ' '
                 . $this->getData()
                 . sprintf('>%s</textarea>', $value);

@@ -31,6 +31,7 @@ class Form_TextField extends Form_Element
 
     public function get()
     {
+        $required = $this->required ? ' required ' : null;
         return '<input type="text" '
                 . $this->getName(true)
                 . $this->getTitle(true)
@@ -39,6 +40,7 @@ class Form_TextField extends Form_Element
                 . $this->getReadOnly()
                 . $this->getValue()
                 . $this->getWidth(true)
+                . $required
                 . $this->getData() . ' />';
     }
 

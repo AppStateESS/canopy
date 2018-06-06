@@ -34,9 +34,11 @@ class Form_Multiple extends Form_Element
 
     public function get()
     {
+        $required = $this->required ? ' required ' : null;
         $content[] = '<select ' . $this->getName(true) . 'multiple="multiple" '
                 . $this->getData()
                 . $this->getWidth(true)
+                . $required
                 . $this->getDisabled()
                 . '>';
         foreach ($this->value as $value => $label) {
@@ -49,14 +51,17 @@ class Form_Multiple extends Form_Element
                     $content[] = '</optgroup>';
                 }
                 $current_opt = $value;
-                $content[] = sprintf('<optgroup label="%s">', $this->optgroup[$value]);
+                $content[] = sprintf('<optgroup label="%s">',
+                        $this->optgroup[$value]);
             }
 
 
             if ($this->isMatch($value)) {
-                $content[] = sprintf('<option value="%s" selected="selected">%s</option>', $value, $label);
+                $content[] = sprintf('<option value="%s" selected="selected">%s</option>',
+                        $value, $label);
             } else {
-                $content[] = sprintf('<option value="%s">%s</option>', $value, $label);
+                $content[] = sprintf('<option value="%s">%s</option>', $value,
+                        $label);
             }
         }
         if (isset($current_opt)) {

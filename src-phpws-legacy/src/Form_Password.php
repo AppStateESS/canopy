@@ -52,6 +52,7 @@ class Form_Password extends Form_Element
 
     public function get()
     {
+        $required = $this->required ? ' required ' : null;
         return '<input type="password" '
                 . $this->getName(true)
                 . $this->getTitle(true)
@@ -61,6 +62,7 @@ class Form_Password extends Form_Element
                 . $this->getValue()
                 . $this->getWidth(true)
                 . $this->getData()
+                . $required
                 . $this->getAutoComplete()
                 . ' />';
     }

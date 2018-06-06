@@ -31,13 +31,14 @@ class Form_File extends Form_Element
 
     public function get()
     {
-
+        $required = $this->required ? ' required ' : null;
         return '<input type="file" '
                 . $this->getName(true)
                 . $this->getTitle(true)
                 . $this->getDisabled()
                 . $this->getReadOnly()
                 . $this->getWidth(true)
+                . $required
                 . $this->getData()
                 . ' />';
     }

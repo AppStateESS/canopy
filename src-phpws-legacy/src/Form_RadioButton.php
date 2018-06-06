@@ -46,12 +46,14 @@ class Form_RadioButton extends Form_Element
 
     public function get()
     {
+        $required = $this->required ? ' required ' : null;
         return '<input type="radio" ' . $this->getName(true)
                 . $this->getTitle(true)
                 . $this->getValue()
                 . $this->getDisabled()
                 . $this->getReadOnly()
                 . $this->getMatch()
+                . $required
                 . $this->getData()
                 . ' />';
     }

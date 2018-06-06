@@ -1,1 +1,0 @@
-<a class="popup" style="cursor : pointer">{label}<span class="{class}">{content}</span></a>

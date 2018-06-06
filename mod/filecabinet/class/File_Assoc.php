@@ -8,6 +8,7 @@
 
 class FC_File_Assoc
 {
+
     public $id = 0;
     public $file_type = 0;
     public $file_id = 0;
@@ -92,18 +93,6 @@ class FC_File_Assoc
                 $this->_source->file_directory = $this->_resize_parent->getResizePath();
                 $this->_source->file_name = $this->resize;
                 $this->_source->loadDimensions();
-                break;
-
-            case FC_IMAGE_RANDOM:
-                \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
-                $image = new PHPWS_Image;
-                $db = new PHPWS_DB('images');
-                $db->addWhere('folder_id', $this->file_id);
-                $db->addorder('random');
-                $db->setLimit(1);
-                if ($db->loadObject($image)) {
-                    $this->_source = $image;
-                }
                 break;
 
             default:
@@ -195,9 +184,6 @@ class FC_File_Assoc
     {
         switch ($this->file_type) {
             case FC_IMAGE:
-            case FC_IMAGE_FOLDER:
-            case FC_IMAGE_LIGHTBOX:
-            case FC_IMAGE_RANDOM:
             case FC_IMAGE_RESIZE:
             case FC_IMAGE_CROP:
                 return IMAGE_FOLDER;
@@ -214,7 +200,6 @@ class FC_File_Assoc
 
     /**
      * Returns an image, media, or document path.
-     * Does not work with random images or folder listing
      */
     public function getPath()
     {
@@ -229,12 +214,12 @@ class FC_File_Assoc
 
         switch ($this->file_type) {
             case FC_IMAGE:
-            case FC_IMAGE_RANDOM:
                 return $this->_source->getThumbnail(null, $this->_link_image);
 
             case FC_IMAGE_RESIZE:
             case FC_IMAGE_CROP:
-                return $this->_resize_parent->getThumbnail(null, $this->_link_image);
+                return $this->_resize_parent->getThumbnail(null,
+                                $this->_link_image);
 
             case FC_DOCUMENT:
                 return $this->_source->getIconView();
@@ -276,12 +261,13 @@ class FC_File_Assoc
         }
         switch ($this->file_type) {
             case FC_IMAGE:
-            case FC_IMAGE_RANDOM:
                 if (is_object($this->_source) && $this->_source->id) {
                     if (PHPWS_Settings::get('filecabinet', 'caption_images') && $this->_allow_caption) {
-                        return $this->_source->captioned(null, $this->_link_image, $base);
+                        return $this->_source->captioned(null,
+                                        $this->_link_image, $base);
                     } else {
-                        return $this->_source->getTag(null, $this->_link_image, $base);
+                        return $this->_source->getTag(null, $this->_link_image,
+                                        $base);
                     }
                 } else {
                     $this->deadAssoc();
@@ -292,20 +278,16 @@ class FC_File_Assoc
             case FC_IMAGE_CROP:
                 if (isset($this->_source->id) && $this->_source->id) {
                     if (PHPWS_Settings::get('filecabinet', 'caption_images') && $this->_allow_caption) {
-                        return $this->_source->captioned(null, $this->_link_image, $base);
+                        return $this->_source->captioned(null,
+                                        $this->_link_image, $base);
                     } else {
-                        return $this->_source->getTag(null, $this->_link_image, $base);
+                        return $this->_source->getTag(null, $this->_link_image,
+                                        $base);
                     }
                 } else {
                     $this->deadAssoc();
                 }
                 break;
-
-            case FC_IMAGE_FOLDER:
-                return $this->slideshow();
-
-            case FC_IMAGE_LIGHTBOX:
-                return $this->lightbox();
 
             case FC_MEDIA_RESIZE:
                 $this->setMediaDimensions();
@@ -334,133 +316,14 @@ class FC_File_Assoc
         }
 
         $tpl['DOWNLOAD'] = sprintf('Download from %s', $folder->title);
-        return PHPWS_Template::process($tpl, 'filecabinet', 'multi_doc_download.tpl');
-    }
-
-    public function randomImage()
-    {
-        \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
-        $image = new PHPWS_Image;
-        $db = new PHPWS_DB('images');
-        $db->addWhere('folder_id', $this->file_id);
-        $db->addorder('random');
-        $db->setLimit(1);
-        if ($db->loadObject($image)) {
-            $this->_file_path = $image->getPath();
-            return $image->getTag();
-        } else {
-            return 'Folder missing image files.';
-        }
-    }
-
-    public function slideshow()
-    {
-        static $count = 0;
-
-        $count++;
-        Layout::addStyle('filecabinet');
-        $message = null;
-        \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
-        $folder = new Folder($this->file_id);
-        if (!$folder->public_folder) {
-            if (!Current_User::allow('filecabinet')) {
-                return null;
-            } else {
-                $message = 'Folder is private. Slideshow not available';
-            }
-        }
-        $db = new PHPWS_DB('images');
-        $db->addWhere('folder_id', $this->file_id);
-
-        $result = $db->getObjects('PHPWS_Image');
-        if (PHPWS_Error::logIfError($result) || !$result) {
-            return 'Folder missing image files.';
-        } else {
-            foreach ($result as $image) {
-                $tpl['thumbnails'][] = array('IMAGE' => sprintf('<a title="%s" href="%s">%s</a>', $image->getTitle(), $image->getPath(), $image->getThumbnail()));
-            }
-
-            $this->loadCarousel($count);
-            $tpl['CARO_ID'] = "caro-$count";
-            $tpl_file = 'carousel.tpl';
-            return PHPWS_Template::process($tpl, 'filecabinet', $tpl_file);
-        }
-    }
-
-    public function loadCarousel($count)
-    {
-        static $repeats = array();
-        $max_size = PHPWS_Settings::get('filecabinet', 'max_thumbnail_size');
-        $total_size = $this->getTotalCarouselSize();
-
-        $svars['TOTAL_SIZE'] = $total_size;
-        $svars['CARO_ID'] = "caro-$count";
-        $repeats['style-repeat'][] = $svars;
-
-        $vars['TOTAL_SIZE'] = $total_size;
-        $vars['CARO_ID'] = "caro-$count";
-        $vars['HEIGHT'] = $max_size;
-        $vars['WIDTH'] = $max_size;
-        $vars['SCROLL'] = $this->num_visible;
-        $vars['VERTICAL'] = $this->vertical ? 'true' : 'false';
-        $vars['ARROW_POSITION'] = floor($max_size / 2) + 5;
-        $repeats['js-repeat'][] = $vars;
-        javascriptMod('filecabinet', 'jcarousel', $repeats);
-    }
-
-    public function getTotalCarouselSize()
-    {
-        $max_size = PHPWS_Settings::get('filecabinet', 'max_thumbnail_size');
-        return ($max_size * $this->num_visible) + ($this->num_visible * 10);
-    }
-
-    public function lightbox()
-    {
-        javascript('lightbox');
-        $message = null;
-        \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
-        $folder = new Folder($this->file_id);
-        if (!$folder->public_folder) {
-            if (!Current_User::allow('filecabinet')) {
-                return null;
-            } else {
-                $message = 'Folder is private. Slideshow not available';
-            }
-        }
-        $db = new PHPWS_DB('images');
-        $db->addWhere('folder_id', $this->file_id);
-        if ($this->num_visible < 99) {
-            $db->addOrder('rand');
-            $db->setLimit($this->num_visible);
-        }
-
-        $result = $db->getObjects('PHPWS_Image');
-        if (PHPWS_Error::logIfError($result) || !$result) {
-            return 'Folder missing image files.';
-        } else {
-            foreach ($result as $image) {
-                $img = sprintf('<a title="%s" href="%s">%s</a>', $image->getTitle(), $image->getPath(), $image->getThumbnail());
-                $tpl['thumbnails'][] = array('IMAGE' => $img);
-            }
-            if ($this->vertical) {
-                $tpl_file = 'lightbox_vert.tpl';
-            } else {
-                $tpl_file = 'lightbox_horz.tpl';
-            }
-            if ($message) {
-                $tpl['MESSAGE'] = $message;
-            }
-            return PHPWS_Template::process($tpl, 'filecabinet', $tpl_file);
-        }
+        return PHPWS_Template::process($tpl, 'filecabinet',
+                        'multi_doc_download.tpl');
     }
 
     public function getTable()
     {
         switch ($this->file_type) {
             case FC_IMAGE:
-            case FC_IMAGE_FOLDER:
-            case FC_IMAGE_LIGHTBOX:
-            case FC_IMAGE_RANDOM:
             case FC_IMAGE_RESIZE:
             case FC_IMAGE_CROP:
                 return 'images';
@@ -478,26 +341,17 @@ class FC_File_Assoc
     public function getFolder()
     {
         $db = new PHPWS_DB('folders');
-        if ($this->file_type == FC_IMAGE_RANDOM || $this->file_type == FC_IMAGE_FOLDER || $this->file_type == FC_IMAGE_LIGHTBOX || $this->file_type == FC_DOCUMENT_FOLDER) {
-            $folder = new Folder($this->file_id);
-            if (PHPWS_Error::logIfError($folder) || !$folder->id) {
-                return false;
-            } else {
-                return $folder;
-            }
-        } else {
-            $table = $this->getTable();
-            $folder = new Folder;
-            $db->addWhere('fc_file_assoc.id', $this->id);
-            $db->addWhere('fc_file_assoc.file_id', "$table.id");
-            $db->addWhere('folders.id', "$table.folder_id");
-            $result = $db->loadObject($folder);
+        $table = $this->getTable();
+        $folder = new Folder;
+        $db->addWhere('fc_file_assoc.id', $this->id);
+        $db->addWhere('fc_file_assoc.file_id', "$table.id");
+        $db->addWhere('folders.id', "$table.folder_id");
+        $result = $db->loadObject($folder);
 
-            if (PHPWS_Error::logIfError($result) || !$result) {
-                return false;
-            } else {
-                return $folder;
-            }
+        if (PHPWS_Error::logIfError($result) || !$result) {
+            return false;
+        } else {
+            return $folder;
         }
     }
 

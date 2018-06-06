@@ -15,7 +15,7 @@ class Cabinet_Form
     {
         $modal = new \phpws2\Modal('folder-form');
         $modal->setWidthPercentage(30);
-        $modal->addButton('<button class="btn btn-success save-element">' . _('Save') . '</button>');
+        $modal->addButton('<button class="btn btn-success save-element">' . 'Save' . '</button>');
         return $modal->get();
     }
 
@@ -284,7 +284,6 @@ class Cabinet_Form
         }
 
         if ($folder->ftype == IMAGE_FOLDER) {
-            javascript('lightbox');
             \phpws\PHPWS_Core::initModClass('filecabinet', 'Image.php');
             $pager = new DBPager('images', 'PHPWS_Image');
             $pager->setTemplate('Forms/image_grid.tpl');
@@ -293,7 +292,7 @@ class Cabinet_Form
             $limits[25] = 25;
             $operation = 'iop';
             $command = 'upload_image_form';
-            $label = _('Add image');
+            $label = 'Add image';
         } elseif ($folder->ftype == DOCUMENT_FOLDER) {
             \phpws\PHPWS_Core::initModClass('filecabinet', 'Document.php');
             $pager = new DBPager('documents', 'PHPWS_Document');
@@ -302,7 +301,7 @@ class Cabinet_Form
             $limits[25] = 25;
             $limits[50] = 50;
             $operation = 'dop';
-            $label = _('Add document');
+            $label = 'Add document';
             $command = 'upload_document_form';
             $pager->addSortHeader('downloaded', sprintf('<abbr title="%s">%s</abbr>', 'Downloaded', 'DL'));
         } elseif ($folder->ftype = MULTIMEDIA_FOLDER) {
@@ -312,7 +311,7 @@ class Cabinet_Form
             $limits[9] = 9;
             $limits[16] = 16;
             $limits[25] = 25;
-            $label = _('Add media');
+            $label = 'Add media';
             $command = 'upload_multimedia_form';
             $operation = 'mop';
         }

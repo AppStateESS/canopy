@@ -417,10 +417,6 @@ class Folder
          * Delete the special folder associations to this folder
          */
         $db->reset();
-        $db->addWhere('file_type', FC_IMAGE_FOLDER, '=', 'or', 1);
-        $db->addWhere('file_type', FC_IMAGE_LIGHTBOX, '=', 'or', 1);
-        $db->addWhere('file_type', FC_IMAGE_RANDOM, '=', 'or', 1);
-        $db->addWhere('file_type', FC_DOCUMENT_FOLDER, '=', 'or', 1);
         $db->addWhere('file_id', $this->id);
         PHPWS_Error::logIfError($db->delete());
 

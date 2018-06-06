@@ -144,11 +144,6 @@ class PHPWS_Image extends File_Common
         return array(FC_MAX_IMAGE_POPUP_WIDTH, FC_MAX_IMAGE_POPUP_HEIGHT);
     }
 
-    public function lightboxThumb()
-    {
-        return sprintf('<span class="lightbox"><a title="%s" href="%s">%s</a></span>',
-                $this->getDescription(), $this->getPath(), $this->getThumbnail());
-    }
 
     public function getJSView($thumbnail = FALSE, $link_override = null)
     {
@@ -441,9 +436,9 @@ EOF;
         if (isset($links)) {
             $tpl['ACTION'] = implode('', $links);
         }
+        $tpl['THUMBNAIL'] = '<a href="'. $this->getPath() .'" target="_blank">' .  $this->getThumbnail() . '</a>';
         $tpl['SIZE'] = $this->getSize(TRUE);
         $tpl['FILE_NAME'] = $this->file_name;
-        $tpl['THUMBNAIL'] = $this->lightboxThumb();
         $tpl['TITLE'] = htmlspecialchars($this->title, ENT_QUOTES);
         $tpl['DIMENSIONS'] = sprintf('%s x %s', $this->width, $this->height);
 

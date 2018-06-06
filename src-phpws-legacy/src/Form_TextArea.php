@@ -119,7 +119,7 @@ class Form_TextArea extends Form_Element
             $check_name = sprintf('%s_breaker', $this->name);
             $checkbox = new Form_Checkbox($check_name);
             $checkbox->_form = $this->_form;
-            $checkbox->setLabel(_('Break newlines'));
+            $checkbox->setLabel('Break newlines');
             $checkbox->setId($check_name);
             $breaker = sprintf('<div class="textarea-breaker">%s %s</div>', $checkbox->get(), $checkbox->getLabel(true, true));
         }

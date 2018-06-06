@@ -201,28 +201,28 @@ class PHPWS_Time {
 		$weeks = floor($days/ 7);
 
 		if ($mins < 2) {
-			return _('a heartbeat ago');
+			return 'a heartbeat ago';
 		}
 		elseif($mins < 60) {
-			return sprintf(_('%s mins ago'), $mins);
+			return sprintf('%s mins ago', $mins);
 		}
 		elseif($hours==1) {
-			return _('1 hour ago');
+			return '1 hour ago';
 		}
 		elseif($hours< 24) {
-			return sprintf(_('%s hours ago'), $hours);
+			return sprintf('%s hours ago', $hours);
 		}
 		elseif($days ==1) {
-			return _('1 day ago');
+			return '1 day ago';
 		}
 		elseif($days < 7) {
-			return sprintf(_('%s days ago'), $days);
+			return sprintf('%s days ago', $days);
 		}
 		elseif($weeks==1) {
-			return _('1 week ago');
+			return '1 week ago';
 		}
 		elseif($weeks< 4) {
-			return sprintf(_('%s weeks ago'), $weeks);
+			return sprintf('%s weeks ago', $weeks);
 		}
 		else {
 			return strftime($format, $timestamp);

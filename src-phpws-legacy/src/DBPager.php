@@ -4,7 +4,7 @@ namespace phpws;
 
 define('DBPAGER_DEFAULT_LIMIT', 25);
 define('DBPAGER_PAGE_LIMIT', 12);
-define('DBPAGER_DEFAULT_EMPTY_MESSAGE', _('No rows found.'));
+define('DBPAGER_DEFAULT_EMPTY_MESSAGE', 'No rows found.');
 
 // Note: XML reports are not operational
 define('XML_PARTIAL', 1);
@@ -918,7 +918,7 @@ class DBPager
             $count = $current_page - 1;
             $values['pg'] = $count;
             $content[] = '<li>' . PHPWS_Text::moduleLink('&lt;', $module,
-                            $values, null, _('Back one page')) . '</li>';
+                            $values, null, 'Back one page') . '</li>';
         }
 
         $values['pg'] = 1;
@@ -947,11 +947,11 @@ class DBPager
                 if ($i == $current_page) {
                     $content[] = "<li class='active'>" . PHPWS_Text::moduleLink($i,
                                     $module, $values, null,
-                                    sprintf(_('Go to page %s'), $i)) . "</li>";
+                                    sprintf('Go to page %s', $i)) . "</li>";
                 } else {
                     $content[] = "<li>" . PHPWS_Text::moduleLink($i, $module,
                                     $values, null,
-                                    sprintf(_('Go to page %s'), $i)) . "</li>";
+                                    sprintf('Go to page %s', $i)) . "</li>";
                 }
             }
 
@@ -965,14 +965,14 @@ class DBPager
                 $current_page_class = $current_page == $pentultimate ? ' class="active"' : null;
                 $content[] = "<li$current_page_class>" . PHPWS_Text::moduleLink($pentultimate,
                                 $module, $values, null,
-                                sprintf(_('Go to page %s'), $pentultimate)) . "</li>";
+                                sprintf('Go to page %s', $pentultimate)) . "</li>";
             }
 
             $values['pg'] = $total_pages;
             $current_page_class = $current_page == $total_pages ? ' class="active"' : null;
             $content[] = "<li$current_page_class>" . PHPWS_Text::moduleLink($total_pages,
                             $module, $values, null,
-                            sprintf(_('Go to page %s'), $total_pages)) . "</li>";
+                            sprintf('Go to page %s', $total_pages)) . "</li>";
         }
         /*         * *************************************** */
         if ($current_page != $total_pages) {
@@ -980,7 +980,7 @@ class DBPager
             $values['pg'] = $forward;
             $content[] = "<li>" . PHPWS_Text::moduleLink('&gt;', $module,
                             $values, null,
-                            sprintf(_('Forward one page'), $forward)) . "</li>";
+                            sprintf('Forward one page', $forward)) . "</li>";
         }
         $content[] = '</ul>';
         return implode('', $content);
@@ -1035,21 +1035,21 @@ class DBPager
                 if ($this->orderby_dir == 'desc') {
                     unset($values['orderby_dir']);
                     unset($values['orderby']);
-                    $alt .= _('Sorted in descending order');
+                    $alt .= 'Sorted in descending order';
                     $button = Icon::get('sort-down');
                 } elseif ($this->orderby_dir == "asc") {
-                    $alt .= _('Sorted in ascending order');
+                    $alt .= 'Sorted in ascending order';
                     $values['orderby_dir'] = 'desc';
                     $button = Icon::get('sort-up');
                 } else {
-                    $alt .= _('Unsorted');
+                    $alt .= 'Unsorted';
                     $button = Icon::get('sort');
                     $values['orderby_dir'] = 'asc';
                 }
                 $button->setStyle('margin-right : 5px');
                 $button->setAlt($alt);
             } else {
-                $alt .= _('Unsorted');
+                $alt .= 'Unsorted';
                 $button = Icon::get('sort');
                 $button->setStyle('margin-right : 5px');
                 $button->setAlt($alt);
@@ -1161,8 +1161,8 @@ class DBPager
         unset($values['module']);
 
         $values['dbprt'] = 'csva';
-        return PHPWS_Text::moduleLink('<button class="btn btn-default">' . _('Export to Spreadsheet') . '</button>',
-                        $module, $values, null, _('Export to Spreadsheet'));
+        return PHPWS_Text::moduleLink('<button class="btn btn-default">' . 'Export to Spreadsheet' . '</button>',
+                        $module, $values, null, 'Export to Spreadsheet');
     }
 
     /**
@@ -1204,7 +1204,7 @@ class DBPager
                 $values['limit'] = & $limit;
                 $links[] = PHPWS_Text::moduleLink($limit, $module, $values,
                                 null,
-                                sprintf(_('Limit results to %s rows'), $limit));
+                                sprintf('Limit results to %s rows', $limit));
             }
         }
 
@@ -1328,7 +1328,7 @@ class DBPager
         $form->setMatch('change_page', $this->current_page);
 
         if (!function_exists('javascriptEnabled') || !javascriptEnabled()) {
-            $form->addSubmit('go', _('Go'));
+            $form->addSubmit('go', 'Go');
         }
 
         $template = $form->getTemplate();
@@ -1373,7 +1373,7 @@ class DBPager
         $si = $form->addTextField('pager_c_search', $this->search);
         $si->addClass('pager_c_search');
         $si->addClass('form-control');
-        $si->setPlaceholder(_('Search'));
+        $si->setPlaceholder('Search');
         $input_array[] = '<div class="input-group">';
         $input_array[] = (string) $si;
 
@@ -1412,10 +1412,10 @@ EOF;
         }
 
         $template['PAGES'] = $pages;
-        $template['PAGE_LABEL'] = _('Page');
-        $template['LIMIT_LABEL'] = _('Limit');
+        $template['PAGE_LABEL'] = 'Page';
+        $template['LIMIT_LABEL'] = 'Limit';
         $template['PAGE_DROP'] = $this->getPageDrop();
-        $template['TOTAL_ROWS'] = sprintf(_('%s - %s of %s'), $start_row,
+        $template['TOTAL_ROWS'] = sprintf('%s - %s of %s', $start_row,
                 $end_row, $total_row);
         $template['LIMITS'] = $this->getLimitList();
 

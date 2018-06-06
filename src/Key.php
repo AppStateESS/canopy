@@ -425,7 +425,7 @@ class Key
             $key->id = 0;
             $key->module = $key->item_name = 'home';
             $key->item_id = 0;
-            $key->setTitle(_('Home'));
+            $key->setTitle('Home');
             $key->setUrl('index.php');
 
             $GLOBALS['Home_Key'] = $key;

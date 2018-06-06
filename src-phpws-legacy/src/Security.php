@@ -14,21 +14,21 @@ class Security {
         if (class_exists('\Current_User') && isset($_SESSION['User'])) {
             $username = \Current_User::getUsername();
         } else {
-            $username = _('Unknown user');
+            $username = 'Unknown user';
         }
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
         if (isset($_SERVER['HTTP_REFERER'])) {
-            $via = sprintf(_('Coming from: %s'), $_SERVER['HTTP_REFERER']);
+            $via = sprintf('Coming from: %s', $_SERVER['HTTP_REFERER']);
         }
         else {
-            $via = _('Unknown source');
+            $via = 'Unknown source';
         }
 
         $infraction = sprintf('%s@%s %s -- %s', $username, $ip, $via, $message);
 
-        \phpws\PHPWS_Core::log(escapeshellcmd($infraction), 'security.log', _('Warning'));
+        \phpws\PHPWS_Core::log(escapeshellcmd($infraction), 'security.log', 'Warning');
     }
 }
 

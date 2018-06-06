@@ -64,7 +64,7 @@ class pgsql_PHPWS_SQL
                 break;
 
             default:
-                exit(_('Unknown column type:') . ' ' . $info['type']);
+                exit('Unknown column type:' . ' ' . $info['type']);
                 break;
         }
         return $setting;

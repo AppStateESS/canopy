@@ -1484,7 +1484,7 @@ class PHPWS_Form
             }
 
             if ($this->required_field) {
-                $template['REQUIRED_LEGEND'] = '<span class="required-input">*</span> ' . _('Required field');
+                $template['REQUIRED_LEGEND'] = '<span class="required-input">*</span> ' . 'Required field';
             }
 
             foreach ($element as $subElement) {

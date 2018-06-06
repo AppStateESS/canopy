@@ -26,7 +26,7 @@ define('DFLT_MAX_SELECT', 4);
 
 // To comply with XHTML, fieldsets are set to forms
 define('FORM_DEFAULT_FIELDSET', FALSE);
-define('FORM_GENERIC_LEGEND', _('Form'));
+define('FORM_GENERIC_LEGEND', 'Form');
 
 /**
  * If this is turned on, forms will add MAX_FILE_SIZE

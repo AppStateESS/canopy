@@ -293,14 +293,14 @@ class PHPWS_Manager {
     function init() {
 
         if(!isset($this->_module)) {
-            $message = _('Manager cannot initialize, the module was not set.');
+            $message = 'Manager cannot initialize, the module was not set.';
             $error = new \phpws\PHPWS_Error('core', 'PHPWS_Manager::init()', $message, 'exit', 1);
             $error->message(NULL);
         }
 
         $config = PHPWS_SOURCE_DIR . 'mod/' . $this->_module . '/conf/manager.php';
         if(!file_exists($config)) {
-            $message = sprintf(_('Manager configuration file not found for module: %s'), $this->_module);
+            $message = sprintf('Manager configuration file not found for module: %s', $this->_module);
             $error = new \phpws\PHPWS_Error('core', 'PHPWS_Manager::init()', $message, 'exit', 1);
             $error->message(NULL);
         }
@@ -308,7 +308,7 @@ class PHPWS_Manager {
         include($config);
 
         if(!is_array($lists) || !is_array($templates)) {
-            $message = _('Manager configuration file is an improper format.');
+            $message = 'Manager configuration file is an improper format.';
             $error = new \phpws\PHPWS_Error('core', 'PHPWS_Manager::init()', $message, 'exit', 1);
             $error->message(NULL);
         }
@@ -340,7 +340,7 @@ class PHPWS_Manager {
             || (isset($$extraLabels) && !is_array($$extraLabels))
             || (isset($$paging) && !is_array($$paging))) {
 
-                $message = _('Manager configuration file is an improper format.');
+                $message = 'Manager configuration file is an improper format.';
                 $error = new \phpws\PHPWS_Error('core', 'PHPWS_Manager::init()', $message, 'exit', 1);
                 $error->message(NULL);
             }
@@ -380,7 +380,7 @@ class PHPWS_Manager {
         $this->listName = $listName;
 
         if(!isset($this->_table) && !isset($this->_request)) {
-            $message = _('Manager was not fully initialized to get a list.');
+            $message = 'Manager was not fully initialized to get a list.';
             $error = new \phpws\PHPWS_Error('core', 'PHPWS_Manager::getList()', $message, 'exit', 1);
             $error->message(NULL);
         }
@@ -614,9 +614,9 @@ class PHPWS_Manager {
                             $rowTags['HIDDEN'] = $this->_listValues['hidden'][$item['hidden']];
                         } else {
                             if($item['hidden'] == 1)
-                            $rowTags['HIDDEN'] = _('Hidden');
+                            $rowTags['HIDDEN'] = 'Hidden';
                             else
-                            $rowTags['HIDDEN'] = _('Visible');
+                            $rowTags['HIDDEN'] = 'Visible';
                         }
                     } else if($listColumn == 'approved') {
                         /* Setting message depending if this item is approved or not */
@@ -624,9 +624,9 @@ class PHPWS_Manager {
                             $rowTags['APPROVED'] = $this->_listValues['approved'][$item['approved']];
                         } else {
                             if($item['approved'] == 1)
-                            $rowTags['APPROVED'] = _('Approved');
+                            $rowTags['APPROVED'] = 'Approved';
                             else
-                            $rowTags['APPROVED'] = _('Unapproved');
+                            $rowTags['APPROVED'] = 'Unapproved';
                         }
                     } else if($listColumn == 'groups') {
                         $groups = unserialize($item['groups']);
@@ -642,7 +642,7 @@ class PHPWS_Manager {
                                 $flag = TRUE;
                             }
                         } else {
-                            $rowTags['GROUPS'] = _('All');
+                            $rowTags['GROUPS'] = 'All';
                         }
                     } else {
                         $method = 'get' . $listColumn;
@@ -689,7 +689,7 @@ class PHPWS_Manager {
                 /* Create action select and Go button */
                 $ele = new Form_Select($this->_request, $actions);
                 $listTags['ACTION_SELECT'] = $ele->get();
-                $listTags['ACTION_BUTTON'] = sprintf('<input type="submit" value="%s" />', _('Go'));
+                $listTags['ACTION_BUTTON'] = sprintf('<input type="submit" value="%s" />', 'Go');
                 $listTags['TOGGLE_ALL'] = javascript('check_all', array('FORM_NAME' => 'PHPWS_MAN_LIST_' . $this->listName));
 
                 /* Add hidden variable to designate the current module */
@@ -704,7 +704,7 @@ class PHPWS_Manager {
             }
 
         } else {
-            $listTags['LIST_ITEMS'] = '<tr><td colspan="' . $columns . '">' . _('No items for the current list.') . '</td></tr>';
+            $listTags['LIST_ITEMS'] = '<tr><td colspan="' . $columns . '">' . 'No items for the current list.' . '</td></tr>';
             $content = \phpws\PHPWS_Template::processTemplate($listTags, 'core', $listTpl, FALSE);
         }
 

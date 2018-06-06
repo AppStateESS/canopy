@@ -5,5 +5,5 @@
  */
 
 if (!isset($data['value'])) {
-    $data['value'] = _('Close');
+    $data['value'] = 'Close';
 }

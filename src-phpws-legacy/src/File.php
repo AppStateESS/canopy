@@ -826,7 +826,7 @@ class PHPWS_File
         $all_types = PHPWS_File::getAllFileTypes();
 
         if (!isset($all_types[$ext])) {
-            return _('Unknown type');
+            return 'Unknown type';
         } else {
             return $all_types[$ext]['vb'];
         }

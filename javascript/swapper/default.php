@@ -28,9 +28,9 @@ foreach($js_var_array[$keys[0]] as $key => $value) {
 $js .= "</select></td>\n
 
 <td align=\"center\" valign=\"middle\">\n
-<input type=\"button\" onclick=\"move(this.form.elements['" . $keys[0] . "[]'],this.form.elements['" . $keys[1] . "[]'], ".$sort.")\" value=\"" . _('Add') . " &gt;&gt;\" />\n
+<input type=\"button\" onclick=\"move(this.form.elements['" . $keys[0] . "[]'],this.form.elements['" . $keys[1] . "[]'], ".$sort.")\" value=\"" . 'Add' . " &gt;&gt;\" />\n
 <br /><br />\n
-<input type=\"button\" onclick=\"move(this.form.elements['" . $keys[1] . "[]'],this.form.elements['" . $keys[0] . "[]'], ".$sort.")\" value=\"&lt;&lt; " . _('Remove') . "\" />\n
+<input type=\"button\" onclick=\"move(this.form.elements['" . $keys[1] . "[]'],this.form.elements['" . $keys[0] . "[]'], ".$sort.")\" value=\"&lt;&lt; " . 'Remove' . "\" />\n
 </td>\n";
 
 $js .= "<td><select name=\"" . $keys[1] . "[]\" multiple=\"multiple\" size=\"10\" $extra_options_sel ondblclick=\"move(this.form.elements['" . $keys[1] . "[]'],this.form.elements['" . $keys[0] . "[]'], ".$sort.")\">\n";

@@ -4,8 +4,8 @@
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @version $Id$
  */
-$data['uncheck_label'] = _('Uncheck all');
-$data['check_label'] = _('Check all');
+$data['uncheck_label'] = 'Uncheck all';
+$data['check_label'] = 'Check all';
 
 $type = isset($data['type']) ? $data['type'] : 1;
 switch ($type) {

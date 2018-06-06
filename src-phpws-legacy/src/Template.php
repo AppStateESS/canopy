@@ -255,7 +255,7 @@ class PHPWS_Template extends \HTML_Template_Sigma {
 
         if (\phpws\PHPWS_Error::isError($tpl->error)) {
             \phpws\PHPWS_Error::log($tpl->error);
-            return _('Template error.');
+            return 'Template error.';
         }
 
         foreach ($template as $key => $value) {

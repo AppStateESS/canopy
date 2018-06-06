@@ -433,11 +433,11 @@ class PHPWS_Core
     {
 
         if (!is_writable(LOG_DIRECTORY)) {
-            exit(_('Unable to write to log directory.'));
+            exit('Unable to write to log directory.');
         }
 
         if (is_file(LOG_DIRECTORY . $filename) && !is_writable(LOG_DIRECTORY . $filename)) {
-            exit(sprintf(_('Unable to write %s file.'), $filename));
+            exit(sprintf('Unable to write %s file.', $filename));
         }
 
         $conf = array('mode' => LOG_PERMISSION, 'timeFormat' => LOG_TIME_FORMAT);
@@ -506,7 +506,7 @@ class PHPWS_Core
         if (!isset($_GET['check_overpost'])) {
             return true;
         } elseif (empty($_POST) && isset($_SERVER['CONTENT_LENGTH'])) {
-            Security::log(_('User tried to post a file beyond server limits.'));
+            Security::log('User tried to post a file beyond server limits.');
             \phpws\PHPWS_Core::errorPage('overpost');
         }
 

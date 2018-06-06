@@ -64,7 +64,7 @@ if (ini_get('session.use_trans_sid')) {
 
 if (!(phpws\PHPWS_Core::allowScriptTags()) &&
 (!checkUserInput($_SERVER['REQUEST_URI']) || !checkUserInput($_REQUEST))) {
-    Security::log(_('Attempted cross-site scripting attack.'));
+    Security::log('Attempted cross-site scripting attack.');
     \phpws\PHPWS_Core::errorPage('400');
 }
 

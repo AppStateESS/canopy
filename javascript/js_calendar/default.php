@@ -45,4 +45,4 @@ if (isset($data['type'])) {
     }
 }
 
-$data['alt'] = _('Pick date');
+$data['alt'] = 'Pick date';

@@ -4,4 +4,4 @@
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 
-$data['message'] = _('Please fill out the field:') . ' ';
+$data['message'] = 'Please fill out the field:' . ' ';

@@ -123,7 +123,7 @@ class PHPWS_DB
         if (!isset($dsn)) {
 
             if (!defined('PHPWS_DSN')) {
-                exit(_('Cannot load database. DSN not defined.'));
+                exit('Cannot load database. DSN not defined.');
             }
 
             $dsn = PHPWS_DSN;
@@ -157,13 +157,13 @@ class PHPWS_DB
             }
         }
 
-        \phpws\PHPWS_DB::logDB(sprintf(_('Connected to database "%s"'), $dbname));
+        \phpws\PHPWS_DB::logDB(sprintf('Connected to database "%s"', $dbname));
 
         // Load the factory files
         $type = $connect->dbsyntax;
         $result = \phpws\PHPWS_Core::initCoreClass('DB/' . $type . '.php');
         if ($result == false) {
-            \phpws\PHPWS_DB::logDB(_('Failed to connect.'));
+            \phpws\PHPWS_DB::logDB('Failed to connect.');
             \phpws\PHPWS_Error::log(PHPWS_FILE_NOT_FOUND, 'core', '\phpws\PHPWS_DB::loadDB', PHPWS_SOURCE_DIR . 'src-phpws-legacy/src/DB/' . $type . '.php');
             \phpws\PHPWS_Core::errorPage();
         }
@@ -2378,7 +2378,7 @@ class PHPWS_DB
     public function saveObject($object, $stripChar = false, $autodetect_id = true)
     {
         if (!is_object($object)) {
-            return \phpws\PHPWS_Error::get(PHPWS_WRONG_TYPE, 'core', '\phpws\PHPWS_DB::saveObject', _('Type') . ': ' . gettype($object));
+            return \phpws\PHPWS_Error::get(PHPWS_WRONG_TYPE, 'core', '\phpws\PHPWS_DB::saveObject', 'Type' . ': ' . gettype($object));
         }
 
         $object_vars = get_object_vars($object);

@@ -469,7 +469,7 @@ class PHPWS_Text
     public static function backLink($title = null)
     {
         if (empty($title)) {
-            $title = _('Return to previous page.');
+            $title = 'Return to previous page.';
         }
 
         if (!isset($_SERVER['HTTP_REFERER'])) {

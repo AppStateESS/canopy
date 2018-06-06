@@ -86,7 +86,7 @@ class PHPWS_Error
             if (!is_file($errorFile)) {
                 // prevent infinite loop
                 if ($module == 'core') {
-                    echo _('Core could not locate its error.php file.');
+                    echo 'Core could not locate its error.php file.';
                     die;
                 }
                 return \phpws\PHPWS_Error::get(PHPWS_NO_ERROR_FILE, 'core',
@@ -116,7 +116,7 @@ class PHPWS_Error
         if (isset($errors[$value])) {
             $message = $errors[$value];
         } else {
-            $message = _('Unknown error code.');
+            $message = 'Unknown error code.';
         }
 
         $fullError[] = ' - ' . $message;

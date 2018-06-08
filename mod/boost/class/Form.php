@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class Boost_Form
 {
@@ -77,11 +77,6 @@ class Boost_Form
 
             $link_command['opmod'] = 'core';
             $link_command['action'] = 'check';
-            if (ini_get('allow_url_fopen')) {
-                $template['LATEST'] = PHPWS_Text::secureLink($link_title, 'boost', $link_command);
-            } else {
-                $template['LATEST'] = 'Check disabled';
-            }
 
             if (version_compare($core_db->version, $core_file->version, '<')) {
                 if ($core_file->checkDependency()) {
@@ -160,11 +155,6 @@ class Boost_Form
                 }
 
                 $link_command['action'] = 'check';
-                if (ini_get('allow_url_fopen')) {
-                    $template['LATEST'] = PHPWS_Text::secureLink($link_title, 'boost', $link_command);
-                } else {
-                    $template['LATEST'] = 'Check disabled';
-                }
             }
 
             if (!$mod->isInstalled()) {
@@ -251,8 +241,6 @@ class Boost_Form
             $tpl['CHECK_FOR_UPDATES'] = 'Server configuration prevents version checking.';
         }
 
-
-        $tpl['LATEST_LABEL'] = 'Latest version';
 
         $release_version = \phpws\PHPWS_Core::releaseVersion();
         $tpl['PHPWS_VERSION'] = $release_version;

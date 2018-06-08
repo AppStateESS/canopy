@@ -3,7 +3,7 @@
 /**
  * Controls the viewing and layout of the site
  *
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
@@ -42,6 +42,7 @@ if (!defined('LAYOUT_FORCE_MOD_JS')) {
 
 class Layout
 {
+    static $hideDefaultThemeVar = false;
 
     /**
      * Adds your content to the layout queue.
@@ -96,7 +97,17 @@ class Layout
             $GLOBALS['Layout_Plugs'][strtoupper($theme_var)][] = $content;
         }
     }
-
+    
+    /**
+     * If set to true, the DEFAULT theme variable will be nulled out prior
+     * to display.
+     * @param boolean $hide
+     */
+    public static function hideDefault($hide=true)
+    {
+        self::$hideDefaultThemeVar = (bool) $hide;
+    }
+    
     public function getPlugs()
     {
         if (!isset($GLOBALS['Layout_Plugs'])) {
@@ -413,6 +424,9 @@ class Layout
                 $bodyLayout[$upper_theme_var] = implode('', $unsortedLayout[$theme_var]);
             }
 
+            if (self::$hideDefaultThemeVar) {
+                $bodyLayout['DEFAULT'] = null;
+            }
             Layout::loadHeaderTags($bodyLayout);
             $finalTheme = Layout::loadTheme(Layout::getCurrentTheme(), $bodyLayout);
 

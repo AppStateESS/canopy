@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 \phpws\PHPWS_Core::initModClass('search', 'Search.php');

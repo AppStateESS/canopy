@@ -12,7 +12,7 @@
  * changes lost.
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 

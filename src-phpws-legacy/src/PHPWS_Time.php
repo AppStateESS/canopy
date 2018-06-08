@@ -6,7 +6,7 @@ namespace phpws;
  * into and out of UTC time.
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 class PHPWS_Time {

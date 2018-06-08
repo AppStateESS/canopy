@@ -13,7 +13,7 @@ require_once PHPWS_SOURCE_DIR . '/lib/xml/XML-RPC/IXR_Library.inc.php';
  *
  * @author Eloi George <eloi@NOSPAM.bygeorgeware.com>
  * @modified Matt McNaney
- * @version $Id$
+ 
  * @module core
  */
 define('XMLRPC_CANNOT_AUTHENTICATE', 'Unable to authenticate user.');

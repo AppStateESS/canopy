@@ -4,7 +4,7 @@
  * unregisters deleted keys from search
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 

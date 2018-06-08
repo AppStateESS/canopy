@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Matthew McNaney
- * @version $Id$
+ 
  */
 
 $proper_name  = 'Access';

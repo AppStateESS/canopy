@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 //ini_set('display_errors', 'On');
 //error_reporting (-1);

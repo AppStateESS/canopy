@@ -8,7 +8,7 @@ namespace phpws;
  *
  * See core/conf/text_settings.php for configuration options
  *
- * @version $Id$
+ 
  * @author  Matthew McNaney <mcnaneym@appstate.edu>
  * @author  Adam Morton
  * @author  Steven Levin

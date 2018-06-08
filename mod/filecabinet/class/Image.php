@@ -5,7 +5,7 @@
  * Assists with image files
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 \phpws\PHPWS_Core::requireConfig('filecabinet');
 \phpws\PHPWS_Core::requireInc('filecabinet', 'defines.php');

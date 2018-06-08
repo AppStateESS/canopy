@@ -4,7 +4,7 @@
  * Uninstall file for access
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 function access_uninstall(&$content)

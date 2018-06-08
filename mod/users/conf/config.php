@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 define('BAD_PASSWORDS', serialize(array('pass',
     'password',

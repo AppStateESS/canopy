@@ -35,7 +35,7 @@
  * $all_file_types['ext']['mct'] = 'application/octet-stream';
  *
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 

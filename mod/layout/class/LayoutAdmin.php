@@ -6,7 +6,7 @@
  * here.
  *
  * @author Matthew McNaney <matt at tux dot appstate.edu dot>
- * @version $Id$
+ 
  */
 define('DEFAULT_LAYOUT_TAB', 'boxes');
 

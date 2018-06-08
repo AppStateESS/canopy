@@ -4,7 +4,7 @@
  * Individual group objects
  *
  * @author Matt McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class PHPWS_Group
 {

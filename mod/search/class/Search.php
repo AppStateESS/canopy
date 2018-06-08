@@ -4,7 +4,7 @@
  * Search object
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 if (!defined('UTF8_MODE')) {
     define('UTF8_MODE', false);

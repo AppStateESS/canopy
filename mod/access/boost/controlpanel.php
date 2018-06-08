@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $link[] = array('label'       => 'Access',

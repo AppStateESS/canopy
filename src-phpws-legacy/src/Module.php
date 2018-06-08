@@ -5,7 +5,7 @@ namespace phpws;
 /**
  * Class contains module information
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 class PHPWS_Module

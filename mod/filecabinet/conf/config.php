@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 define('FC_VIEW_MARGIN_WIDTH', 20);

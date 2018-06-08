@@ -3,7 +3,7 @@
 /**
  * Controls results from forms and administration functions
  *
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */

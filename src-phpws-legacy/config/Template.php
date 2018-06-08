@@ -3,7 +3,7 @@
  * Config file for template class
  *
  * @author Matt McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 

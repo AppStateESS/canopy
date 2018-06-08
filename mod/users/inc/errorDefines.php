@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 /* Errors */

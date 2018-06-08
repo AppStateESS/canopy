@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 define('CP_DEFAULT_PANEL', 'panel.tpl');

@@ -2,7 +2,7 @@
 /**
  * Tab class
  *
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  */
 

@@ -5,7 +5,7 @@ namespace phpws;
  * Handles the logging and routing of security problems
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 class Security {

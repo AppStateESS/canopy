@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  * @modified Hilmar 2011-06-22
  */
 // $languages['aa_AA'] = 'Afar';

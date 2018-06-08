@@ -2,7 +2,7 @@
 //<![CDATA[
 
 /**
- * @version $Id$
+ 
  * @author Matt McNaney <mcnaneym@appstate.edu>
  */
 var checked_status = false;

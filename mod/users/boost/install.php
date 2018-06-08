@@ -3,7 +3,7 @@
  * boost install file for users
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 function users_install(&$content)

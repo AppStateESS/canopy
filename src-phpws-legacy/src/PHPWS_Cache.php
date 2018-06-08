@@ -2,7 +2,7 @@
 namespace phpws;
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaney gmail dot com>
  */
 

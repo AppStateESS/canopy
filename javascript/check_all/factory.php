@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */

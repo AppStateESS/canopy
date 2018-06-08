@@ -38,7 +38,7 @@ namespace phpws;
  *
  * result will either be true or a Pear error object
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 \phpws\PHPWS_Core::requireConfig('core', 'Mail.php');

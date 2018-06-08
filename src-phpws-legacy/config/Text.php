@@ -6,7 +6,7 @@
  *
  * This file contains the default text settings for the PHPWS_Text class.
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 /**

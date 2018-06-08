@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 if (!defined('PHPWS_SOURCE_DIR')) {

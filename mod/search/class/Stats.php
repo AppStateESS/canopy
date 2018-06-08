@@ -4,7 +4,7 @@
  * Tracks and displays the statistics of searches
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu
- * @version $Id$
+ 
  */
 
 class Search_Stats {

@@ -5,7 +5,7 @@ namespace Canopy;
  * Small class to help modules plug in features from other modules
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 /**
  * Canopy will not work properly after Mon, 18 Jan 2038

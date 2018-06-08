@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney
- * @version $Id$
+ 
  */
 
 function new_account($item)

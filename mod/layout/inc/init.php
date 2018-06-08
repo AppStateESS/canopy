@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 \phpws\PHPWS_Core::requireConfig('layout', 'config.php');

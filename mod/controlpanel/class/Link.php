@@ -4,7 +4,7 @@
  * Class to control the link icons in the Control Panel
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class PHPWS_Panel_Link {
 

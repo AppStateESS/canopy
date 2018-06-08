@@ -4,7 +4,7 @@ namespace phpws;
 /**
  * Used to load DHTML editors. Plugin files must be available.
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 

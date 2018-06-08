@@ -15,7 +15,7 @@ namespace phpws;
  * GNU Lesser General Public License for more details.
  *
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @package
  * @license http://opensource.org/licenses/gpl-3.0.html

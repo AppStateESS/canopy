@@ -3,7 +3,7 @@
 /**
  * Class to control the user permissioning
  *
- * @version $Id$
+ 
  * @author Matt McNaney <mcnaneym@appstate.edu>
  * @package User Module
  */

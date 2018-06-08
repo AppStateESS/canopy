@@ -6,7 +6,7 @@ namespace phpws\DB;
  * Postgres specific library
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class pgsql_PHPWS_SQL
 {

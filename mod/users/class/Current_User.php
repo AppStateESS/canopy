@@ -7,7 +7,7 @@
  * the current user session.
  *
  * @author  Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 \phpws\PHPWS_Core::initModClass('users', 'Authorization.php');
 \phpws\PHPWS_Core::initModClass('users', 'Users.php');

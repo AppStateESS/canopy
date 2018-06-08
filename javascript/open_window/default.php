@@ -2,7 +2,7 @@
 
   /**
    * @author Matthew McNaney <mcnaneym@appstate.edu>
-   * @version $Id$
+   
    */
 
 $default['label']       = 'No label';

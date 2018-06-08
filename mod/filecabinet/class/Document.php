@@ -7,7 +7,7 @@
  * for now they are just download links.
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 \phpws\PHPWS_Core::requireConfig('filecabinet');
 \phpws\PHPWS_Core::initModClass('filecabinet', 'File_Common.php');

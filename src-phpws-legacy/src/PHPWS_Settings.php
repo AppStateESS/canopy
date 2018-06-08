@@ -7,7 +7,7 @@ namespace phpws;
  * per page.
  *
  * @author Matt McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class PHPWS_Settings
 {

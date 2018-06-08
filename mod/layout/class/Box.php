@@ -5,7 +5,7 @@
  * in Layout.
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 

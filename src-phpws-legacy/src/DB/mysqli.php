@@ -6,7 +6,7 @@ namespace phpws\DB;
  * This is a test factory class. Not sure if it works.
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class mysqli_PHPWS_SQL {
 

@@ -3,7 +3,7 @@ namespace phpws;
 /**
  * Small class that assists in loading CAPTCHA routines
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 

@@ -3,7 +3,7 @@
 /**
  * Crutch display of old modules
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 Layout::keyDescriptions();

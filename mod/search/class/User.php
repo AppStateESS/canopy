@@ -4,7 +4,7 @@
  * User instructions
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 \phpws\PHPWS_Core::requireConfig('search');

@@ -7,7 +7,7 @@ namespace phpws;
  * This class exists to supply backward compatibility with 0.x
  * modules.
  *
- * @version $Id$
+ 
  * @author  Steven Levin <steven at tux dot appstate dot edu>
  * @author  Adam Morton
  * @author  Matthew McNaney <mcnaneym@appstate.edu>

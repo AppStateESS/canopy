@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 $errors[FC_FILENAME_NOT_SET]       = 'Filename not set.';

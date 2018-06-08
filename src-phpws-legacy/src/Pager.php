@@ -23,7 +23,7 @@ define("PHPWS_PAGER_PAD", 3);
  * For an example see the file pager_example.php in the docs/developer directory
  * Just put the file in your core/ directory and execute it directly
  *
- * @version $Id$
+ 
  * @author  Steven Levin <steven@NOSPAM.tux.appstate.edu>
  */
 class PHPWS_Pager {

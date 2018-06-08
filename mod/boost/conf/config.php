@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 // if TRUE then only deities can access boost

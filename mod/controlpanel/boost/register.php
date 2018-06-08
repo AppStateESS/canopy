@@ -2,7 +2,7 @@
 /**
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 function controlpanel_register($module, &$content)

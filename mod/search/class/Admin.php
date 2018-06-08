@@ -5,7 +5,7 @@
  * etc.
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 class Search_Admin {

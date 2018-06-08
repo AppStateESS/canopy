@@ -3,7 +3,7 @@
 namespace phpws;
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 require_once 'PEAR.php';

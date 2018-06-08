@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 define('BRANCH_NO_CONNECTION', 1);
 define('BRANCH_CONNECT_NO_DB', 2);

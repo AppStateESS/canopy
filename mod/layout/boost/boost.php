@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 $proper_name = 'Layout';

@@ -4,7 +4,7 @@
  * MAKE A BACKUP! Writing a bad .htaccess file will cause apache to
  * serve only error pages for your site.
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $settings = array('base_doc_directory' => PHPWS_HOME_DIR . 'files/filecabinet/',

@@ -15,7 +15,7 @@ namespace phpws;
  *
  * @author raphael at schwarzschmid dot de
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 

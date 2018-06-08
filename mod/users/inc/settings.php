@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $settings = array('default_authorization' => 1,

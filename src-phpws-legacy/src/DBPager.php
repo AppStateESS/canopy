@@ -22,7 +22,7 @@ if (!defined('UTF8_MODE')) {
  * to pull all the data at once.
  * This pager pulls only the data it needs for display.
  *
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */

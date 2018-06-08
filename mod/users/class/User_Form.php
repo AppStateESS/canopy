@@ -3,7 +3,7 @@
 /**
  * Contains forms for users and demographics
  *
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */

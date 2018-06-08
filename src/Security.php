@@ -5,7 +5,7 @@ namespace Canopy;
  * This file should contain any security measures made
  * against user submissions.
 
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 

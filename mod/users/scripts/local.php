@@ -4,7 +4,7 @@
  * Local authorization script
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 class local_authorization extends User_Authorization {
 

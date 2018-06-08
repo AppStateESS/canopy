@@ -4,7 +4,7 @@
  * Main administrative control class for Access
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 define('SHORTCUT_BAD_KEYWORD', 1);
 define('SHORTCUT_WORD_IN_USE', 2);

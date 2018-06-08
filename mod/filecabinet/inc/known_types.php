@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 $known_images = array('jpg', 'png', 'gif', 'jpeg');

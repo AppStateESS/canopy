@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 $link[] = array('label' => 'Boost',
     'restricted' => TRUE,

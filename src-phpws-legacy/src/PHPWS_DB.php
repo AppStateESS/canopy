@@ -5,7 +5,7 @@ namespace phpws;
 /**
  * A database class
  *
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */

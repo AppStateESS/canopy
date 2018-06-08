@@ -5,7 +5,7 @@
  * of modules in Canopy
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 \phpws\PHPWS_Core::initCoreClass('Module.php');
 \phpws\PHPWS_Core::configRequireOnce('boost', 'config.php');

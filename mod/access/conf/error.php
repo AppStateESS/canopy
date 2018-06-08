@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 $errors = array(SHORTCUT_BAD_KEYWORD     => 'Bad keyword. Use only alphanumeric characters, dashes and spaces.',

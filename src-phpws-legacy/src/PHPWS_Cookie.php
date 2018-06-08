@@ -4,7 +4,7 @@ namespace phpws;
 /**
  * Write, reads, and deletes cookies under one site index
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 
 define('COOKIE_HASH', md5(SITE_HASH . $_SERVER['HTTP_HOST']));

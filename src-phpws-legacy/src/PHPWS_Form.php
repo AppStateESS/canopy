@@ -24,7 +24,7 @@ namespace phpws;
  *
  * For many form elements, that may be all you need.
  *
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @author Don Seiler <don at seiler dot us>
  * @package Core

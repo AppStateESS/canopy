@@ -6,7 +6,7 @@ namespace phpws;
  * Controls module manipulation
  *
  * Loads modules and their respective files.
- * @version $Id$
+ 
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */

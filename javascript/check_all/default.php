@@ -2,7 +2,7 @@
 
 /**
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- * @version $Id$
+ 
  */
 $data['uncheck_label'] = 'Uncheck all';
 $data['check_label'] = 'Check all';

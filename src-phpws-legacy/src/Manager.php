@@ -20,7 +20,7 @@ require_once(PHPWS_SOURCE_DIR . 'src-phpws-legacy/src/Pager.php');
  *
  * Note: this file was modified to work under Canopy 1.x.
  *
- * @version $Id$
+ 
  * @author  Steven Levin
  * @author  Adam Morton
  * @modified Matthew McNaney <mcnaneym@appstate.edu>

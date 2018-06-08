@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id$
+ 
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
 require_once(PHPWS_SOURCE_DIR.'mod/branch/conf/defines.php');

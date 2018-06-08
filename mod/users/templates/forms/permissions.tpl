@@ -1,4 +1,4 @@
-<div class="pull-right">{LINKS}</div>
+<div class="float-right">{LINKS}</div>
 {START_FORM} {CHECK_ALL} {UPDATE}
 <!-- BEGIN module -->
 <div class="permission">

@@ -1,7 +1,7 @@
 CKEDITOR.stylesSet.add( 'phpws',
 [
    // Block-level styles
-   { name : 'Pull image right', element : 'img', attributes : { 'class' : 'pull-right' }, styles : { 'margin' : '0 0 1em 1em' } },
+   { name : 'Pull image right', element : 'img', attributes : { 'class' : 'float-right' }, styles : { 'margin' : '0 0 1em 1em' } },
    { name : 'Pull image left', element : 'img', attributes : { 'class' : 'pull-left' }, styles : { 'margin' : '0 1em 1em 0' } },
    { name : 'Inset', element : 'p', attributes : { 'class' : 'well' } },
    { name : 'Smaller', element : 'small'},

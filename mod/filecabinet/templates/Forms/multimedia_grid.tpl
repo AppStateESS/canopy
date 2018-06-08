@@ -1,4 +1,4 @@
-<div class="pull-right">{BACK}</div>
+<div class="float-right">{BACK}</div>
 <div id="fc-folder-list">
     <p><!-- BEGIN links -->{ADMIN_LINKS}<br />
         <!-- END links --> {TITLE_SORT} {TITLE_LABEL}</p>

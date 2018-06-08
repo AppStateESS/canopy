@@ -1,4 +1,4 @@
-<div class="pull-right">{SEARCH}</div>
+<div class="float-right">{SEARCH}</div>
 <div style="margin-bottom: 10px">
   <a href="{NEW_USER_URI}" class="btn btn-success"><i class="fa fa-user"></i> Add user</a>
 </div>

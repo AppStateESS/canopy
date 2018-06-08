@@ -252,13 +252,6 @@ define('MOD_REWRITE_ENABLED', TRUE);
 define ('UTF8_MODE', false);
 
 
-/********************** JQuery latest ***************************/
-/**
- * If true, the jquery call will use the script directly from the
- * home site. Otherwise, a local copy will be used.
- */
-define('JQUERY_LATEST', false);
-
 /**
  * If ALLOW_SCRIPT_TAGS is true, than users with scripting permission may
  * submit content with <script> tags. If false, the permissions are ignored

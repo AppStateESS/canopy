@@ -648,46 +648,46 @@ EOF;
 
         if ($this->current_page > 1) {
             $count = $this->current_page - 1;
-            $content[] = "<li><a href='javascript:void(0)' data-page-no='$count' class='pager-page-no'>$this->prev_page_marker</a></li>";
+            $content[] = "<li class='page-item'><a href='javascript:void(0)' data-page-no='$count' class='pager-page-no page-link'>$this->prev_page_marker</a></li>";
         }
 
-        $current_page = $this->current_page == 1 ? ' class="active"' : null;
-        $content[] = "<li$current_page><a href='javascript:void(0)' data-page-no='1' class='pager-page-no'>1</a></li>";
+        $className = $this->current_page == 1 ? 'active page-item' : 'page-item';
+        $content[] = "<li class=\"$className\"><a href='javascript:void(0)' data-page-no='1' class='pager-page-no page-link'>1</a></li>";
 
         if ($this->getNumberOfPages() > 1) {
-            $current_page = $this->current_page == 2 ? ' class="active"' : null;
-            $content[] = "<li$current_page><a href='javascript:void(0)' data-page-no='2' class='pager-page-no'>2</a></li>";
+            $className = $this->current_page == 2 ? 'active page-item' : 'page-item';
+            $content[] = "<li class='$className'><a href='javascript:void(0)' data-page-no='2' class='pager-page-no page-link'>2</a></li>";
         }
 
         if ($this->getNumberOfPages() > 2) {
             if ($left_select) {
-                $content[] = "<li><a href='javascript:void(0)' class='btn-disabled disabled'>&hellip;</a></li>";
+                $content[] = "<li class='page-item'><a href='javascript:void(0)' class='btn-disabled disabled page-link'>&hellip;</a></li>";
             }
             for ($i = $left; $i <= $right; $i++) {
                 if ($i < 3 || $i >= $penultimate) {
                     continue;
                 }
                 if ($i == $this->current_page) {
-                    $content[] = "<li class='active'><a href='javascript:void(0)' data-page-no='$i' class='pager-page-no'>$i</a></li>";
+                    $content[] = "<li class='active page-item'><a href='javascript:void(0)' data-page-no='$i' class='pager-page-no page-link'>$i</a></li>";
                 } else {
-                    $content[] = "<li><a href='javascript:void(0)' data-page-no='$i' class='pager-page-no'>$i</a></li>";
+                    $content[] = "<li class='page-item'><a href='javascript:void(0)' data-page-no='$i' class='pager-page-no page-link'>$i</a></li>";
                 }
             }
             if ($right_select) {
-                $content[] = "<li><a href='javascript:void(0)' class='disabled'>&hellip;</a></li>";
+                $content[] = "<li class='page-item disabled'><a href='javascript:void(0)' class='page-link'>&hellip;</a></li>";
             }
 
             if ($penultimate > 2) {
-                $current_page = $this->current_page == $penultimate ? ' class="active"' : null;
-                $content[] = "<li$current_page><a href='javascript:void(0)' data-page-no='$penultimate' class='pager-page-no'>$penultimate</a></li>";
+                $className = $this->current_page == $penultimate ? 'active page-item' : 'page-item';
+                $content[] = "<li class='$className'><a href='javascript:void(0)' data-page-no='$penultimate' class='pager-page-no page-link'>$penultimate</a></li>";
             }
 
-            $current_page = $this->current_page == $this->number_of_pages ? ' class="active"' : null;
-            $content[] = "<li$current_page><a href='javascript:void(0)' data-page-no='$this->number_of_pages' class='pager-page-no'>$this->number_of_pages</a></li>";
+            $className = $this->current_page == $this->number_of_pages ? 'active page-item' : 'page-item';
+            $content[] = "<li class='$className'><a href='javascript:void(0)' data-page-no='$this->number_of_pages' class='pager-page-no page-link'>$this->number_of_pages</a></li>";
         }
         if ($this->current_page != $this->number_of_pages) {
             $forward = $this->current_page + 1;
-            $content[] = "<li><a href='javascript:void(0)' data-page-no='{$forward}' class='pager-page-no'>$this->next_page_marker</a></li>";
+            $content[] = "<li class='page-item'><a href='javascript:void(0)' data-page-no='{$forward}' class='pager-page-no page-link'>$this->next_page_marker</a></li>";
         }
         $content[] = '</ul>';
         return implode('', $content);

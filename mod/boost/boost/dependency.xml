@@ -2,14 +2,12 @@
 <dependency>
     <module>
         <title>core</title>
-        <properName>phpWebSite Core</properName>
-        <version>2.1.0</version>
-        <url>http://phpwebsite.appstate.edu/downloads/modules/base/</url>
+        <properName>Canopy Core</properName>
+        <version>3.0.0</version>
     </module>
     <module>
         <title>controlpanel</title>
         <properName>Control Panel</properName>
         <version>2.2.0</version>
-        <url>http://phpwebsite.appstate.edu/downloads/modules/controlpanel/</url>
     </module>
 </dependency>

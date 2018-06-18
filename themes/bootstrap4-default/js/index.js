@@ -9,6 +9,6 @@ import './Search'
 import './MainMenu'
 import './EmptyRight'
 
-// this is a fill for the $(window).load function which is deprecated
+// this is a fill for the $(document).ready function which is deprecated
 // $(window).on('load', ()=>{}) is the accepted method
 jQuery.fn.load = function(callback){ $(window).on("load", callback) }

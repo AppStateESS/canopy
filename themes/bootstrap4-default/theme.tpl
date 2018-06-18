@@ -69,6 +69,7 @@
     <div id="hidden-valley">{HIDDEN_VALLEY}</div>
     {ANALYTICS_END_BODY}
     <script src="{THEME_HTTP}dist/js/custom.js"></script>
+    <script>const themeCSS = '{THEME_HTTP}dist/css/custom.css';</script>
     {JAVASCRIPT}
   </body>
 

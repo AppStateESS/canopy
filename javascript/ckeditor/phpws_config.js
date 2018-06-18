@@ -12,6 +12,9 @@ CKEDITOR.editorConfig = function(config)
     config.removePlugins = 'maxheight';
     config.format_tags = 'p;h3;h4;h5;h6';
     config.stylesSet = 'phpws:' + basePath + 'ckeditor/phpws_styles.js';
+    if (themeCSS) {
+      config.contentsCss = themeCSS;
+    }
 
     config.toolbarGroups = [
         {name: 'document', groups: ['mode', 'document', 'doctools']},

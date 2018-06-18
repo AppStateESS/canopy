@@ -4,11 +4,11 @@
   <td style="width:20%">
     <img src="<?=$filepath?>" />
   </td>
-  <td class="file-title pointer" style="70%">
-    <a class="edit-file pointer" data-title="<?=addslashes($title)?>" data-id="<?php echo $id?>"><i class="fa fa-edit fa-lg"></i></a><?php echo $title?>
+  <td class="file-title pointer">
+    <a class="edit-file pointer" data-title="<?=addslashes($title)?>" data-id="<?php echo $id?>"><i class="fas fa-edit"></i></a><?php echo $title?>
   </td>
   <td style="10%">
-    <a class="delete-file pointer" data-id="<?php echo $id?>"><i class="far fa-trash-alt fa-lg"></i></a>
+    <a class="delete-file pointer" data-id="<?php echo $id?>"><i class="far fa-trash-alt"></i></a>
   </td>
 </tr>
 <?php endforeach; endif;?>

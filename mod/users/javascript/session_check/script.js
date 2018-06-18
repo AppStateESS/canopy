@@ -8,7 +8,7 @@ var sess_interval_id;
 //sess_expirationMinutes = 3;
 //sess_warningMinutes = 1;
 
-$(window).load(function () {
+$(document).ready(function () {
     var cs = new checkSession;
     cs.initSession();
 });

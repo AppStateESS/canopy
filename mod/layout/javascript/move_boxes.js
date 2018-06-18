@@ -1,4 +1,4 @@
-$(window).load(function() {
+$(document).ready(function() {
     $('#move-boxes').click(function() {
         fillModal();
         $('#box-move').modal('show');

@@ -1,6 +1,6 @@
 var required = new Required;
 
-$(window).load(function() {
+$(document).ready(function() {
     var error_free;
     required.init();
     required.testRequired();

@@ -7,7 +7,7 @@ jQuery.fn.outerHTML = function(s) {
 var hasher = new Hasher;
 var Pagers = new PagerList;
 
-$(window).load(function() {
+$(document).ready(function() {
     hasher.initialize();
     Pagers.initialize();
 });

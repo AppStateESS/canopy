@@ -7,7 +7,7 @@
 function layout_install(&$content, $branchInstall=FALSE)
 {
     $page_title = 'Change this Site Name in Layout Meta Tags';
-    $default_theme = 'bootstrap';
+    $default_theme = 'bootstrap4-default';
 
     if (!isset($error)) {
         $db = new PHPWS_DB('layout_config');

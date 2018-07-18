@@ -194,9 +194,8 @@ class PHPWS_Document extends File_Common
     private function accessLink()
     {
         javascriptMod('filecabinet', 'document_access');
-        $icon = Icon::show('forbidden', 'Access');
         $link = <<<EOF
-<a style="cursor:pointer" id="f{$this->id}" class="access-link">$icon</a>
+<a style="cursor:pointer" id="f{$this->id}" class="access-link"><i class="fas fa-external-link-alt"></i></a>
 EOF;
         return $link;
     }

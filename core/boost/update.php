@@ -42,6 +42,14 @@ EOF;
 + Fixed Font Awesome Icons.
 </pre>
 EOF;
+            case version_compare($version, '3.0.3', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.3 updates
+---------------------------
++ Fixed img-responsive classes in File Cabinet
+</pre>
+EOF;
     }
     return true;
 }

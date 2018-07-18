@@ -70,20 +70,20 @@ class Icon extends \phpws2\Tag {
                 $this->addClass('fa fa-plus');
                 break;
             case 'approved':
-                $this->addClass('fa fa-thumbs-up');
+                $this->addClass('far fa-thumbs-up');
                 break;
 
             case 'cancel':
-                $this->addClass('fa fa-ban-circle');
+                $this->addClass('fas fa-ban');
                 break;
             case 'clear':
-                $this->addClass('fa fa-eraser');
+                $this->addClass('fas fa-eraser');
                 break;
             case 'clip':
-                $this->addClass('fa fa-paperclip');
+                $this->addClass('fas fa-paperclip');
                 break;
             case 'close':
-                $this->addClass('fa fa-remove');
+                $this->addClass('fas fa-times');
                 break;
 
             case 'delete':
@@ -95,7 +95,7 @@ class Icon extends \phpws2\Tag {
                 break;
 
             case 'error':
-                $this->addClass('fa fa-exclamation-sign');
+                $this->addClass('fas fa-exclamation-triangle');
                 break;
 
             case 'image':
@@ -108,36 +108,32 @@ class Icon extends \phpws2\Tag {
                 break;
 
             case 'active':
-                $this->addClass('fa fa-power-off');
-                $this->addStyle('color : green');
+                $this->addClass('fas fa-power-off text-success');
                 break;
 
             case 'deactive':
             case 'inactive':
-                $this->addClass('fa fa-power-off');
-                $this->addStyle('color : red');
+                $this->addClass('fas fa-power-off text-danger');
                 break;
 
-
-
             case 'next':
-                $this->addClass('fa fa-chevron-right');
+                $this->addClass('fas fa-chevron-right');
                 break;
 
             case 'previous':
-                $this->addClass('fa fa-chevron-left');
+                $this->addClass('fas fa-chevron-left');
                 break;
 
             case 'forbidden':
-                $this->addClass('fa fa-warning-sign');
+                $this->addClass('fas fa-exclamation-triangle');
                 break;
 
             case 'permission':
-                $this->addClass('fa fa-key');
+                $this->addClass('fas fa-key');
                 break;
 
             default:
-                $this->addClass('fa fa-' . $this->type);
+                $this->addClass('fas fa-' . $this->type);
         }
     }
 

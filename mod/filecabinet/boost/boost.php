@@ -5,7 +5,7 @@
  */
 
 $proper_name  = 'File Cabinet';
-$version      = '2.8.0';
+$version      = '2.8.1';
 $register     = false;
 $unregister   = true;
 $import_sql   = true;

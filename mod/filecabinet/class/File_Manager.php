@@ -713,8 +713,6 @@ class FC_File_Manager
             $max_size = PHPWS_Settings::get('filecabinet', 'max_thumbnail_size');
             $total_size = ($max_size * $file->num_visible) + ($file->num_visible * 10);
 
-            $total_size = $file->getTotalCarouselSize();
-            $vars['total_size'] = $total_size;
             javascriptMod('filecabinet', 'update_file', $vars);
         } else {
             exit('An error occurred. Please check your logs.');

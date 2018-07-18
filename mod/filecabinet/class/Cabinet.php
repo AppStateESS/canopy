@@ -44,9 +44,9 @@ class Cabinet
         }
         require_once PHPWS_SOURCE_DIR . 'src-phpws-legacy/src/Security.php';
         if ($this->loadFileManager()) {
-            Layout::nakedDisplay($this->file_manager->admin(), null, false);
+            Layout::nakedDisplay($this->file_manager->admin(), null, true);
         } else {
-            Layout::nakedDisplay(javascript('close_refresh'), null, false);
+            Layout::nakedDisplay(javascript('close_refresh'), null, true);
         }
     }
 

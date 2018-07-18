@@ -2,9 +2,10 @@
 <head>
 {BASE}
 <title>{PAGE_TITLE}</title>
-{METATAGS} {JAVASCRIPT} {STYLE}
+{METATAGS} {STYLE}
 </head>
 <body id="layout-naked">
 {CONTENT}
+{JAVASCRIPT}
 </body>
 </html>

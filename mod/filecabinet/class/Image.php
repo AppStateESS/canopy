@@ -211,7 +211,7 @@ class PHPWS_Image extends File_Common
         }
         $tag[] = 'alt="' . $this->getAlt(TRUE) . '"';
         $tag[] = 'title="' . htmlspecialchars($this->title, ENT_QUOTES) . '"';
-        $tag[] = 'class="img-responsive"';
+        $tag[] = 'class="img-fluid"';
         if ($id) {
             $tag[] = 'id="' . $id . '"';
         }
@@ -487,7 +487,7 @@ EOF;
         <img src="{$this->file_directory}{$this->file_name}" style="width : {$new_width}px; height : {$new_height}px" />
 EOF;
         $insert_link = <<<EOF
-        <img src="{$this->file_directory}{$this->file_name}" class="img-responsive" />
+        <img src="{$this->file_directory}{$this->file_name}" class="img-fluid" />
 EOF;
         $data['html'] = <<<EOF
 <div id="ck-file-info" style="margin-top : {$margin_top}px">

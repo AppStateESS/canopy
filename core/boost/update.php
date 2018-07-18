@@ -34,6 +34,14 @@ function core_update(&$content, $version) {
 + Renamed default theme to bootstrap4-default to prevent issues with npm.
 </pre>
 EOF;
+            case version_compare($version, '3.0.2', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.2 updates
+---------------------------
++ Fixed Font Awesome Icons.
+</pre>
+EOF;
     }
     return true;
 }

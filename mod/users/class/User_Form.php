@@ -440,6 +440,7 @@ class User_Form
             $ug->addField('user_id');
             $u = $db->addTable('users');
             $u->addField('display_name');
+            $ug->addOrderBy('name');
             $ug->addFieldConditional('id', $members, 'in');
             $cond = $db->createConditional($ug->getField('user_id'), $u->getField('id'));
             $db->joinResources($ug, $u, $cond, 'outer');

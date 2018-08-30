@@ -24,7 +24,7 @@ class Integer extends \phpws2\Database\Datatype {
      * If true, the integer will be unsigned (i.e. without negative values).
      * @var boolean
      */
-    protected $unsigned = true;
+    protected $unsigned = false;
 
     /**
      * If true, MySQL will fill empty left space with zeros

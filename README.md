@@ -2,23 +2,20 @@ Welcome to Canopy!
 (previously phpWebSite)
 ======================
 
-[![Build Status](https://travis-ci.org/AppStateESS/phpwebsite.png?branch=master)](https://travis-ci.org/AppStateESS/phpwebsite)
+[![Build Status](https://api.travis-ci.org/AppStateESS/canopy.png?branch=master)](https://travis-ci.org/AppStateESS/canopy)
 
-* [phpWebSite Home](https://phpwebsite.appstate.edu)
-* [phpWebSite on Github](https://github.com/AppStateESS/phpwebsite)
+* [Canopy on Github](https://github.com/AppStateESS/canopy)
 
-phpWebSite comes with its own set of Pear files. Most of the time you
+Canopy comes with its own set of Pear files. Most of the time you
 should just use the files included with distribution.
 
-**phpWebsite is now using composer for dependencies. Before using the 
+**Canopy is now using composer for dependencies. Before using the 
 web installer you will have to install composer and run composer install
 from the project root directory.**
 
-**The default theme (bootstrap) requires these processes to be run in the
-themes/bootstrap directory
+**The default theme (bootstrap) requires these processes to be run in the bootstrap4-default/ directory.
 npm install
 npm run prod
-
 
 After installation you will need to install some content modules.
 
@@ -61,7 +58,7 @@ You can run psql and mysql command line from localhost to access the container d
 
 (Depending on your system you may need to add your user to the docker group in order to have the privileges to run the docker-compose command)
 
-**Remember while setting up Canopy that your database location will not be localhost. We are running 3 seperate containers. One for web, one for mysql, and one for postgresql. If you want mysql then the host will be mysql_db otherwise postgres host will be postgres_db.
+**Remember while setting up Canopy that your database location will not be localhost. We are running 3 separate containers. One for web, one for mysql, and one for postgresql. If you want mysql then the host will be mysql_db otherwise postgres host will be postgres_db.
 
 Vagrant
 =======

@@ -24,7 +24,6 @@ function filecabinet_update(&$content, $version)
 + Updated to work with Canopy
 </pre>
 EOF;
-            break;
     }
     return true;
 }

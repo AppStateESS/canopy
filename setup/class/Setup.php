@@ -4,7 +4,7 @@
  * Setup class controls the first-time installation of Canopy
  *
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- 
+
  */
 if (strstr($_SERVER['SCRIPT_FILENAME'], '\\')) {
     define('DIRECTORY_SLASH', '\\');
@@ -362,7 +362,7 @@ class Setup
             try {
                 $connection = new \PDO($this->getPDODSN(false), $dbuser, $dbpass);
             } catch (\Exception $e) {
-                if (preg_match('/\[28000\] \[1045\]|08006/', $e->getMessage())) {
+                if (preg_match('/\[28000\]|\[1045\]|08006/', $e->getMessage())) {
                     return 0;
                 } else {
                     throw $e;
@@ -893,17 +893,16 @@ class Setup
                 break;
 
             case '6':
-                if ($this->installContentModules()) {
-                    $this->content[] = 'Starting modules installed.';
-                    $this->content[] = 'The site should be ready for you to use.';
-                    //                    $this->content[] = sprintf('<a href="%s">%s</a>', PHPWS_SOURCE_HTTP, 'Continue to your new site...');
-                    $this->content[] = sprintf('<a href="../">%s</a>',
-                            'Continue to your new site...');
-                    unset($_SESSION['configSettings']);
-                    unset($_SESSION['User']);
-                    unset($_SESSION['session_check']);
-                    $this->display();
-                }
+                $this->content[] = 'Starting modules installed.';
+                $this->content[] = 'The site should be ready for you to use. Go to Boost to add more.';
+                //                    $this->content[] = sprintf('<a href="%s">%s</a>', PHPWS_SOURCE_HTTP, 'Continue to your new site...');
+                $this->content[] = sprintf('<a href="../">%s</a>',
+                        'Continue to your new site...');
+                unset($_SESSION['configSettings']);
+                unset($_SESSION['User']);
+                unset($_SESSION['session_check']);
+                $this->display();
+                break;
 
             case '7':
                 $dsn = $this->getDSN(2);

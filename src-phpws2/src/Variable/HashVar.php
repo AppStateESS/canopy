@@ -22,4 +22,10 @@ class HashVar extends StringVar
           $this->createRandom();
           $this->value = md5($this->value);
       }
+      
+      public function sha1Random()
+      {
+          $this->createRandom();
+          $this->value = sha1($this->value);
+      }
 }

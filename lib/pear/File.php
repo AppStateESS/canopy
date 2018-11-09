@@ -374,8 +374,8 @@ class File extends PEAR
      */
     public static function closeAll()
     {
-        $locks = &PEAR::getStaticProperty('File', 'locks');
-        $filePointers = &PEAR::getStaticProperty('File', 'filePointers');
+        $locks = PEAR::getStaticProperty('File', 'locks');
+        $filePointers = PEAR::getStaticProperty('File', 'filePointers');
 
         // unlock files
         for ($i = 0, $c = count($locks); $i < $c; $i++) {

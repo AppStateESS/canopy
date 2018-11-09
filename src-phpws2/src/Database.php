@@ -38,7 +38,7 @@ class Database
     /**
      * Alias for newDB
      * @param \phpws2\Database\DSN $dsn
-     * @return Database\DB
+     * @return \phpws2\Database\DB
      */
     public static function getDB(\phpws2\Database\DSN $dsn = null)
     {

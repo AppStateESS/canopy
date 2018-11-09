@@ -43,7 +43,6 @@ abstract class DB extends \Canopy\Data
      * @access private
      */
     private $tables = array();
-
     private $conditional;
 
     /**
@@ -698,7 +697,8 @@ abstract class DB extends \Canopy\Data
             throw new \Exception('Duplicate table added');
         }
         if (DATABASE_CHECK_TABLE && !$this->tableExists($table_name)) {
-            throw new \Exception(sprintf('Table "%s" does not exist', $table_name));
+            throw new \Exception(sprintf('Table "%s" does not exist',
+                    $table_name));
         }
         $table = $this->buildTable($table_name, $alias);
 
@@ -777,7 +777,8 @@ abstract class DB extends \Canopy\Data
         if ($this->inTableStack($table_name)) {
             return $this->tables[$table_name];
         } else {
-            throw new \Exception(sprintf('Table "%s" does not exist', $table_name));
+            throw new \Exception(sprintf('Table "%s" does not exist',
+                    $table_name));
         }
     }
 
@@ -817,6 +818,9 @@ abstract class DB extends \Canopy\Data
          * @see Group
          */
         $engine = $this->getDatabaseType();
+        if ($engine == 'mysqli') {
+            $engine = 'mysql';
+        }
         $group_class = "\\phpws2\\Database\\Engine\\$engine\Group";
         $this->group_by = new $group_class($fields, $group_type);
         return $this->group_by;
@@ -921,7 +925,9 @@ abstract class DB extends \Canopy\Data
      * @param string $type
      * @return \phpws2\Database\JoinTable
      */
-    public function joinResources(\phpws2\Database\Resource $left_resource, \phpws2\Database\Resource $right_resource, \phpws2\Database\Conditional $conditional = null, $type = null)
+    public function joinResources(\phpws2\Database\Resource $left_resource,
+            \phpws2\Database\Resource $right_resource,
+            \phpws2\Database\Conditional $conditional = null, $type = null)
     {
         $jt = new Join($left_resource, $right_resource, $type, $conditional);
         $this->joined_resources[] = $jt;
@@ -1581,7 +1587,8 @@ abstract class DB extends \Canopy\Data
         $fields = array();
         foreach ($this->tables as $tbl) {
             if (\phpws2\Database_CHECK_COLUMNS && !$tbl->columnExists($column_name)) {
-                throw new \Exception(sprintf('Column "%s" not found', $column_name));
+                throw new \Exception(sprintf('Column "%s" not found',
+                        $column_name));
             }
             if ($add_to_table) {
                 $fields[] = $tbl->addField($column_name);
@@ -1755,7 +1762,7 @@ abstract class DB extends \Canopy\Data
     public function selectAsResources($class_name)
     {
         $object_stack = null;
-        
+
         $this->isResourceClass($class_name);
         $this->loadSelectStatement();
         while ($row = $this->fetch()) {

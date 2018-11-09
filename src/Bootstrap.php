@@ -49,24 +49,6 @@ if (DISPLAY_ERRORS) {
 
 require_once PHPWS_SOURCE_DIR . 'src/Autoloader.php';
 
-/*
-require_once PHPWS_SOURCE_DIR . 'src/Data.php';
-require_once PHPWS_SOURCE_DIR . 'src/Server.php';
-require_once PHPWS_SOURCE_DIR . 'src/Http.php';
-require_once PHPWS_SOURCE_DIR . 'src/Log.php';
-require_once PHPWS_SOURCE_DIR . 'src/Key.php';
-require_once PHPWS_SOURCE_DIR . 'src/Controller.php';
-require_once PHPWS_SOURCE_DIR . 'src/CanopyController.php';
-require_once PHPWS_SOURCE_DIR . 'src/Module.php';
-require_once PHPWS_SOURCE_DIR . 'src/CompatibilityModule.php';
-require_once PHPWS_SOURCE_DIR . 'src/GlobalModule.php';
-require_once PHPWS_SOURCE_DIR . 'src/Request.php';
-require_once PHPWS_SOURCE_DIR . 'src/Response.php';
-require_once PHPWS_SOURCE_DIR . 'src/String.php';
-require_once PHPWS_SOURCE_DIR . 'src/Translation.php';
-require_once PHPWS_SOURCE_DIR . 'src/Security.php';
-*/
-
 /* * * Exception Handler ** */
 require_once PHPWS_SOURCE_DIR . 'src-phpws2/src/Error.php';
 set_exception_handler(array('\phpws2\Error', 'exceptionHandler'));

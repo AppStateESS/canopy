@@ -50,6 +50,17 @@ EOF;
 + Fixed img-responsive classes in File Cabinet
 </pre>
 EOF;
+            case version_compare($version, '3.0.4', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.4 updates
+---------------------------
++ Database.Engine.mysql.Datatype.Integer Changed unsigned to default false
++ Content modules no longer a part of the install.
++ Removed calls to bootstrap.css
++ Added sha1Random method in HashVar Variable.
+</pre>
+EOF;
     }
     return true;
 }

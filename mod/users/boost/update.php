@@ -20,6 +20,7 @@ function users_update(&$content, $version)
 -------------
 + Fixed FontAwesome icon.
 + Sort group member names.
++ Fixed setGroup 
 </pre>
 EOF;
     }

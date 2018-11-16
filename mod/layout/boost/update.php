@@ -20,6 +20,14 @@ function layout_update(&$content, $version) {
 + Changed default theme.
 </pre>
 EOF;
+        case version_compare($version, '2.7.2', '<'):
+        $content[] = <<<EOF
+<pre>
+2.7.2 update
+-------------
++ Updated move script.
+</pre>
+EOF;
     }
     return true;
 }

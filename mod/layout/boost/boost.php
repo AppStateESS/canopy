@@ -6,7 +6,7 @@
 
 $proper_name = 'Layout';
 $unregister  = true;
-$version     = '2.7.1';
+$version     = '2.7.2';
 $import_sql  = true;
 $image_dir   = false;
 $file_dir    = false;

@@ -12,7 +12,7 @@ class TextOnly extends \phpws2\Variable\StringVar
     public function set($value)
     {
         if (preg_match('/<\/?[^>]+>/i', $value)) {
-            throw new \Exception('Tags are not permitted in TextOnly');
+            throw new \Exception("Tags are not permitted in TextOnly variables. Name:$this->varname");
         }
         parent::set($value);
     }

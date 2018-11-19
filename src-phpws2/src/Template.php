@@ -18,6 +18,7 @@ class Template implements View
     private $allow_theme = false;
     private $theme_file;
     private $using_module_file = false;
+    private $flagFiles = false;
 
     /**
      * @param array|null $variables Values shown inside the template
@@ -155,6 +156,14 @@ class Template implements View
             echo ob_get_contents();
             ob_end_clean();
             throw $e;
+        }
+        if ($this->flagFiles) {
+            $result = <<<EOF
+<!-- Start template: $template_file -->
+$result
+<!-- End template: $template_file -->
+
+EOF;
         }
         return $result;
     }

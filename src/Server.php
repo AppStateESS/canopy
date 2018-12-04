@@ -1,4 +1,5 @@
 <?php
+
 namespace Canopy;
 
 /**
@@ -29,13 +30,14 @@ class Server
 
             // The 'Accept' header might not always be set. If not,
             // we'll assume the client wants 'text/html'
-            if(isset($_SERVER['HTTP_ACCEPT'])){
+            if (isset($_SERVER['HTTP_ACCEPT'])) {
                 $accept = new \phpws2\Http\Accept($_SERVER['HTTP_ACCEPT']);
             } else {
                 $accept = new \phpws2\Http\Accept('text/html');
             }
 
-            self::$REQUEST_SINGLETON = new \Canopy\Request($url, $method, $vars, $data, $accept);
+            self::$REQUEST_SINGLETON = new \Canopy\Request($url, $method, $vars,
+                    $data, $accept);
 
             $dataValues = array();
             parse_str($data, $dataValues);
@@ -177,13 +179,18 @@ class Server
      */
     public static function getCurrentUrl($relative = true, $use_redirect = true)
     {
+        static $saveUrl = [];
+        if (isset($saveUrl[(int) $relative][(int) $use_redirect])) {
+            return $saveUrl[(int) $relative][(int) $use_redirect];
+        }
+
         $address = array();
-        
+
         if (!$relative) {
             $address[] = self::getSiteUrl();
         }
 
-        $self = & $_SERVER['PHP_SELF'];
+        $self = $_SERVER['PHP_SELF'];
 
         if ($use_redirect && isset($_SERVER['REQUEST_URI'])) {
             // some users reported problems using redirect_url so parsing uri instead
@@ -194,21 +201,24 @@ class Server
             } else {
                 $address[] = 'index.php';
             }
-            return implode('', $address);
-        }
+            $saveUrl[(int) $relative][(int) $use_redirect] = implode('',
+                    $address);
+        } else {
+            $stack = explode('/', $self);
+            $url = array_pop($stack);
+            if (!empty($url)) {
+                $address[] = $url;
+            }
 
-        $stack = explode('/', $self);
-        $url = array_pop($stack);
-        if (!empty($url)) {
-            $address[] = $url;
+            if (!empty($_SERVER['QUERY_STRING'])) {
+                $address[] = '?';
+                $address[] = $_SERVER['QUERY_STRING'];
+            }
+            $address = implode('', $address);
+            $address = preg_replace('@^/?@', '', $address);
+            $saveUrl[(int) $relative][(int) $use_redirect] = $address;
         }
-
-        if (!empty($_SERVER['QUERY_STRING'])) {
-            $address[] = '?';
-            $address[] = $_SERVER['QUERY_STRING'];
-        }
-        $address = implode('', $address);
-        return preg_replace('@^/?@', '', $address);
+        return $saveUrl[(int) $relative][(int) $use_redirect];
     }
 
     /**

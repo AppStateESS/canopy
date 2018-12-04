@@ -1,4 +1,5 @@
 <?php
+
 namespace Canopy;
 
 /**
@@ -373,22 +374,19 @@ abstract class Data
                 throw new \Exception(sprintf('Parameter "%s" does not exist or cannot be set in class %s',
                         $key, get_class($this)));
             }
-            if (!$this->isPrivate($key) && is_a($this->$key, '\phpws2\Variable')) {
-                if (!is_null($value)) {
-                    $this->$key->set($value);
-                }
-            } elseif (!$this->isPublic($key)) {
+
+            if (is_a($this->$key, '\phpws2\Variable')) {
                 $func = self::walkingCase($key, 'set');
                 if (method_exists($this, $func)) {
                     $this->$func($value);
-                } elseif ($this->isProtected($key)) {
-                    $this->$key = $value;
                 } else {
-                    throw new \Exception(sprintf('Parameter "%s" does not exist or cannot be set in class %s',
-                            $key, get_class($this)));
+                    $this->$key->set($value);
                 }
-            } else {
+            } elseif (!$this->isPrivate($key)) {
                 $this->$key = $value;
+            } else {
+                throw new \Exception(sprintf('Parameter "%s" does not exist or cannot be set in class %s',
+                        $key, get_class($this)));
             }
         }
     }
@@ -451,7 +449,8 @@ abstract class Data
     public function write($file_path, $allow_overwrite = false)
     {
         if ((!$allow_overwrite && is_file($file_path))) {
-            throw new \Exception(sprintf('Cannot overwrite file at %s', $file_path));
+            throw new \Exception(sprintf('Cannot overwrite file at %s',
+                    $file_path));
         }
 
         if (!is_writable(dirname($file_path))) {
@@ -475,7 +474,8 @@ namespace phpws2;
         }
         $content[] = "?>";
         if (!file_put_contents($file_path, implode("\n", $content))) {
-            throw new \Exception(sprintf('Could not write file to %s', $file_path));
+            throw new \Exception(sprintf('Could not write file to %s',
+                    $file_path));
         }
         return true;
     }

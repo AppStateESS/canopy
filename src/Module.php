@@ -1,4 +1,5 @@
 <?php
+
 namespace Canopy;
 
 /**
@@ -92,7 +93,7 @@ abstract class Module extends Data implements Controller
      */
     public function beforeRun(Request $request, Controller $controller)
     {
-
+        
     }
 
     /**
@@ -109,7 +110,7 @@ abstract class Module extends Data implements Controller
      */
     public function afterRun(Request $request, Response $response)
     {
-
+        
     }
 
     /**
@@ -120,12 +121,12 @@ abstract class Module extends Data implements Controller
      */
     public function init()
     {
-
+        
     }
 
     public function runTime(Request $request)
     {
-
+        
     }
 
     /**
@@ -139,7 +140,7 @@ abstract class Module extends Data implements Controller
      */
     public function destruct()
     {
-
+        
     }
 
     /**
@@ -184,7 +185,8 @@ abstract class Module extends Data implements Controller
             } else {
                 $type = gettype($controller);
             }
-            throw new \Exception(sprintf('The value [%s] returned by getController was not a Controller.', $type));
+            throw new \Exception(sprintf('The value [%s] returned by getController was not a Controller.',
+                    $type));
         }
 
         // TODO: Implement event manager and fire a beforeExecute event
@@ -344,6 +346,24 @@ abstract class Module extends Data implements Controller
     public function isDeprecated($deprecated)
     {
         return (bool) $this->deprecated;
+    }
+
+    /**
+     * Returns true if the file version is greater than the current db version.
+     * @return boolean
+     */
+    public function needsUpdate()
+    {
+        if (empty($this->file_version)) {
+            $this->loadFileVersion();
+        }
+        return version_compare($this->file_version, $this->version, '>');
+    }
+
+    public function loadFileVersion()
+    {
+        include PHPWS_SOURCE_DIR . 'mod/' . $this->title . '/boost/boost.php';
+        $this->file_version = $version;
     }
 
 }

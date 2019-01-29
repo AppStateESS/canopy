@@ -99,14 +99,13 @@ class CanopyController implements Controller
 
         $mr = \phpws2\ModuleRepository::getInstance();
 
-        // No module called, route to home page
-        if (!$mr->hasModule($title)) {
-            \phpws\PHPWS_Core::home();
-            return;
+        try {
+            $module = $mr->getModule($title);
+        } catch (\Exception $e) {
+            $request->setModule(null);
+            return null;
         }
-
-        $module = $mr->getModule($title);
-
+        $request->setModule($module);
         $mr->setCurrentModule($module);
 
         return $module;

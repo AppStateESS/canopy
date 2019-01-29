@@ -61,6 +61,17 @@ EOF;
 + Added sha1Random method in HashVar Variable.
 </pre>
 EOF;
+            case version_compare($version, '3.0.5', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.5 updates
+---------------------------
++ Rewrote setVars in Data class.
++ Added needsUpdate and loadFileVersion functions to Module. Allows a break
+  if the update will break the current version before getting run.
++ Rewrote forwarding logic. Faulty get urls won't force a forward.
+</pre>
+EOF;
     }
     return true;
 }

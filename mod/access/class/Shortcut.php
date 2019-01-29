@@ -180,11 +180,11 @@ class Access_Shortcut
     public function save()
     {
         if (empty($this->keyword)) {
-            return PHPWS_Error::get(SHORTCUT_MISSING_KEYWORD, 'access', 'Shortcut::save');
+            throw new \Exception('Missing shortcut keyword.');
         }
 
         if (empty($this->url)) {
-            return PHPWS_Error::get(SHORTCUT_MISSING_URL, 'access', 'Shortcut::save');
+            throw new \Exception('Missing shortcut url.');
         }
 
         $db = new PHPWS_DB('access_shortcuts');

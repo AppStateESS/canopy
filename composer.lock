@@ -1,11 +1,105 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "067ef5536fb88674176977144b84d5a6",
+    "content-hash": "3cb1de2dd1536ace0ffa5a40be77199c",
     "packages": [
+        {
+            "name": "datadog/dd-trace",
+            "version": "0.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataDog/dd-trace-php.git",
+                "reference": "e246c7dc8aca0e8039f77dde5813b716c2e48cc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataDog/dd-trace-php/zipball/e246c7dc8aca0e8039f77dde5813b716c2e48cc9",
+                "reference": "e246c7dc8aca0e8039f77dde5813b716c2e48cc9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": "~5.4.0 || ~5.6.0 || ^7.0"
+            },
+            "require-dev": {
+                "g1a/composer-test-scenarios": "~3.0",
+                "mockery/mockery": "*",
+                "phpunit/phpunit": "^4",
+                "squizlabs/php_codesniffer": "^3.3.0",
+                "symfony/process": "*"
+            },
+            "type": "library",
+            "extra": {
+                "scenarios": {
+                    "elasticsearch1": {
+                        "require": {
+                            "elasticsearch/elasticsearch": "1.2.*"
+                        },
+                        "scenario-options": {
+                            "create-lockfile": false
+                        }
+                    },
+                    "guzzle5": {
+                        "require": {
+                            "guzzlehttp/guzzle": "~5.0"
+                        },
+                        "scenario-options": {
+                            "create-lockfile": false
+                        }
+                    },
+                    "guzzle6": {
+                        "require": {
+                            "guzzlehttp/guzzle": "~6.0"
+                        },
+                        "scenario-options": {
+                            "create-lockfile": false
+                        }
+                    },
+                    "predis1": {
+                        "require": {
+                            "predis/predis": "^1.1"
+                        },
+                        "scenario-options": {
+                            "create-lockfile": false
+                        }
+                    }
+                },
+                "scenario-options": {
+                    "dependency-licenses": false
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DDTrace\\": "./src/DDTrace/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "DataDog",
+                    "email": "dev@datadoghq.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "José Carlos Chávez",
+                    "email": "jcchavezs@gmail.com"
+                }
+            ],
+            "description": "PHP APM Client",
+            "keywords": [
+                "DataDog",
+                "php",
+                "tracing"
+            ],
+            "time": "2019-01-29T18:06:09+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
@@ -468,6 +562,50 @@
             "time": "2014-09-09T13:34:57+00:00"
         },
         {
+            "name": "opentracing/opentracing",
+            "version": "1.0.0-beta5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opentracing/opentracing-php.git",
+                "reference": "19591d4084e32eaea061eebd9448b62e5ee3ec19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opentracing/opentracing-php/zipball/19591d4084e32eaea061eebd9448b62e5ee3ec19",
+                "reference": "19591d4084e32eaea061eebd9448b62e5ee3ec19",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6||^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7.19",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OpenTracing\\": "./src/OpenTracing/"
+                },
+                "files": [
+                    "./src/OpenTracing/Tags.php",
+                    "./src/OpenTracing/Formats.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "José Carlos Chávez",
+                    "email": "jcchavezs@gmail.com"
+                }
+            ],
+            "description": "OpenTracing API for PHP",
+            "time": "2018-04-13T13:38:46+00:00"
+        },
+        {
             "name": "phansys/getid3",
             "version": "v1.9.4-p2",
             "target-dir": "GetId3",
@@ -509,6 +647,7 @@
                 "metadata",
                 "tags"
             ],
+            "abandoned": "james-heinrich/getid3",
             "time": "2012-08-30T21:21:23+00:00"
         },
         {
@@ -1976,8 +2115,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "beta",
+    "stability-flags": {
+        "opentracing/opentracing": 10
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

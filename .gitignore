@@ -13,5 +13,6 @@ javascript/captcha/recaptcha/recaptcha_settings.php
 .bower_components
 /bower_components/
 /nbproject/private/
+nbproject/
 vendor/
 /inc/

@@ -50,7 +50,12 @@ class JsonErrorView extends JsonView
     {
         echo "url : ", $error['url'];
         echo "\nmethod : ", $error['method'];
-        echo "\nmodule : ", $error['module'];
+        if(is_object($error['module'])){
+            echo "\nmodule : ", $error['module']->getProperName();
+	}else{
+	    echo "\nmodule : ", $error['module'];
+        }
+
         if (!empty($error['exception'])) {
             echo "\nexception_file : ", $error['exception_file'];
             echo "\nexception_line : ", $error['exception_line'];

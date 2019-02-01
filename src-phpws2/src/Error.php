@@ -16,7 +16,8 @@ namespace phpws2;
  * would be a pain to pick in a catch. Much easier to just catch(\Exception $e)
  * which will work with PDO.
  */
-class Error {
+class Error
+{
 
     /**
      * A simple exception handler for catching exceptions that are thrown outside
@@ -28,17 +29,14 @@ class Error {
      */
     public static function exceptionHandler($error)
     {
-        // Send exceptions to NewRelic, if available
-        if (extension_loaded('newrelic')) { // Ensure PHP agent is available
-            newrelic_notice_error($error, null);
+        // Send exceptions to DataDog
+        if (class_exists('\\DDTrace\\\GlobalTracer')) {
+            $root_span = \DDTrace\GlobalTracer::get()->getRootScope()->getSpan();
+            if ($root_span !== null) {
+                $root_span->setError($error);
+            }
         }
 
-        // Send exceptions to DataDog
-        $root_span = \DDTrace\GlobalTracer::get()->getRootScope()->getSpan();
-        if($root_span !== null){
-            $root_span->setError($error);
-        }
-        
         self::log($error);
         if (DISPLAY_ERRORS) {
             echo '<h1>Unhandled exception:</h1><pre>', self::getErrorInfo($error,
@@ -115,7 +113,8 @@ class Error {
      * Time stamp handled by logging function
      * @return string
      */
-    private static function getErrorInfo($error, $error_stack = true, $xdebug = false)
+    private static function getErrorInfo($error, $error_stack = true,
+            $xdebug = false)
     {
         $file = $error->getFile();
         $line = $error->getLine();

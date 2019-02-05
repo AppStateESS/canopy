@@ -4,7 +4,6 @@
         "doctrine/common": "^2.4.3",
         "swiftmailer/swiftmailer": "^5.4",
         "phansys/getid3": "^1.9",
-        "opentracing/opentracing": "^1.0@beta",
         "datadog/dd-trace": "^0.11.0"
     },
     "require-dev": {

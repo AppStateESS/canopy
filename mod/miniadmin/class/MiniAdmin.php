@@ -29,7 +29,7 @@ class MiniAdmin {
 
     public static function get()
     {
-        if (!\Current_User::isLogged()) {
+        if (!\Current_User::isLogged() || !SHOW_MINIADMIN) {
             return;
         }
         $modlist = \phpws\PHPWS_Core::getModuleNames();

@@ -48,16 +48,19 @@ class User_Form
         if (is_a($auth, 'local_authorization')) {
             $template['GREETING'] = 'Hello';
             $template['USERNAME'] = Current_User::getUsername();
-            $template['DISPLAY_NAME'] = Current_User::getDisplayName();
             $template['PANEL'] = $template['MODULES'] = PHPWS_ControlPanel::panelLink();
-            $template['ACCOUNT'] = '<a href="index.php?module=users&action=user&tab=my_page"><i class="far fa-user"></i> Account</a>';
+            if (PHPWS_Settings::get('users', 'show_login')) {
+                $template['DISPLAY_NAME'] = Current_User::getDisplayName();
+                $template['ACCOUNT'] = '<a href="index.php?module=users&action=user&tab=my_page"><i class="far fa-user"></i> Account</a>';
+            }
         }
         $logout_link = $auth->getLogoutLink();
-
-        if ($logout_link) {
-            $template['LOGOUT'] = $logout_link;
-        } else {
-            $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out', 'users', array('action' => 'user', 'command' => 'logout'));
+        if (PHPWS_Settings::get('users', 'show_login')) {
+            if ($logout_link) {
+                $template['LOGOUT'] = $logout_link;
+            } else {
+                $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out', 'users', array('action' => 'user', 'command' => 'logout'));
+            }
         }
         $template['HOME_USER_PANEL'] = $template['HOME'] = PHPWS_Text::moduleLink('Home');
 

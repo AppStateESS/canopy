@@ -9,8 +9,8 @@
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  * @license https://opensource.org/licenses/MIT
  */
-
-function core_update(&$content, $version) {
+function core_update(&$content, $version)
+{
     switch (1) {
         case version_compare($version, '3.0.1', '<'):
             $content[] = <<<EOF
@@ -34,7 +34,7 @@ function core_update(&$content, $version) {
 + Renamed default theme to bootstrap4-default to prevent issues with npm.
 </pre>
 EOF;
-            case version_compare($version, '3.0.2', '<'):
+        case version_compare($version, '3.0.2', '<'):
             $content[] = <<<EOF
 <pre>
 3.0.2 updates
@@ -42,7 +42,7 @@ EOF;
 + Fixed Font Awesome Icons.
 </pre>
 EOF;
-            case version_compare($version, '3.0.3', '<'):
+        case version_compare($version, '3.0.3', '<'):
             $content[] = <<<EOF
 <pre>
 3.0.3 updates
@@ -50,7 +50,7 @@ EOF;
 + Fixed img-responsive classes in File Cabinet
 </pre>
 EOF;
-            case version_compare($version, '3.0.4', '<'):
+        case version_compare($version, '3.0.4', '<'):
             $content[] = <<<EOF
 <pre>
 3.0.4 updates
@@ -61,7 +61,7 @@ EOF;
 + Added sha1Random method in HashVar Variable.
 </pre>
 EOF;
-            case version_compare($version, '3.0.5', '<'):
+        case version_compare($version, '3.0.5', '<'):
             $content[] = <<<EOF
 <pre>
 3.0.5 updates
@@ -70,6 +70,20 @@ EOF;
 + Added needsUpdate and loadFileVersion functions to Module. Allows a break
   if the update will break the current version before getting run.
 + Rewrote forwarding logic. Faulty get urls won't force a forward.
+</pre>
+EOF;
+        case version_compare($version, '3.0.6', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.6 updates
+---------------------------
++ Fixed setSize method in Varchar and Decimal.
++ Removed opentracing from composer.json.
++ Fixed Json error view exception.
++ DataDog implementation.
++ Fixed logout script.
++ Added SHOW_MINIADMIN define.
++ Hide user drop down if show login box not checked.
 </pre>
 EOF;
     }

@@ -6,5 +6,5 @@
  */
 
 define('MINIADMIN_TEMPLATE', 'mini_admin.html');
-define('SHOW_MINIADMIN', false);
+define('SHOW_MINIADMIN', true);
 			 

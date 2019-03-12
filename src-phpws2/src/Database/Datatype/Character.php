@@ -48,6 +48,10 @@ class Character extends \phpws2\Database\Datatype {
     {
         $this->default = new \phpws2\Variable\StringVar(null, 'default');
     }
+    
+    public function setSize($size) {
+        $this->size->set($size);
+    }
 
     private function varName()
     {

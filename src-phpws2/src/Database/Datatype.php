@@ -303,9 +303,9 @@ abstract class Datatype extends \Canopy\Data
      * Receives an integer between 0 - 255 for the varchar length
      * @param integer $length
      */
-    public function setSize($length)
+    public function setSize($size)
     {
-        $this->size->set($length);
+        $this->size = $size;
         return $this;
     }
 

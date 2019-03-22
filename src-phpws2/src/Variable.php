@@ -105,7 +105,7 @@ abstract class Variable extends \Canopy\Data
         }
     }
 
-    public function setDatatype(DB\Datatype $dt)
+    public function setDatatype(\phpws2\Database\Datatype $dt)
     {
         $this->datatype = $dt;
     }

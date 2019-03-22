@@ -107,7 +107,7 @@ define('COLLAPSE_LIMIT', 30);
 
 $censor = '*bleep*';
 $words = array(
-           '[\s-\.]+cock\s'   =>$censor,
+           '[\s\-\.]+cock\s'   =>$censor,
            'mother\s?fucker'=>$censor,
            'fuck'           =>$censor,
            'shit'           =>$censor,

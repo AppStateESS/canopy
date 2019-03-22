@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -22,7 +23,6 @@
  * @version     CVS: $Id: File.php 232504 2007-03-24 16:38:56Z dufuz $
  * @link        http://pear.php.net/package/File
  */
-
 /**
  * Requires PEAR
  */
@@ -32,47 +32,47 @@ require_once 'PEAR.php';
  * The default number of bytes for reading
  */
 if (!defined('FILE_DEFAULT_READSIZE')) {
-    define('FILE_DEFAULT_READSIZE', 1024, true);
+    define('FILE_DEFAULT_READSIZE', 1024);
 }
 
 /**
  * The maximum number of bytes for reading lines
  */
 if (!defined('FILE_MAX_LINE_READSIZE')) {
-    define('FILE_MAX_LINE_READSIZE', 40960, true);
+    define('FILE_MAX_LINE_READSIZE', 40960);
 }
 
 /**
  * Whether file locks should block
  */
 if (!defined('FILE_LOCKS_BLOCK')) {
-    define('FILE_LOCKS_BLOCK', true, true);
+    define('FILE_LOCKS_BLOCK', true);
 }
 
 /**
  * Mode to use for reading from files
  */
-define('FILE_MODE_READ', 'rb', true);
+define('FILE_MODE_READ', 'rb');
 
 /**
  * Mode to use for truncating files, then writing
  */
-define('FILE_MODE_WRITE', 'wb', true);
+define('FILE_MODE_WRITE', 'wb');
 
 /**
  * Mode to use for appending to files
  */
-define('FILE_MODE_APPEND', 'ab', true);
+define('FILE_MODE_APPEND', 'ab');
 
 /**
  * Use this when a shared (read) lock is required
  */
-define('FILE_LOCK_SHARED', LOCK_SH | (FILE_LOCKS_BLOCK ? 0 : LOCK_NB), true);
+define('FILE_LOCK_SHARED', LOCK_SH | (FILE_LOCKS_BLOCK ? 0 : LOCK_NB));
 
 /**
  * Use this when an exclusive (write) lock is required
  */
-define('FILE_LOCK_EXCLUSIVE', LOCK_EX | (FILE_LOCKS_BLOCK ? 0 : LOCK_NB), true);
+define('FILE_LOCK_EXCLUSIVE', LOCK_EX | (FILE_LOCKS_BLOCK ? 0 : LOCK_NB));
 
 /**
  * Class for handling files
@@ -90,6 +90,7 @@ define('FILE_LOCK_EXCLUSIVE', LOCK_EX | (FILE_LOCKS_BLOCK ? 0 : LOCK_NB), true);
  */
 class File extends PEAR
 {
+
     /**
      * Destructor
      *
@@ -124,17 +125,16 @@ class File extends PEAR
 
         // check if file pointer already exists
         if (!isset($filePointers[$filename][$mode]) ||
-            !is_resource($filePointers[$filename][$mode])) {
+                !is_resource($filePointers[$filename][$mode])) {
 
             // check if we can open the file in the desired mode
-            switch ($mode)
-            {
+            switch ($mode) {
                 case FILE_MODE_READ:
                     if (!preg_match('/^.+(?<!file):\/\//i', $filename) &&
-                        !file_exists($filename)) {
+                            !file_exists($filename)) {
                         return PEAR::raiseError("File does not exist: $filename");
                     }
-                break;
+                    break;
 
                 case FILE_MODE_APPEND:
                 case FILE_MODE_WRITE:
@@ -145,7 +145,7 @@ class File extends PEAR
                     } elseif (!is_writable($dir = dirname($filename))) {
                         return PEAR::raiseError("Cannot create file in directory: $dir");
                     }
-                break;
+                    break;
 
                 default:
                     return PEAR::raiseError("Invalid access mode: $mode");
@@ -211,7 +211,7 @@ class File extends PEAR
         }
 
         if (!isset($filePointers[$filename]) ||
-            !is_resource($filePointers[$filename])) {
+                !is_resource($filePointers[$filename])) {
             $fp = File::_getFilePointer($filename, FILE_MODE_READ, $lock);
             if (PEAR::isError($fp)) {
                 return $fp;
@@ -301,7 +301,7 @@ class File extends PEAR
         static $filePointers; // Used to prevent unnecessary calls to _getFilePointer()
 
         if (!isset($filePointers[$filename]) ||
-            !is_resource($filePointers[$filename])) {
+                !is_resource($filePointers[$filename])) {
             $fp = File::_getFilePointer($filename, FILE_MODE_READ, $lock);
             if (PEAR::isError($fp)) {
                 return $fp;
@@ -330,7 +330,8 @@ class File extends PEAR
      * @param   mixed   $lock Whether to lock the file
      * @return  mixed   PEAR_Error on error or number of bytes written to file (including appended crlf)
      */
-    function writeLine($filename, $line, $mode = FILE_MODE_APPEND, $crlf = "\n", $lock = false)
+    function writeLine($filename, $line, $mode = FILE_MODE_APPEND, $crlf = "\n",
+            $lock = false)
     {
         $fp = File::_getFilePointer($filename, $mode, $lock);
         if (PEAR::isError($fp)) {
@@ -378,8 +379,10 @@ class File extends PEAR
         $filePointers = PEAR::getStaticProperty('File', 'filePointers');
 
         // unlock files
-        for ($i = 0, $c = count($locks); $i < $c; $i++) {
-            is_resource($locks[$i]) and @flock($locks[$i], LOCK_UN);
+        if (!empty($locks)) {
+            for ($i = 0, $c = count($locks); $i < $c; $i++) {
+                is_resource($locks[$i]) and @ flock($locks[$i], LOCK_UN);
+            }
         }
 
         // close files
@@ -536,6 +539,7 @@ class File extends PEAR
         require_once 'File/Util.php';
         return File_Util::realpath($path, $separator);
     }
+
 }
 
 PEAR::registerShutdownFunc(array('File', '_File'));

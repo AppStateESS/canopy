@@ -374,7 +374,7 @@ class Setup
         $mdb2_connection = $tdb->connect($dsn);
         if ($mdb2_connection->isConnected()) {
             $tables = $mdb2_connection->listTables();
-            if (count($tables)) {
+            if (!empty($tables) && count($tables)) {
                 return 2;
             } else {
                 $this->setConfigSet('dsn', $dsn);

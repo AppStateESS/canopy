@@ -29,14 +29,6 @@ class Error
      */
     public static function exceptionHandler($error)
     {
-        // Send exceptions to DataDog
-        if (class_exists('\\DDTrace\\\GlobalTracer')) {
-            $root_span = \DDTrace\GlobalTracer::get()->getRootScope()->getSpan();
-            if ($root_span !== null) {
-                $root_span->setError($error);
-            }
-        }
-
         self::log($error);
         if (DISPLAY_ERRORS) {
             echo '<h1>Unhandled exception:</h1><pre>', self::getErrorInfo($error,

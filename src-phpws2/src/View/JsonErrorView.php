@@ -19,12 +19,12 @@ class JsonErrorView extends JsonView
         $json['code'] = $response->getCode();
         $json['phrase'] = $response->getPhrase();
         $json['backtrace'] = $response->getBacktrace();
-        $json['exception'] = $response->getException();
-        if (is_a($json['exception'], '\Exception')) {
-            $json['exception_code'] = $response->getException()->getCode();
-            $json['exception_file'] = $response->getException()->getFile();
-            $json['exception_line'] = $response->getException()->getLine();
-            $json['exception_message'] = $response->getException()->getMessage();
+        $exception = $response->getException();
+        if (is_a($exception, '\Exception')) {
+            $json['exception']['code'] = $response->getException()->getCode();
+            $json['exception']['file'] = $response->getException()->getFile();
+            $json['exception']['line'] = $response->getException()->getLine();
+            $json['exception']['message'] = $response->getException()->getMessage();
         }
 
         parent::__construct(array('error' => $json));
@@ -35,7 +35,8 @@ class JsonErrorView extends JsonView
         if (defined('DISPLAY_ERRORS') && DISPLAY_ERRORS) {
             http_response_code($this->data['error']['code']);
             $error = $this->data['error'];
-            $this->displayError($error);
+            echo json_encode($error);
+            //$this->displayError($error);
             exit;
         } else {
             if (is_object($this->data)) {
@@ -48,6 +49,7 @@ class JsonErrorView extends JsonView
 
     private function displayError($error)
     {
+        $error = [];
         echo "url : ", $error['url'];
         echo "\nmethod : ", $error['method'];
         if(is_object($error['module'])){

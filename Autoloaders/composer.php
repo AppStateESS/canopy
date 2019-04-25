@@ -26,16 +26,3 @@
  * @author Matthew McNaney <mcnaneym at appstate dot edu>
  */
 require_once PHPWS_SOURCE_DIR . 'vendor/autoload.php';
-
-// Add the PHP tracer bootstrap
-$datadog = PHPWS_SOURCE_DIR . 'vendor/datadog/dd-trace/bridge/dd_init.php';
-if (is_file($datadog)) {
-    require_once $datadog;
-    $span = \DDTrace\GlobalTracer::get()
-            ->startRootSpan('web.request')
-            ->getSpan();
-    $span->setResource($_SERVER['REQUEST_URI']);
-    $span->setTag(\DDTrace\Tag::SPAN_TYPE, \DDTrace\Type::WEB_SERVLET);
-    $span->setTag(\DDTrace\Tag::HTTP_METHOD, $_SERVER['REQUEST_METHOD']);
-}
-

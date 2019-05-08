@@ -31,8 +31,7 @@ class Error
     {
         self::log($error);
         if (DISPLAY_ERRORS) {
-            echo '<h1>Unhandled exception:</h1><pre>', self::getErrorInfo($error,
-                    true, true), '</pre>';
+            echo self::getErrorInfo($error, true, true);
         } else {
             self::errorPage();
         }

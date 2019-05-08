@@ -27,7 +27,6 @@ class User_Form
         }
 
         if (Current_User::isLogged()) {
-            $username = Current_User::getUsername();
             return User_Form::loggedIn();
         } else {
             if (PHPWS_Settings::get('users', 'show_login')) {
@@ -49,20 +48,16 @@ class User_Form
             $template['GREETING'] = 'Hello';
             $template['USERNAME'] = Current_User::getUsername();
             $template['PANEL'] = $template['MODULES'] = PHPWS_ControlPanel::panelLink();
-            if (PHPWS_Settings::get('users', 'show_login')) {
-                $template['DISPLAY_NAME'] = Current_User::getDisplayName();
-                $template['ACCOUNT'] = '<a href="index.php?module=users&action=user&tab=my_page"><i class="far fa-user"></i> Account</a>';
-            }
+            $template['DISPLAY_NAME'] = Current_User::getDisplayName();
+            $template['ACCOUNT'] = '<a href="index.php?module=users&action=user&tab=my_page"><i class="far fa-user"></i> Account</a>';
         }
         $logout_link = $auth->getLogoutLink();
-        if (PHPWS_Settings::get('users', 'show_login')) {
-            if ($logout_link) {
-                $template['LOGOUT'] = $logout_link;
-            } else {
-                $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out',
-                                'users',
-                                array('action' => 'user', 'command' => 'logout'));
-            }
+        if ($logout_link) {
+            $template['LOGOUT'] = $logout_link;
+        } else {
+            $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out',
+                            'users',
+                            array('action' => 'user', 'command' => 'logout'));
         }
         $template['HOME_USER_PANEL'] = $template['HOME'] = PHPWS_Text::moduleLink('Home');
 
@@ -1009,8 +1004,6 @@ class User_Form
             $form->addSelect('user_menu', $menu_options);
             $form->setMatch('user_menu', PHPWS_User::getUserSetting('user_menu'));
             $form->setLabel('user_menu', 'User Menu');
-            //var_dump(PHPWS_Settings::get('users', 'show_login'));
-            //exit();
             $form->addCheckBox('show_login', 1);
             $form->setMatch('show_login',
                     PHPWS_Settings::get('users', 'show_login'));

@@ -338,6 +338,8 @@ final class Current_User {
 
     public static function permissionMenu()
     {
+        return;
+        /*
         $key = \Canopy\Key::getCurrent();
 
         if (empty($key) || $key->isDummy() || empty($key->edit_permission)) {
@@ -359,6 +361,8 @@ final class Current_User {
                 MiniAdmin::add('users', $links);
             }
         }
+         *
+         */
     }
 
     public static function popupPermission($key_id, $label = null, $mode = null)

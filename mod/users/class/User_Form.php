@@ -3,7 +3,7 @@
 /**
  * Contains forms for users and demographics
  *
- 
+
  * @author  Matt McNaney <mcnaneym@appstate.edu>
  * @package Core
  */
@@ -59,13 +59,16 @@ class User_Form
             if ($logout_link) {
                 $template['LOGOUT'] = $logout_link;
             } else {
-                $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out', 'users', array('action' => 'user', 'command' => 'logout'));
+                $template['LOGOUT'] = PHPWS_Text::moduleLink('<span class="fas sign-out-alt"></span> Log Out',
+                                'users',
+                                array('action' => 'user', 'command' => 'logout'));
             }
         }
         $template['HOME_USER_PANEL'] = $template['HOME'] = PHPWS_Text::moduleLink('Home');
 
         $usermenu = PHPWS_User::getUserSetting('user_menu');
-        return PHPWS_Template::process($template, 'users', 'usermenus/' . $usermenu);
+        return PHPWS_Template::process($template, 'users',
+                        'usermenus/' . $usermenu);
     }
 
     public static function loggedOut()
@@ -102,11 +105,13 @@ class User_Form
         $template['HOME_LOGIN'] = PHPWS_Text::moduleLink('Home');
 
         if (PHPWS_Settings::get('users', 'new_user_method')) {
-            $template['NEW_ACCOUNT'] = PHPWS_Text::moduleLink(USER_SIGNUP_QUESTION, 'users', $signup_vars);
+            $template['NEW_ACCOUNT'] = PHPWS_Text::moduleLink(USER_SIGNUP_QUESTION,
+                            'users', $signup_vars);
         }
 
         $fg_vars = array('action' => 'user', 'command' => 'forgot_password');
-        $template['FORGOT'] = PHPWS_Text::moduleLink('Forgot password?', 'users', $fg_vars);
+        $template['FORGOT'] = PHPWS_Text::moduleLink('Forgot password?',
+                        'users', $fg_vars);
 
         $usermenu = PHPWS_User::getUserSetting('user_menu');
 
@@ -115,7 +120,8 @@ class User_Form
 
         $template['LOGIN_VIEW'] = $authorization->getView();
 
-        return PHPWS_Template::process($template, 'users', 'usermenus/' . $usermenu);
+        return PHPWS_Template::process($template, 'users',
+                        'usermenus/' . $usermenu);
     }
 
     public static function setPermissions($id)
@@ -167,7 +173,8 @@ class User_Form
         } else {
             $vars['user_id'] = $group->user_id;
             $vars['command'] = 'editUser';
-            $links[] = PHPWS_Text::secureLink('<i class="fa fa-edit"></i> ' . 'Edit', 'users', $vars, null, 'Edit user', 'btn btn-success');
+            $links[] = PHPWS_Text::secureLink('<i class="fa fa-edit"></i> ' . 'Edit',
+                            'users', $vars, null, 'Edit user', 'btn btn-success');
         }
 
         $template['LINKS'] = implode(' ', $links);
@@ -292,8 +299,12 @@ class User_Form
 
         $pageTags['ACTIONS_LABEL'] = 'Actions';
         if (PHPWS_Settings::get('users', 'allow_new_users') || Current_User::isDeity()) {
-            $pageTags['NEW_USER'] = PHPWS_Text::secureLink('Create new user', 'users', array('action' => 'admin', 'command' => 'new_user'), null, 'Create new user', 'btn btn-success');
-            $pageTags['NEW_USER_URI'] = PHPWS_Text::linkAddress('users', array('action' => 'admin', 'command' => 'new_user'));
+            $pageTags['NEW_USER'] = PHPWS_Text::secureLink('Create new user',
+                            'users',
+                            array('action' => 'admin', 'command' => 'new_user'),
+                            null, 'Create new user', 'btn btn-success');
+            $pageTags['NEW_USER_URI'] = PHPWS_Text::linkAddress('users',
+                            array('action' => 'admin', 'command' => 'new_user'));
         }
 
         $pager = new DBPager('users', 'PHPWS_User');
@@ -314,14 +325,21 @@ class User_Form
         if (!empty($_GET['search_group'])) {
             $search_group = (int) $_GET['search_group'];
             if (!empty($_GET['qgroup'])) {
-                $pager->addWhere('users_members.group_id', $search_group, '=', 'and', 'g1');
-                $pager->addWhere('users_groups.id', 'users_members.member_id', '=', 'and', 'g1');
-                $pager->addWhere('users.id', 'users_groups.user_id', '=', 'and', 'g1');
+                $pager->addWhere('users_members.group_id', $search_group, '=',
+                        'and', 'g1');
+                $pager->addWhere('users_groups.id', 'users_members.member_id',
+                        '=', 'and', 'g1');
+                $pager->addWhere('users.id', 'users_groups.user_id', '=', 'and',
+                        'g1');
             } else {
-                $pager->db->addJoin('left', 'users', 'users_groups', 'id', 'user_id');
-                $pager->db->addJoin('left', 'users_groups', 'users_members', 'id', 'member_id');
-                $pager->db->addWhere('users_members.group_id', null, 'is null', null, 'g1');
-                $pager->db->addWhere('users_members.group_id', $search_group, '!=', 'or', 'g1');
+                $pager->db->addJoin('left', 'users', 'users_groups', 'id',
+                        'user_id');
+                $pager->db->addJoin('left', 'users_groups', 'users_members',
+                        'id', 'member_id');
+                $pager->db->addWhere('users_members.group_id', null, 'is null',
+                        null, 'g1');
+                $pager->db->addWhere('users_members.group_id', $search_group,
+                        '!=', 'or', 'g1');
             }
         }
 
@@ -337,8 +355,12 @@ class User_Form
 
         $pageTags['MEMBERS_LABEL'] = 'Members';
         $pageTags['ACTIONS_LABEL'] = 'Actions';
-        $pageTags['NEW_GROUP'] = PHPWS_Text::secureLink('Create new group', 'users', array('action' => 'admin', 'command' => 'new_group'), null, 'Create new group', 'btn btn-success');
-        $pageTags['ADD_GROUP_URI'] = PHPWS_Text::linkAddress('users', array('action' => 'admin', 'command' => 'new_group'));
+        $pageTags['NEW_GROUP'] = PHPWS_Text::secureLink('Create new group',
+                        'users',
+                        array('action' => 'admin', 'command' => 'new_group'),
+                        null, 'Create new group', 'btn btn-success');
+        $pageTags['ADD_GROUP_URI'] = PHPWS_Text::linkAddress('users',
+                        array('action' => 'admin', 'command' => 'new_group'));
 
         $pager = new DBPager('users_groups', 'PHPWS_Group');
         $pager->setModule('users');
@@ -379,7 +401,8 @@ class User_Form
         $template['GROUPNAME'] = $group->getName();
 
         if (isset($_POST['search_member'])) {
-            $_SESSION['Last_Member_Search'] = preg_replace('/[\W]+/', '', $_POST['search_member']);
+            $_SESSION['Last_Member_Search'] = preg_replace('/[\W]+/', '',
+                    $_POST['search_member']);
             $db = new PHPWS_DB('users_groups');
             $db->addWhere('name', $_SESSION['Last_Member_Search']);
             $db->addWhere('name', $group->name, '!=');
@@ -398,7 +421,8 @@ class User_Form
         }
 
         if (isset($_SESSION['Last_Member_Search'])) {
-            $result = User_Form::getLikeGroups($_SESSION['Last_Member_Search'], $group);
+            $result = User_Form::getLikeGroups($_SESSION['Last_Member_Search'],
+                            $group);
             if (isset($result)) {
                 $template['LIKE_GROUPS'] = $result;
                 $template['LIKE_INSTRUCTION'] = 'Member not found.' . ' ' . 'Closest matches below.';
@@ -413,17 +437,20 @@ class User_Form
         $vars['group_id'] = $group->id;
         $vars['command'] = 'edit_group';
         $title = 'Edit group name';
-        $links[] = PHPWS_Text::secureLink(Icon::show('edit') . " $title", 'users', $vars, null, $title, 'btn btn-default');
+        $links[] = PHPWS_Text::secureLink(Icon::show('edit') . " $title",
+                        'users', $vars, null, $title, 'btn btn-default');
 
         $title = 'Edit Group Permissions';
         $vars['command'] = 'setGroupPermissions';
-        $links[] = PHPWS_Text::secureLink(Icon::show('permission') . " $title", 'users', $vars, null, $title, 'btn btn-default');
+        $links[] = PHPWS_Text::secureLink(Icon::show('permission') . " $title",
+                        'users', $vars, null, $title, 'btn btn-default');
 
         $template['LINKS'] = implode(' ', $links);
 
         $template['CURRENT_MEMBERS_LBL'] = 'Current Members';
         $template['CURRENT_MEMBERS'] = User_Form::getMemberList($group);
-        $result = PHPWS_Template::process($template, 'users', 'forms/memberForm.tpl');
+        $result = PHPWS_Template::process($template, 'users',
+                        'forms/memberForm.tpl');
 
         return $result;
     }
@@ -445,7 +472,8 @@ class User_Form
             $u->addField('display_name');
             $ug->addOrderBy('name');
             $ug->addFieldConditional('id', $members, 'in');
-            $cond = $db->createConditional($ug->getField('user_id'), $u->getField('id'));
+            $cond = $db->createConditional($ug->getField('user_id'),
+                    $u->getField('id'));
             $db->joinResources($ug, $u, $cond, 'outer');
             $result = $db->select();
 
@@ -457,14 +485,17 @@ class User_Form
             foreach ($result as $row) {
                 extract($row);
                 $vars['member'] = $id;
-                $drop_button = PHPWS_Text::secureLink('Drop', 'users', $vars, NULL, 'Drop this member from the group.', 'btn btn-xs btn-danger');
+                $drop_button = PHPWS_Text::secureLink('Drop', 'users', $vars,
+                                NULL, 'Drop this member from the group.',
+                                'btn btn-xs btn-danger');
                 if ($user_id) {
                     $name = "$name&nbsp;($display_name)";
                 }
                 $rows[] = $drop_button . '&nbsp;' . $name;
             }
             $template['NAMES'] = implode("<br />", $rows);
-            $content = PHPWS_Template::process($template, 'users', 'forms/memberlist.tpl');
+            $content = PHPWS_Template::process($template, 'users',
+                            'forms/memberlist.tpl');
             if (!isset($content)) {
                 $content = 'No members.';
             }
@@ -515,7 +546,8 @@ class User_Form
                 PHPWS_Error::log($result);
             } else {
                 if (!isset($result[$user->authorize])) {
-                    $message['AUTHORIZE'] = dgettext('users', 'Warning: this user\'s authorization script is broken. Choose another and update.');
+                    $message['AUTHORIZE'] = dgettext('users',
+                            'Warning: this user\'s authorization script is broken. Choose another and update.');
                 }
                 $form->addSelect('authorize', $result);
                 $form->setMatch('authorize', $user->authorize);
@@ -533,7 +565,8 @@ class User_Form
             $form->addButton('create_pw', 'Generate password');
         } else {
             $form->addTplTag('USERNAME', $user->getUsername());
-            $form->addTplTag('USERNAME_LABEL', '<strong>' . 'Username' . '</strong>');
+            $form->addTplTag('USERNAME_LABEL',
+                    '<strong>' . 'Username' . '</strong>');
         }
         $form->addText('display_name', $user->display_name);
         $form->addText('email', $user->getEmail());
@@ -555,7 +588,9 @@ class User_Form
 
         if ($user->id) {
             $vars['command'] = 'setUserPermissions';
-            $links[] = PHPWS_Text::secureLink(\Icon::show('permission') . ' ' . 'Permissions', 'users', $vars, null, 'Permissions', 'btn btn-default');
+            $links[] = PHPWS_Text::secureLink(\Icon::show('permission') . ' ' . 'Permissions',
+                            'users', $vars, null, 'Permissions',
+                            'btn btn-default');
         }
 
         if (isset($links)) {
@@ -597,14 +632,14 @@ class User_Form
         if (empty($groups)) {
             return null;
         }
-        
+
         $gmatch = array();
         if (isset($_POST['group_add'])) {
             foreach ($_POST['group_add'] as $gid) {
-                $gmatch[] = (int)$gid;
+                $gmatch[] = (int) $gid;
             }
         }
-        
+
         $cb_count = 0;
         foreach ($groups as $gid => $gname) {
             $checked = in_array($gid, $gmatch) ? 'checked="checked"' : null;
@@ -626,9 +661,11 @@ class User_Form
             $values['action'] = 'admin';
             $values['command'] = 'deify';
             $values['authorize'] = '1';
-            $content[] = PHPWS_Text::secureLink('Yes, make them a deity.', 'users', $values);
+            $content[] = PHPWS_Text::secureLink('Yes, make them a deity.',
+                            'users', $values);
             $values['authorize'] = '0';
-            $content[] = PHPWS_Text::secureLink('No, leave them as a mortal.', 'users', $values);
+            $content[] = PHPWS_Text::secureLink('No, leave them as a mortal.',
+                            'users', $values);
         }
 
         return implode('<br />', $content);
@@ -645,9 +682,11 @@ class User_Form
             $values['action'] = 'admin';
             $values['command'] = 'mortalize';
             $values['authorize'] = '1';
-            $content[] = PHPWS_Text::secureLink('Yes, make them a mortal.', 'users', $values);
+            $content[] = PHPWS_Text::secureLink('Yes, make them a mortal.',
+                            'users', $values);
             $values['authorize'] = '0';
-            $content[] = PHPWS_Text::secureLink('No, leave them as a deity.', 'users', $values);
+            $content[] = PHPWS_Text::secureLink('No, leave them as a deity.',
+                            'users', $values);
         }
 
         return implode('<br />', $content);
@@ -684,7 +723,8 @@ class User_Form
             $template['LINKS'] = implode(' | ', $links);
         }
 
-        $content = PHPWS_Template::process($template, 'users', 'forms/groupForm.tpl');
+        $content = PHPWS_Template::process($template, 'users',
+                        'forms/groupForm.tpl');
 
         return $content;
     }
@@ -753,7 +793,8 @@ class User_Form
         $ug->addField('user_id');
         $u = $db->addTable('users', null, false);
         $u->addField('display_name');
-        $cond = $db->createConditional($ug->getField('user_id'), $u->getField('id'));
+        $cond = $db->createConditional($ug->getField('user_id'),
+                $u->getField('id'));
         $db->joinResources($ug, $u, $cond, 'outer');
         $ug->addFieldConditional('name', "%$name%", 'LIKE');
 
@@ -779,7 +820,10 @@ class User_Form
             }
 
             $vars['member'] = $member['id'];
-            $link = PHPWS_Text::secureLink('<i class="fa fa-plus"></i> ' . 'Add', 'users', $vars, NULL, 'Add this user to this group.', 'btn btn-sm btn-success');
+            $link = PHPWS_Text::secureLink('<i class="fa fa-plus"></i> ' . 'Add',
+                            'users', $vars, NULL,
+                            'Add this user to this group.',
+                            'btn btn-sm btn-success');
 
             $tpl->setCurrentBlock('row');
             if (!empty($member['display_name'])) {
@@ -828,7 +872,8 @@ class User_Form
         $form->addHidden('action', 'admin');
         $form->addHidden('command', 'postAuthorization');
 
-        $file_list = PHPWS_File::readDirectory(PHPWS_SOURCE_DIR . 'mod/users/scripts/', FALSE, TRUE, FALSE, array('php'));
+        $file_list = PHPWS_File::readDirectory(PHPWS_SOURCE_DIR . 'mod/users/scripts/',
+                        FALSE, TRUE, FALSE, array('php'));
 
         if (!empty($file_list)) {
             $remaining_files = array_diff($file_list, $file_compare);
@@ -872,7 +917,8 @@ class User_Form
 
             if ($filename != 'local.php' && $filename != 'global.php') {
                 $vars['QUESTION'] = 'Are you sure you want to drop this authorization script?';
-                $vars['ADDRESS'] = sprintf('index.php?module=users&action=admin&command=dropAuthScript&script_id=%s&authkey=%s', $id, Current_User::getAuthKey());
+                $vars['ADDRESS'] = sprintf('index.php?module=users&action=admin&command=dropAuthScript&script_id=%s&authkey=%s',
+                        $id, Current_User::getAuthKey());
                 $vars['LINK'] = 'Drop';
                 $links[1] = javascript('confirm', $vars);
             }
@@ -881,7 +927,8 @@ class User_Form
             // May enable this later. No need for an edit link right now.
             //            $links[2] = PHPWS_Text::secureLink('Edit', 'users', $getVars);
 
-            $row['CHECK'] = sprintf('<input type="radio" name="default_authorization" value="%s" %s />', $id, $checked);
+            $row['CHECK'] = sprintf('<input type="radio" name="default_authorization" value="%s" %s />',
+                    $id, $checked);
             $form = new PHPWS_Form();
             $form->addSelect("default_group[$id]", $groups);
             $form->setMatch("default_group[$id]", $default_group);
@@ -897,7 +944,8 @@ class User_Form
 
             $template['auth-rows'][] = $row;
         }
-        return PHPWS_Template::process($template, 'users', 'forms/authorization.tpl');
+        return PHPWS_Template::process($template, 'users',
+                        'forms/authorization.tpl');
     }
 
     public static function settings()
@@ -910,7 +958,8 @@ class User_Form
         $form->addHidden('command', 'update_settings');
         $form->addSubmit('submit', 'Update Settings');
 
-        $form->addText('site_contact', PHPWS_User::getUserSetting('site_contact'));
+        $form->addText('site_contact',
+                PHPWS_User::getUserSetting('site_contact'));
         $form->setLabel('site_contact', 'Site contact email');
         $form->setSize('site_contact', 40);
 
@@ -926,20 +975,26 @@ class User_Form
             $form->addRadio('user_signup', $signup_modes);
             $form->setLabel('user_signup', $signup_labels);
             $form->addTplTag('USER_SIGNUP_LABEL', 'User Signup Mode');
-            $form->setMatch('user_signup', PHPWS_User::getUserSetting('new_user_method'));
+            $form->setMatch('user_signup',
+                    PHPWS_User::getUserSetting('new_user_method'));
             if (extension_loaded('gd')) {
                 $form->addCheckbox('graphic_confirm');
-                $form->setLabel('graphic_confirm', 'New user CAPTCHA confirmation');
-                $form->setMatch('graphic_confirm', PHPWS_User::getUserSetting('graphic_confirm'));
+                $form->setLabel('graphic_confirm',
+                        'New user CAPTCHA confirmation');
+                $form->setMatch('graphic_confirm',
+                        PHPWS_User::getUserSetting('graphic_confirm'));
             }
 
             $included_usermenu = PHPWS_File::readDirectory(
-                            PHPWS_SOURCE_DIR . 'mod/users/templates/usermenus/', FALSE, TRUE, FALSE, array('tpl'));
+                            PHPWS_SOURCE_DIR . 'mod/users/templates/usermenus/',
+                            FALSE, TRUE, FALSE, array('tpl'));
             $theme_usermenu = PHPWS_File::readDirectory(
-                            PHPWS_SOURCE_DIR . Layout::getThemeDir() . 'templates/users/usermenus/', FALSE, TRUE, FALSE, array('tpl'));
+                            PHPWS_SOURCE_DIR . Layout::getThemeDir() . 'templates/users/usermenus/',
+                            FALSE, TRUE, FALSE, array('tpl'));
 
             if ($theme_usermenu) {
-                $options = array_unique(array_merge($included_usermenu, $theme_usermenu));
+                $options = array_unique(array_merge($included_usermenu,
+                                $theme_usermenu));
             } else {
                 $options = $included_usermenu;
             }
@@ -954,26 +1009,33 @@ class User_Form
             $form->addSelect('user_menu', $menu_options);
             $form->setMatch('user_menu', PHPWS_User::getUserSetting('user_menu'));
             $form->setLabel('user_menu', 'User Menu');
-
+            //var_dump(PHPWS_Settings::get('users', 'show_login'));
+            //exit();
             $form->addCheckBox('show_login', 1);
-            $form->setMatch('show_login', PHPWS_Settings::get('users', 'show_login'));
+            $form->setMatch('show_login',
+                    PHPWS_Settings::get('users', 'show_login'));
             $form->setLabel('show_login', 'Show login box');
             $form->addTplTag('AFFIRM', 'Yes');
 
             $form->addCheckBox('allow_remember', 1);
-            $form->setMatch('allow_remember', PHPWS_Settings::get('users', 'allow_remember'));
+            $form->setMatch('allow_remember',
+                    PHPWS_Settings::get('users', 'allow_remember'));
             $form->setLabel('allow_remember', 'Allow Remember Me');
 
             $form->addRadioAssoc('allow_new_users', array(1 => 'Yes', 0 => 'No'));
-            $form->setMatch('allow_new_users', PHPWS_Settings::get('users', 'allow_new_users'));
+            $form->setMatch('allow_new_users',
+                    PHPWS_Settings::get('users', 'allow_new_users'));
             $form->addTplTag('ALLOW_NEW_USERS_LABEL', 'Allow new user creation?');
         }
 
-        $form->addTextArea('forbidden_usernames', PHPWS_Settings::get('users', 'forbidden_usernames'));
-        $form->setLabel('forbidden_usernames', 'Forbidden usernames (one per line)');
+        $form->addTextArea('forbidden_usernames',
+                PHPWS_Settings::get('users', 'forbidden_usernames'));
+        $form->setLabel('forbidden_usernames',
+                'Forbidden usernames (one per line)');
 
         $form->addCheckbox('session_warning', 1);
-        $form->setMatch('session_warning', PHPWS_Settings::get('users', 'session_warning'));
+        $form->setMatch('session_warning',
+                PHPWS_Settings::get('users', 'session_warning'));
         $form->setlabel('session_warning', 'Show session warning');
 
         $template = $form->getTemplate();
@@ -981,8 +1043,10 @@ class User_Form
         if (Current_User::isDeity()) {
             $vars['action'] = 'admin';
             $vars['command'] = 'check_permission_tables';
-            $template['VERIFY_PERMISSIONS'] = PHPWS_Text::secureLink('Register user permissions', 'users', $vars);
-            $template['VERIFY_EXPLAIN'] = dgettext('users', 'Users module will re-register each module\'s permissions.');
+            $template['VERIFY_PERMISSIONS'] = PHPWS_Text::secureLink('Register user permissions',
+                            'users', $vars);
+            $template['VERIFY_EXPLAIN'] = dgettext('users',
+                    'Users module will re-register each module\'s permissions.');
         }
         return PHPWS_Template::process($template, 'users', 'forms/settings.tpl');
     }
@@ -1032,7 +1096,8 @@ class User_Form
                 $template[$tag] = $error;
         }
 
-        $result = PHPWS_Template::process($template, 'users', 'forms/signup_form.tpl');
+        $result = PHPWS_Template::process($template, 'users',
+                        'forms/signup_form.tpl');
         return $result;
     }
 
@@ -1066,7 +1131,8 @@ class User_Form
 
         $template = $form->getTemplate();
 
-        $content = PHPWS_Template::process($template, 'users', 'forms/login_form.tpl');
+        $content = PHPWS_Template::process($template, 'users',
+                        'forms/login_form.tpl');
 
         return $content;
     }
@@ -1097,13 +1163,15 @@ class User_Form
         $edit_matches = $key->getEditGroups();
 
         if (!empty($edit_groups)) {
-            $edit_select = User_Form::_createMultiple($edit_groups['restricted']['all'], 'edit_groups', $edit_matches);
+            $edit_select = User_Form::_createMultiple($edit_groups['restricted']['all'],
+                            'edit_groups', $edit_matches);
         } else {
             $edit_select = null;
         }
 
         if (!empty($view_groups)) {
-            $view_select = User_Form::_createMultiple($view_groups, 'view_groups', $view_matches);
+            $view_select = User_Form::_createMultiple($view_groups,
+                            'view_groups', $view_matches);
         } else {
             $view_select = null;
         }
@@ -1114,7 +1182,8 @@ class User_Form
         $form->addHidden('key_id', $key->id);
         $form->addRadio('view_permission', array(0, 1, 2));
         $form->setExtra('view_permission', 'onclick="hideSelect(this.value)"');
-        $form->setLabel('view_permission', array('All visitors',
+        $form->setLabel('view_permission',
+                array('All visitors',
             'Logged visitors',
             'Specific group(s)'));
         $form->setMatch('view_permission', $key->restricted);
@@ -1144,7 +1213,8 @@ class User_Form
         }
 
         if ($popbox) {
-            $tpl['CANCEL'] = sprintf('<input type="button" value="%s" onclick="window.close()" />', 'Cancel');
+            $tpl['CANCEL'] = sprintf('<input type="button" value="%s" onclick="window.close()" />',
+                    'Cancel');
         }
 
         if (isset($_SESSION['Permission_Message'])) {
@@ -1172,9 +1242,11 @@ class User_Form
             }
 
             if (!empty($group['user_id'])) {
-                $users[] = sprintf('<option value="%s" %s>%s</option>', $group['id'], $match, $group['name']);
+                $users[] = sprintf('<option value="%s" %s>%s</option>',
+                        $group['id'], $match, $group['name']);
             } else {
-                $groups[] = sprintf('<option value="%s" %s>%s</option>', $group['id'], $match, $group['name']);
+                $groups[] = sprintf('<option value="%s" %s>%s</option>',
+                        $group['id'], $match, $group['name']);
             }
         }
 
@@ -1195,7 +1267,8 @@ class User_Form
         }
 
         if (isset($select)) {
-            return sprintf('<select size="5" multiple="multiple" id="%s" name="%s[]">%s</select>', $name, $name, implode("\n", $select));
+            return sprintf('<select size="5" multiple="multiple" id="%s" name="%s[]">%s</select>',
+                    $name, $name, implode("\n", $select));
         } else {
             return NULL;
         }
@@ -1214,7 +1287,8 @@ class User_Form
 
         $form->addText('fg_email');
         $form->setSize('fg_email', 40);
-        $form->setLabel('fg_email', 'Forgotten your user name? Enter your email address instead.');
+        $form->setLabel('fg_email',
+                'Forgotten your user name? Enter your email address instead.');
 
         if (ALLOW_CAPTCHA) {
             $form->addTplTag('CAPTCHA_IMAGE', Captcha::get());
@@ -1258,4 +1332,3 @@ class User_Form
     }
 
 }
-

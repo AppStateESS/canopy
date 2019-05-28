@@ -1246,7 +1246,7 @@ abstract class DB extends \Canopy\Data
         if (empty($this->pdo_statement)) {
             $this->loadSelectStatement();
         }
-        $this->fetchInto($object);
+        return $this->fetchInto($object);
     }
 
     /**

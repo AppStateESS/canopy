@@ -86,6 +86,14 @@ EOF;
 + Hide user drop down if show login box not checked.
 </pre>
 EOF;
+        case version_compare($version, '3.0.7', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.7 updates
+---------------------------
++ DB::selectInto returns a null result if it failed.
+</pre>
+EOF;
     }
     return true;
 }

@@ -13,7 +13,8 @@ abstract class ErrorResponse extends \Canopy\Response
     protected $backtrace;
     protected $exception;
 
-    public function __construct(\Canopy\Request $request = null, \Exception $previous = null)
+    public function __construct(\Canopy\Request $request = null,
+            \Exception $previous = null)
     {
         if (is_null($request)) {
             $request = \Canopy\Server::getCurrentRequest();
@@ -23,7 +24,7 @@ abstract class ErrorResponse extends \Canopy\Response
 
         $this->request = $request;
         $this->code = $this->getHttpResponseCode();
-        $this->backtrace = debug_backtrace();
+        $this->backtrace = $previous ? $previous->getTrace() : debug_backtrace();
         $this->exception = $previous;
     }
 
@@ -53,7 +54,8 @@ abstract class ErrorResponse extends \Canopy\Response
         return $this->exception;
     }
 
-    protected function createErrorView(\Canopy\Request $request, \Canopy\Response $response)
+    protected function createErrorView(\Canopy\Request $request,
+            \Canopy\Response $response)
     {
         $iter = $request->getAccept()->getIterator();
 

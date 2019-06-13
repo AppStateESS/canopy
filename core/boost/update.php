@@ -84,6 +84,7 @@ EOF;
 + Fixed logout script.
 + Added SHOW_MINIADMIN define.
 + Hide user drop down if show login box not checked.
++ Uncaught exception shows correct backtrace.               
 </pre>
 EOF;
         case version_compare($version, '3.0.7', '<'):

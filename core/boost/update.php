@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /**
  * MIT License
@@ -93,6 +93,7 @@ EOF;
 ---------------------------
 + DB::selectInto returns a null result if it failed.
 + Uncaught exception shows correct backtrace.
++ Fixed float variable/datatype interaction.
 </pre>
 EOF;
     }

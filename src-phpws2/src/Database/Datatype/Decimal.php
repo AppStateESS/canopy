@@ -36,7 +36,7 @@ class Decimal extends \phpws2\Database\Datatype
             return null;
         }
         if ($this->default->IsNull() && !$this->is_null) {
-            return 'default 0';
+            return 'default 0.0';
         }
         return 'default ' . $this->default;
     }

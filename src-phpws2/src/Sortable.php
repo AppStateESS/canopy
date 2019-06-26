@@ -53,7 +53,7 @@ class Sortable
      * @var \phpws2\Database\Table
      */
     private $tbl;
-    
+    private $conditionals = [];
     private $start_count = 1;
 
     /**
@@ -96,7 +96,7 @@ class Sortable
     {
         $this->start_count = 0;
     }
-    
+
     private function getDB($anchor = true)
     {
         $db = Database::getDB();
@@ -104,6 +104,12 @@ class Sortable
 
         if ($anchor && $this->anchor_column && $this->anchor_value) {
             $tbl->addFieldConditional($this->anchor_column, $this->anchor_value);
+        }
+        if (!empty($this->conditionals)) {
+            foreach ($this->conditionals as $c) {
+                $tbl->addFieldConditional($c['column'], $c['value'],
+                        $c['compare']);
+            }
         }
         return array('db' => $db, 'tbl' => $tbl);
     }
@@ -113,6 +119,11 @@ class Sortable
         $this->getDB(true);
         $this->tbl->addFieldConditional('id', $moving_id);
         return $this->db->selectOneRow();
+    }
+
+    public function addTableConditional($column, $value, $compare = '=')
+    {
+        $this->conditionals[] = ['column' => $column, 'value' => $value, 'compare' => $compare];
     }
 
     public function reorder()

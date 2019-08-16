@@ -53,7 +53,7 @@ class IntegerVar extends \phpws2\Variable {
 
     public function set($value)
     {
-        return parent::set($value);
+        return parent::set((int)$value);
     }
 
 

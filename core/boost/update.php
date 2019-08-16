@@ -94,6 +94,8 @@ EOF;
 + DB::selectInto returns a null result if it failed.
 + Uncaught exception shows correct backtrace.
 + Fixed float variable/datatype interaction.
++ IntegerVar forces int type into the value.
++ New sequence inserts force a table truncate.
 </pre>
 EOF;
     }

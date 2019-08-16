@@ -230,26 +230,7 @@ abstract class Resource extends \Canopy\Data
         return !$this->id->isEmpty();
     }
 
-    /*
-     * @todo reapply when user permissions rewritten
-      public function permitUser($permission_name, \User\User $user = null)
-      {
-      if (is_null($user)) {
-      $user = \User\Current::get();
-      }
-
-      return \User\Permission::permit($permission_name, $this, $user);
-      }
-     */
-
-    /*
-     * @todo reapply when user permissions rewritten
-      public function permitRole($permission_name, \User\Role $role)
-      {
-      return \User\Permission::permit($permission_name, $this, $role);
-      }
-     */
-
+    
     /**
      * Saves the current resource object using the ResourceFactory class.
      * @return object

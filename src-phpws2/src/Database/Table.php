@@ -277,7 +277,7 @@ abstract class Table extends Resource
         $source_table_name = $constraint->getSourceTable()->getFullName();
         if ($source_table_name != $this->getFullName()) {
             throw new \Exception(sprintf('Source column table %s does not match current table %s',
-                    $source_table_name, $this->getFullName()));
+                            $source_table_name, $this->getFullName()));
         }
     }
 
@@ -296,6 +296,7 @@ abstract class Table extends Resource
         $sequence_name = $this->getPearSequenceName();
         $startId = (int) $this->getMaxId();
         $insertQuery = "insert into $sequence_name (id) values ($startId)";
+        $this->db->exec("truncate $sequence_name");
         $this->db->exec($insertQuery);
     }
 
@@ -381,7 +382,7 @@ abstract class Table extends Resource
     {
         if (!$this->db->allowed($column_name)) {
             throw new \Exception(sprintf('Improper column name: "%s"',
-                    $column_name));
+                            $column_name));
         }
         if ($value instanceof \phpws2\Variable) {
             $value = $value->toDatabase();
@@ -466,7 +467,7 @@ abstract class Table extends Resource
 
         if (empty($this->values)) {
             throw new \Exception(sprintf(sprintf('No columns to insert in table: %s'),
-                    $this->getFullName()));
+                            $this->getFullName()));
         }
         foreach ($this->values as $val_listing) {
             $columns = array();

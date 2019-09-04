@@ -96,6 +96,7 @@ EOF;
 + Fixed float variable/datatype interaction.
 + IntegerVar forces int type into the value.
 + New sequence inserts force a table truncate.
++ Fixed: ArrayVar sets encoded JSON
 </pre>
 EOF;
     }

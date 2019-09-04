@@ -298,7 +298,7 @@ class ArrayVar extends \phpws2\Variable
             if (preg_match('/^a:\d{1,}:/', $value)) {
                 $array_value = unserialize($value);
             } else {
-                $array_value = json_decode($value);
+                $array_value = (array) json_decode($value);
                 if ($array_value === null) {
                     $array_value = explode(',', $value);
                 }

@@ -97,6 +97,8 @@ EOF;
 + IntegerVar forces int type into the value.
 + New sequence inserts force a table truncate.
 + Fixed: ArrayVar sets encoded JSON
++ Fixed: error message in Cabinet namespaced wrong.
++ Fixed: missing PDO check on commit function in DB
 </pre>
 EOF;
     }

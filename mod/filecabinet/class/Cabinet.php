@@ -458,7 +458,7 @@ class Cabinet
             }
             PHPWS_Error::log(FC_DOCUMENT_NOT_FOUND, 'filecabinet',
                     'Cabinet_Action::download', $message);
-            Error::errorPage('404');
+            \phpws2\Error::errorPage('404');
         }
         $file_name = preg_replace('/[^\w]/', '-', $document->getTitle());
         $file_name = preg_replace('/-{2,}/', '-', $file_name);

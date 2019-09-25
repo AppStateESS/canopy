@@ -279,7 +279,7 @@ abstract class DB extends \Canopy\Data
         self::$transaction_count--;
         if (self::$transaction_count == 0) {
             if (empty(self::$PDO)) {
-                throw new \Exception('PDO connection is missing');
+                $this->loadPDO();
             }
             return self::$PDO->commit();
         } elseif (self::$transaction_count < 0) {
@@ -442,7 +442,7 @@ abstract class DB extends \Canopy\Data
 
     /**
      * Initializes a new PDO object into the static pdo_stack variable. Repeated
-     * PDO constuctions prohibited by key check on stack.
+     * PDO constructions prohibited by key check on stack.
      */
     public function loadPDO()
     {
@@ -698,7 +698,7 @@ abstract class DB extends \Canopy\Data
         }
         if (DATABASE_CHECK_TABLE && !$this->tableExists($table_name)) {
             throw new \Exception(sprintf('Table "%s" does not exist',
-                    $table_name));
+                            $table_name));
         }
         $table = $this->buildTable($table_name, $alias);
 
@@ -778,7 +778,7 @@ abstract class DB extends \Canopy\Data
             return $this->tables[$table_name];
         } else {
             throw new \Exception(sprintf('Table "%s" does not exist',
-                    $table_name));
+                            $table_name));
         }
     }
 
@@ -1588,7 +1588,7 @@ abstract class DB extends \Canopy\Data
         foreach ($this->tables as $tbl) {
             if (\phpws2\Database_CHECK_COLUMNS && !$tbl->columnExists($column_name)) {
                 throw new \Exception(sprintf('Column "%s" not found',
-                        $column_name));
+                                $column_name));
             }
             if ($add_to_table) {
                 $fields[] = $tbl->addField($column_name);

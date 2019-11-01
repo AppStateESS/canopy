@@ -59,6 +59,7 @@ abstract class ErrorResponse extends \Canopy\Response
     {
         $iter = $request->getAccept()->getIterator();
 
+        \Canopy\Http::http_response_code(500);
         foreach ($iter as $type) {
             if ($type->matches('application/json')) {
                 return new \phpws2\View\JsonErrorView($request, $response);

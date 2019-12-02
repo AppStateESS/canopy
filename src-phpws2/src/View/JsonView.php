@@ -1,5 +1,7 @@
 <?php
+
 namespace phpws2\View;
+
 /**
  * Standard JSON View.  Uses json_encode to encode the given data as JSON,
  * regardless of what the data is.  Upshot: you get RESTful API for free;
@@ -13,9 +15,9 @@ namespace phpws2\View;
  * @package phpws2
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
-
 class JsonView implements \phpws2\View
 {
+
     protected $data;
     protected $options;
     protected $depth;
@@ -41,21 +43,22 @@ class JsonView implements \phpws2\View
     {
         $this->data = $data;
     }
-    
+
     /**
      * Render as JSON.  This function essentially returns the result of a PECL
-     * json json_encode.
+     * json encode.
      *
      * @param $data mixed The data to render
      * @return string The JSON encoded data
      */
     public function render()
     {
-        return json_encode($this->data);
+        return json_encode($this->data, $this->options, $this->depth);
     }
 
     public function getContentType()
     {
         return 'application/json';
     }
+
 }

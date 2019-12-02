@@ -367,7 +367,7 @@ class Request extends Data
                 return $default;
             } else {
                 throw new \Exception(sprintf('Variable "%s" not found',
-                        $variable_name));
+                                $variable_name));
             }
         }
 
@@ -497,7 +497,7 @@ class Request extends Data
      */
     public static function isAjax()
     {
-        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest');
+        return ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
     }
 
     public static function show()
@@ -545,7 +545,7 @@ class Request extends Data
     {
         if (!$this->isUploadedFile($file_name)) {
             throw new \Exception(sprintf('File "%s" was not uploaded',
-                    $file_name));
+                            $file_name));
         }
 
         return $_FILES[$file_name];
@@ -777,16 +777,16 @@ class Request extends Data
         if ($test_isset && !$this->postVarIsset($varname)) {
             return null;
         }
-        
+
         return $this->pullPostVar($varname);
     }
-    
+
     public function pullPutArray($varname, $test_isset = false)
     {
         if ($test_isset && !$this->putVarIsset($varname)) {
             return null;
         }
-        
+
         return $this->pullPutVar($varname);
     }
 
@@ -795,16 +795,16 @@ class Request extends Data
         if ($test_isset && !$this->deleteVarIsset($varname)) {
             return null;
         }
-        
+
         return $this->pullDeleteVar($varname);
     }
-    
+
     public function pullPatchArray($varname, $test_isset = false)
     {
         if ($test_isset && !$this->patchVarIsset($varname)) {
             return null;
         }
-        
+
         return $this->pullPatchVar($varname);
     }
 
@@ -813,10 +813,9 @@ class Request extends Data
         if ($test_isset && !$this->getVarIsset($varname)) {
             return null;
         }
-        
+
         return $this->pullGetVar($varname);
     }
-    
 
     public function pullPostInteger($varname, $test_isset = false)
     {
@@ -934,7 +933,7 @@ class Request extends Data
     /**
      * Returns float if is such, false if not an float.
      * Be aware the filter will say 1 is a float. The actual
-     * is_float php function will return false on 1. 
+     * is_float php function will return false on 1.
      * @param mixed $value
      * @return float
      */

@@ -102,6 +102,14 @@ EOF;
 + Fixed: Errors use 500 HTTP response.
 </pre>
 EOF;
+        case version_compare($version, '3.0.8', '<'):
+            $content[] = <<<EOF
+<pre>
+3.0.8 updates
+---------------------------
++ Fixed Missing json_encode options and depth.
+</pre>
+EOF;
     }
     return true;
 }

@@ -6,24 +6,23 @@
  *
  * This file contains the default text settings for the PHPWS_Text class.
  * @author Matthew McNaney <mcnaneym@appstate.edu>
- 
- */
 
+ */
 /**
  * These are the default tags that Canopy will allow from
  * form entries. If a tag is NOT on this list, it will be stripped
  * from the entry.
  */
-
-define('PHPWS_ALLOWED_TAGS', '<pre><mark>
+define('PHPWS_ALLOWED_TAGS',
+        '<pre><mark>
 <strong><s><b><a><i><u><ul><ol><li>
 <table><tr><td><tbody><thead><dd><dt><dl>
 <p><br><div><span><blockquote><map><area>
 <th><tt><img><pre><hr><h1><h2><h3><h4><h5><h6>
 <fieldset><legend><code><em><iframe><embed><audio><video><source>
-<object><sup><sub><param><strike><del><abbr><small><button>');
+<object><sup><sub><param><strike><del><abbr><small><button><style>');
 
-/***************** HTML ENCODING ********************************
+/* * *************** HTML ENCODING ********************************
  * Before any user text passed into parseInput and out of
  * parseOutput is html encoded by default.
  * This is done as a security measure and to help with database
@@ -45,7 +44,7 @@ define('ENCODE_PARSED_TEXT', true);
  */
 define('USE_BREAKER', false);
 
-/*********************** FILTERS *******************************
+/* * ********************* FILTERS *******************************
  * Canopy filters outgoing text with a BB filter by default.
  * You can decide which filters, if any, Canopy uses.
  * If you use more than one filter, separate them with commas
@@ -53,7 +52,7 @@ define('USE_BREAKER', false);
  * is important!
  */
 
-/******************* RELATIVE ADDRESSING ***********************
+/* * ***************** RELATIVE ADDRESSING ***********************
  * The parseInput function the Text class will remove urls
  * and replace them with relative addresses if this option is TRUE
  * For example:
@@ -73,7 +72,7 @@ define('MAKE_ADDRESSES_RELATIVE', TRUE);
 define('FIX_ANCHORS', true);
 
 
-/******************* COLLAPSE URLS ***********************/
+/* * ***************** COLLAPSE URLS ********************** */
 
 // if true, parseOutput will collapse long urls into a shorter size
 define('COLLAPSE_URLS', false);
@@ -83,7 +82,7 @@ define('COLLAPSE_URLS', false);
 define('COLLAPSE_LIMIT', 30);
 
 
-/******************* Profanity Filter ********************
+/* * ***************** Profanity Filter ********************
  *
  * The following words will be stripped automatically from any text
  * sent to the profanity filter function. The parseOutput function uses
@@ -107,16 +106,15 @@ define('COLLAPSE_LIMIT', 30);
 
 $censor = '*bleep*';
 $words = array(
-           '[\s\-\.]+cock\s'   =>$censor,
-           'mother\s?fucker'=>$censor,
-           'fuck'           =>$censor,
-           'shit'           =>$censor,
-           'asshole'        =>$censor,
-           'cunt'           =>$censor,
-           'nigger.*'       =>'... I am a racist idiot! ',
-           'faggot.*'       =>'... I have issues with my sexuality! '
-           );
+    '[\s\-\.]+cock\s' => $censor,
+    'mother\s?fucker' => $censor,
+    'fuck' => $censor,
+    'shit' => $censor,
+    'asshole' => $censor,
+    'cunt' => $censor,
+    'nigger.*' => '... I am a racist idiot! ',
+    'faggot.*' => '... I have issues with my sexuality! '
+);
 
-           define('ALLOW_PROFANITY', FALSE);
-           define('PROFANE_WORDS', serialize($words));
-           
+define('ALLOW_PROFANITY', FALSE);
+define('PROFANE_WORDS', serialize($words));

@@ -939,10 +939,7 @@ class Layout
             $jsHead[] = '<noscript><meta http-equiv="refresh" content="0;url=index.php?nojs=1&ret=' . urlencode(\phpws\PHPWS_Core::getCurrentUrl()) . '"/></noscript>';
         }
 
-        if (isset($_GET['nojs'])) {
-            $_SESSION['javascript_enabled'] = false;
-            \phpws\PHPWS_Core::reroute(urldecode($_GET['ret']));
-        } elseif (!isset($_SESSION['javascript_enabled'])) {
+        if (!isset($_SESSION['javascript_enabled'])) {
             $_SESSION['javascript_enabled'] = true;
         }
 

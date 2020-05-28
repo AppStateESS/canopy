@@ -53,12 +53,17 @@ class FC_Images extends FC_Folder_Factory
         if (empty($row)) {
             return null;
         }
+        if (PHPWS_HOME_HTTP == './') {
+            $homeDir = \Canopy\Server::getSiteUrl();
+        } else {
+            $homeDir = PHPWS_HOME_HTTP;
+        }
         $template = new \phpws2\Template;
         $template->setModuleTemplate('filecabinet', 'FC_Forms/image_view.html');
         $template->add('title', $row['title']);
         $template->add('alt', $row['alt']);
         $template->add('filepath',
-                PHPWS_HOME_HTTP . $row['file_directory'] . $row['file_name']);
+                $homeDir . $row['file_directory'] . $row['file_name']);
         return $template->get();
     }
 

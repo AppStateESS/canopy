@@ -8,7 +8,7 @@ namespace phpws;
  *
  * See core/conf/text_settings.php for configuration options
  *
- 
+
  * @author  Matthew McNaney <mcnaneym@appstate.edu>
  * @author  Adam Morton
  * @author  Steven Levin
@@ -23,7 +23,7 @@ if (!defined('UTF8_MODE')) {
 \phpws\PHPWS_Core::initCoreClass('Link.php');
 
 if (!defined('PHPWS_HOME_HTTP')) {
-    define('PHPWS_HOME_HTTP', './');
+    define('PHPWS_HOME_HTTP', \Canopy\Server::getSiteUrl(true, true, true));
 }
 
 if (!defined('ENCODE_PARSED_TEXT')) {
@@ -130,7 +130,8 @@ class PHPWS_Text
         static $default_tags = null;
 
         if (empty($default_tags)) {
-            $default_tags = preg_replace('/\s/', '', strtolower(PHPWS_ALLOWED_TAGS));
+            $default_tags = preg_replace('/\s/', '',
+                    strtolower(PHPWS_ALLOWED_TAGS));
             if (ALLOW_SCRIPT_TAGS) {
                 $default_tags .= '<script>';
             } else {
@@ -195,7 +196,8 @@ class PHPWS_Text
     {
         $home_http = \phpws\PHPWS_Core::getCurrentUrl();
 
-        return preg_replace('/href="#([\w\-]+)"/', sprintf('href="%s#\\1"', $home_http), $text);
+        return preg_replace('/href="#([\w\-]+)"/',
+                sprintf('href="%s#\\1"', $home_http), $text);
     }
 
     /**
@@ -245,7 +247,8 @@ class PHPWS_Text
     public function profanityFilter($text)
     {
         if (!is_string($text)) {
-            return \phpws\PHPWS_Error::get(PHPWS_TEXT_NOT_STRING, 'core', 'PHPWS_Text::profanityFilter');
+            return \phpws\PHPWS_Error::get(PHPWS_TEXT_NOT_STRING, 'core',
+                            'PHPWS_Text::profanityFilter');
         }
 
         $words = unserialize(PROFANE_WORDS);
@@ -270,7 +273,8 @@ class PHPWS_Text
     public static function sentence($text, $stripNewlines = false)
     {
         if (!is_string($text)) {
-            return \phpws\PHPWS_Error::get(PHPWS_TEXT_NOT_STRING, 'core', 'PHPWS_Text::sentence');
+            return \phpws\PHPWS_Error::get(PHPWS_TEXT_NOT_STRING, 'core',
+                            'PHPWS_Text::sentence');
         }
 
         return preg_split("/\r\n|\n/", $text);
@@ -311,7 +315,8 @@ class PHPWS_Text
 
         $text = str_replace("\r\n", "\n", $text);
         $text = preg_replace($do_not_break, '\\1', $text);
-        $text = preg_replace_callback('/<pre>(.*)<\/pre>/Uis', function($match) {
+        $text = preg_replace_callback('/<pre>(.*)<\/pre>/Uis',
+                function($match) {
             '<pre>' . str_replace("\n", '[newline]', $match[0]) . '</pre>';
         }, $text);
 
@@ -319,14 +324,16 @@ class PHPWS_Text
         $text = str_replace('[newline]', "\n", $text);
         // removes extra breaks stuck in code tags by editors
 
-        $text = preg_replace_callback('/<code>(.*)<\/code>/Uis', function($match) {
+        $text = preg_replace_callback('/<code>(.*)<\/code>/Uis',
+                function($match) {
             return '<code>' . str_replace('<br />', '', $matches[0]) . '</code>';
         }, $text);
         $text = preg_replace("/<br \/>([^\n])/", "<br />\n\\1", $text);
         return $text;
     }
 
-    public static function parseInput($text, $encode = ENCODE_PARSED_TEXT, $relative_links = MAKE_ADDRESSES_RELATIVE)
+    public static function parseInput($text, $encode = ENCODE_PARSED_TEXT,
+            $relative_links = MAKE_ADDRESSES_RELATIVE)
     {
         // Moved over from getPrint/parseOutput
         if ((bool) $relative_links) {
@@ -359,7 +366,9 @@ class PHPWS_Text
      *                               run against the output text. (deprecated)
      * @return  string  text         Stripped text
      */
-    public static function parseOutput($text, $decode = ENCODE_PARSED_TEXT, $use_filters = false, $use_breaker = USE_BREAKER, $fix_anchors = FIX_ANCHORS)
+    public static function parseOutput($text, $decode = ENCODE_PARSED_TEXT,
+            $use_filters = false, $use_breaker = USE_BREAKER,
+            $fix_anchors = FIX_ANCHORS)
     {
         $t = new PHPWS_Text;
         $t->setText($text, $decode);
@@ -414,14 +423,16 @@ class PHPWS_Text
 
             case 'url':
                 // copied from here: http://regexlib.com/REDetails.aspx?regexp_id=96
-                if (preg_match('@http(s)?:\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,\@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?@i', $userEntry))
+                if (preg_match('@http(s)?:\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,\@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?@i',
+                                $userEntry))
                     return true;
                 else
                     return false;
                 break;
 
             case 'email':
-                if (preg_match('/^[\w.%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i', $userEntry))
+                if (preg_match('/^[\w.%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i',
+                                $userEntry))
                     return true;
                 else
                     return false;
@@ -448,16 +459,20 @@ class PHPWS_Text
     /**
      * Creates a mod_rewrite link that can be parsed by Apache
      */
-    public static function rewriteLink($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public static function rewriteLink($subject, $module = null,
+            $getVars = null, $target = null, $title = null, $class_name = null)
     {
-        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target, $title, $class_name);
+        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target,
+                        $title, $class_name);
         $link->rewrite = true;
         return $link->get();
     }
 
-    public function secureRewriteLink($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public function secureRewriteLink($subject, $module = null, $getVars = null,
+            $target = null, $title = null, $class_name = null)
     {
-        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target, $title, $class_name);
+        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target,
+                        $title, $class_name);
         $link->rewrite = true;
         $link->secure = true;
         return $link->get();
@@ -478,7 +493,8 @@ class PHPWS_Text
         return sprintf('<a href="%s">%s</a>', $_SERVER['HTTP_REFERER'], $title);
     }
 
-    public static function quickLink($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public static function quickLink($subject, $module = null, $getVars = null,
+            $target = null, $title = null, $class_name = null)
     {
         $link = new PHPWS_Link($subject, $module, $getVars);
         $link->setTarget($target);
@@ -507,9 +523,11 @@ class PHPWS_Text
      * @param string $class_name CSS class attribute value
      * @return string Resultant link
      */
-    public static function secureLink($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public static function secureLink($subject, $module = null, $getVars = null,
+            $target = null, $title = null, $class_name = null)
     {
-        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target, $title, $class_name);
+        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target,
+                        $title, $class_name);
         $link->secure = true;
         return $link->get();
     }
@@ -540,14 +558,16 @@ class PHPWS_Text
      * @param string class_name String added to css class
      * @return string The complated link button HTML.
      */
-    public static function secureButton($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public static function secureButton($subject, $module = null,
+            $getVars = null, $target = null, $title = null, $class_name = null)
     {
         if (empty($title)) {
             $title = $subject;
         }
         $subject = '<span>' . $subject . '</span>';
         $class_name = trim('phpws_button ' . $class_name);
-        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target, $title, $class_name);
+        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target,
+                        $title, $class_name);
         $link->secure = true;
         return $link->get();
     }
@@ -563,7 +583,9 @@ class PHPWS_Text
      * @param boolean add_base    If true, add the site url to the address
      * @param boolean convert_amp If true, use "&amp;" instead of "&"
      */
-    public static function linkAddress($module = null, $getVars = null, $secure = false, $add_base = false, $convert_amp = true, $rewrite = false)
+    public static function linkAddress($module = null, $getVars = null,
+            $secure = false, $add_base = false, $convert_amp = true,
+            $rewrite = false)
     {
         $link = new PHPWS_Link('void', $module, $getVars);
         $link->secure = $secure;
@@ -573,9 +595,11 @@ class PHPWS_Text
         return $link->getAddress();
     }
 
-    public function rewriteAddress($module = null, $getVars = null, $secure = false, $add_base = false, $convert_amp = true)
+    public function rewriteAddress($module = null, $getVars = null,
+            $secure = false, $add_base = false, $convert_amp = true)
     {
-        return linkAddress($module, $getVars, $secure, $add_base, $convert_amp, true);
+        return linkAddress($module, $getVars, $secure, $add_base, $convert_amp,
+                true);
     }
 
     /**
@@ -593,9 +617,11 @@ class PHPWS_Text
      * @param string class_name String added to css class
      * @return string The complated link.
      */
-    public static function moduleLink($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public static function moduleLink($subject, $module = null, $getVars = null,
+            $target = null, $title = null, $class_name = null)
     {
-        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target, $title, $class_name);
+        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target,
+                        $title, $class_name);
         return $link->get();
     }
 
@@ -627,14 +653,16 @@ class PHPWS_Text
      * @param string class_name String added to css class
      * @return string The complated link button HTML.
      */
-    public static function moduleButton($subject, $module = null, $getVars = null, $target = null, $title = null, $class_name = null)
+    public static function moduleButton($subject, $module = null,
+            $getVars = null, $target = null, $title = null, $class_name = null)
     {
         if (empty($title)) {
             $title = $subject;
         }
         $subject = '<span>' . $subject . '</span>';
         $class_name = trim('phpws_button ' . $class_name);
-        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target, $title, $class_name);
+        $link = PHPWS_Text::quickLink($subject, $module, $getVars, $target,
+                        $title, $class_name);
         return $link->get();
     }
 
@@ -703,7 +731,8 @@ class PHPWS_Text
     /**
      * Makes links relative to home site
      */
-    public static function makeRelative(&$text, $prefix = true, $inlink_only = false)
+    public static function makeRelative(&$text, $prefix = true,
+            $inlink_only = false)
     {
         $address = addslashes(\phpws\PHPWS_Core::getHomeHttp());
         if ($prefix) {
@@ -727,7 +756,8 @@ class PHPWS_Text
      * @param allowed_mods mixed Array of allowed modules or string of one
      * @param ignore_mods  mixed Array of ignored modules or string of one
      */
-    public static function parseTag($text, $allowed_mods = null, $ignored_mods = null)
+    public static function parseTag($text, $allowed_mods = null,
+            $ignored_mods = null)
     {
         if (!isset($GLOBALS['embedded_tags'])) {
             return $text;
@@ -751,7 +781,8 @@ class PHPWS_Text
                     continue;
                 }
                 $search = "\[($module):([\w\s:\.\?\!]*)\]";
-                $text = preg_replace_callback("/$search/Ui", '\\phpws\\getEmbedded', $text);
+                $text = preg_replace_callback("/$search/Ui",
+                        '\\phpws\\getEmbedded', $text);
             }
         }
 
@@ -779,7 +810,8 @@ class PHPWS_Text
                 if (dirname($_SERVER['PHP_SELF']) == '/') {
                     $rewrite = substr($_SERVER['REQUEST_URI'], 1);
                 } else {
-                    $rewrite = str_ireplace(dirname($_SERVER['PHP_SELF']) . '/', '', $_SERVER['REQUEST_URI']);
+                    $rewrite = str_ireplace(dirname($_SERVER['PHP_SELF']) . '/',
+                            '', $_SERVER['REQUEST_URI']);
                 }
                 if (!empty($rewrite)) {
                     $re_array = explode('/', $rewrite);
@@ -923,7 +955,10 @@ class PHPWS_Text
             return $text;
         }
 
-        return str_replace('\"', '"', preg_replace('/(<a .*?>\s*http(s)?:\/\/)(.*?)(\s*<\/a>)/ie', "'\\1' . PHPWS_Text::shortenUrl('\\3', $limit) . '\\4'", $text));
+        return str_replace('\"', '"',
+                preg_replace('/(<a .*?>\s*http(s)?:\/\/)(.*?)(\s*<\/a>)/ie',
+                        "'\\1' . PHPWS_Text::shortenUrl('\\3', $limit) . '\\4'",
+                        $text));
     }
 
     public static function shortenUrl($url, $limit = COLLAPSE_LIMIT)
@@ -944,7 +979,8 @@ class PHPWS_Text
             $pickup = 3;
         }
 
-        return substr($url, 0, $url_length) . '...' . substr($url, -1 * $pickup, $pickup);
+        return substr($url, 0, $url_length) . '...' . substr($url, -1 * $pickup,
+                        $pickup);
     }
 
     /**
@@ -1037,4 +1073,3 @@ function getEmbedded($stuff)
 
     return call_user_func_array($function_name, $parameters);
 }
-

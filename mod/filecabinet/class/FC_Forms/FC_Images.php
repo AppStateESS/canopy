@@ -8,6 +8,7 @@ namespace filecabinet\FC_Forms;
  */
 class FC_Images extends FC_Folder_Factory
 {
+
     protected $ftype = IMAGE_FOLDER;
 
     public function getForm()
@@ -56,7 +57,8 @@ class FC_Images extends FC_Folder_Factory
         $template->setModuleTemplate('filecabinet', 'FC_Forms/image_view.html');
         $template->add('title', $row['title']);
         $template->add('alt', $row['alt']);
-        $template->add('filepath', $row['file_directory'] . $row['file_name']);
+        $template->add('filepath',
+                PHPWS_HOME_HTTP . $row['file_directory'] . $row['file_name']);
         return $template->get();
     }
 

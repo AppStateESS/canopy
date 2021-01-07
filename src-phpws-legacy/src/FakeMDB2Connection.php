@@ -115,11 +115,10 @@ class FakeMDB2Connection
     public function queryOne($sql)
     {
         $this->last_query = $sql;
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchColumn();
+        $stmt = $this->connection->query($sql);
+        $result = $stmt->fetchOne();
         if ($result === false) {
-            $result = null;
+            return;
         }
         return $result;
     }
@@ -127,7 +126,7 @@ class FakeMDB2Connection
     public function queryAll($sql)
     {
         $this->last_query = $sql;
-        return $this->connection->fetchAll($sql);
+        return $this->connection->fetchAllAssociative($sql);
     }
 
     public function queryCol($sql)
@@ -135,10 +134,7 @@ class FakeMDB2Connection
         $this->last_query = $sql;
         $result = null;
         $stmt = $this->connection->executeQuery($sql);
-        while ($row = $stmt->fetchColumn()) {
-            $result[] = $row;
-        }
-        return $result;
+        return $stmt->fetchFirstColumn();
     }
 
     public function queryRow($sql)
@@ -321,7 +317,8 @@ class FakeMDB2Connection
         if ($this->isMysql()) {
             return $this->connection->getSchemaManager()->tablesExist(array($sequence_table));
         } else {
-            $seqtb = $this->connection->getSchemaManager()->listSequences();
+            $schema = $this->connection->getSchemaManager();
+            $seqtb = $schema->listSequences();
             foreach ($seqtb as $seq) {
                 if ($seq->getName() === $sequence_table) {
                     return true;
@@ -333,8 +330,8 @@ class FakeMDB2Connection
 
     public function isMysql()
     {
-        return in_array($this->connection->getDriver()->getName(),
-                array('pdo_mysql', 'mysqli'));
+        return in_array($this->connection->getDriver()->getDatabasePlatform()->getName(),
+                array('pdo_mysql', 'mysqli', 'mysql'));
     }
 
     public function nextID($table_name)

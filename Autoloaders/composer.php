@@ -25,4 +25,10 @@
  * 
  * @author Matthew McNaney <mcnaneym at appstate dot edu>
  */
-require_once PHPWS_SOURCE_DIR . 'vendor/autoload.php';
+$composerAutoload = PHPWS_SOURCE_DIR . 'vendor/autoload.php';
+if (file_exists($composerAutoload)) {
+    require_once $composerAutoload;
+} else {
+    echo '<p>You need to run <code style="background-color : lightgreen">composer install</code> in the canopy directory.</p>';
+    exit;
+}

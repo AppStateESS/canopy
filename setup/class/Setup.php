@@ -801,7 +801,7 @@ class Setup
         $test['globals']['name'] = 'Register globals disabled';
         $test['globals']['crit'] = false;
 
-        $test['magic_quotes']['pass'] = !get_magic_quotes_gpc() && !get_magic_quotes_runtime();
+        $test['magic_quotes']['pass'] = true;
         $test['magic_quotes']['fail'] = 'Magic quotes is enabled. Please disable it in your php.ini file.';
         $test['magic_quotes']['name'] = 'Magic quotes disabled';
         $test['magic_quotes']['crit'] = true;

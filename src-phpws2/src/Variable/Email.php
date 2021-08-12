@@ -10,7 +10,8 @@ namespace phpws2\Variable;
  * @todo Expand functionality
  * @license http://opensource.org/licenses/lgpl-3.0.html
  */
-class Email extends StringVar {
+class Email extends StringVar
+{
 
     /**
      * @var string The type of variable
@@ -22,10 +23,13 @@ class Email extends StringVar {
      * @param string $varname Name of variable
      * @param string $value Email address
      */
-    public function __construct($value=null, $varname=null)
+    public function __construct($value = null, $varname = null)
     {
         $this->setLimit('80');
-        $this->setRegexpMatch('/^[\w.%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i');
+        $match = <<<EOF
+^[\w!#$%&\'"*+\/=?`{|}~^-]+(?:(\.+)[\w!#$%&\'"*+\/=?{|}~^-]+)*@(?:[a-z0-9-]+\.)+[a-z]{2,64}$
+EOF;
+        $this->setRegexpMatch('/' . $match . '/i');
         parent::__construct($value, $varname);
     }
 

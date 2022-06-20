@@ -1,10 +1,11 @@
 <?php
 
 /**
- 
+
  * @author Matthew McNaney <mcnaneym@appstate.edu>
  */
-abstract class User_Authorization {
+abstract class User_Authorization
+{
 
     abstract protected function authenticate();
 
@@ -58,8 +59,8 @@ abstract class User_Authorization {
 
     public function getLoginLink()
     {
-        return sprintf('<a href="%s">%s</a>', $this->login_link,
-                $this->login_link_label);
+        return sprintf('<a title="Sign in" href="%s">%s</a>', $this->login_link,
+            $this->login_link_label);
     }
 
     public function getView()
@@ -67,7 +68,7 @@ abstract class User_Authorization {
         $link = $this->login_link;
         $text = 'Log in';
         return <<<EOF
-        <a class = "btn btn-default" href = "$link">
+        <a class = "btn btn-default" title="Sign in or out" href="$link">
         <i class = "fa fa-user"></i> $text
         </a>
 EOF;
@@ -95,7 +96,7 @@ EOF;
     {
         if ($this->logout_link) {
             return sprintf('<a href="%s"><i class="fas fa-sign-out-alt"></i> %s</a>', $this->logout_link,
-                    'Log Out');
+                'Log Out');
         } else {
             return null;
         }
@@ -107,4 +108,3 @@ EOF;
     }
 
 }
-

@@ -1,13 +1,14 @@
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<a href="#" role="link" title="Administrative options" class="dropdown-toggle" data-toggle="dropdown">
   <i class="fas fa-cog"></i><span class="miniadmin-title"><?php echo $MINIADMIN_TITLE_ALT?></span>
 </a>
 <ul id="miniadmin" class="dropdown-menu">
-    <li class="nav-header">Canopy</li>
-    <li><a class="dropdown-item" href="index.php?module=controlpanel&command=panel_view">Control panel</a></li>
-    <?php $count=0; if (!empty($module_links)): foreach($module_links as $module_name=>$mod_links):$count++;?>
-    <li class="divider"></li>
-    <li class="nav-header"><?php echo $module_name?></li>
-    <?php if (!empty($mod_links['links'])) : foreach($mod_links['links'] as $link): ?>
-    <li><?php echo $link?></li>
-    <?php endforeach; endif; endforeach; endif;?>
+  <li class="nav-header">Canopy</li>
+  <li><a role="button" class="dropdown-item" href="index.php?module=controlpanel&command=panel_view">Control panel</a>
+  </li>
+  <?php $count=0; if (!empty($module_links)): foreach($module_links as $module_name=>$mod_links):$count++;?>
+  <li class="divider"></li>
+  <li class="nav-header"><?php echo $module_name?></li>
+  <?php if (!empty($mod_links['links'])) : foreach($mod_links['links'] as $link): ?>
+  <li><?php echo $link?></li>
+  <?php endforeach; endif; endforeach; endif;?>
 </ul>

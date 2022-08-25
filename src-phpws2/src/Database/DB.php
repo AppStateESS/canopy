@@ -326,7 +326,7 @@ abstract class DB extends \Canopy\Data
             $this->setConditional($conditional);
         } else {
             $new_conditional = new \phpws2\Database\Conditional($this,
-                    $this->conditional, $conditional, 'AND');
+                $this->conditional, $conditional, 'AND');
             $this->setConditional($new_conditional);
         }
     }
@@ -364,7 +364,7 @@ abstract class DB extends \Canopy\Data
                 $current_conditional = $conditional;
             } else {
                 $current_conditional = new \phpws2\Database\Conditional($this,
-                        $current_conditional, $conditional, 'AND');
+                    $current_conditional, $conditional, 'AND');
             }
         }
         $this->setConditional($current_conditional);
@@ -449,8 +449,8 @@ abstract class DB extends \Canopy\Data
         $hash = md5($this->dsn->getPDOString());
         if (!isset(self::$pdo_stack[$hash])) {
             self::$pdo_stack[$hash] = new \PDO($this->dsn->getPDOString(),
-                    $this->dsn->getUsername(), $this->dsn->getPassword(),
-                    array(
+                $this->dsn->getUsername(), $this->dsn->getPassword(),
+                array(
                 \PDO::ATTR_PERSISTENT => DB_PERSISTENT_CONNECTION, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
         }
         self::$PDO = self::$pdo_stack[$hash];
@@ -698,7 +698,7 @@ abstract class DB extends \Canopy\Data
         }
         if (DATABASE_CHECK_TABLE && !$this->tableExists($table_name)) {
             throw new \Exception(sprintf('Table "%s" does not exist',
-                            $table_name));
+                        $table_name));
         }
         $table = $this->buildTable($table_name, $alias);
 
@@ -778,7 +778,7 @@ abstract class DB extends \Canopy\Data
             return $this->tables[$table_name];
         } else {
             throw new \Exception(sprintf('Table "%s" does not exist',
-                            $table_name));
+                        $table_name));
         }
     }
 
@@ -914,7 +914,7 @@ abstract class DB extends \Canopy\Data
         $operator = $operator ? $operator : '=';
         $conditional = $this->createConditional($left, $right, $operator);
         return $this->joinResources($left->getResource(), $right->getResource(),
-                        $conditional, $type);
+                $conditional, $type);
     }
 
     /**
@@ -926,8 +926,8 @@ abstract class DB extends \Canopy\Data
      * @return \phpws2\Database\JoinTable
      */
     public function joinResources(\phpws2\Database\Resource $left_resource,
-            \phpws2\Database\Resource $right_resource,
-            \phpws2\Database\Conditional $conditional = null, $type = null)
+        \phpws2\Database\Resource $right_resource,
+        \phpws2\Database\Conditional $conditional = null, $type = null)
     {
         $jt = new Join($left_resource, $right_resource, $type, $conditional);
         $this->joined_resources[] = $jt;
@@ -1048,7 +1048,6 @@ abstract class DB extends \Canopy\Data
         $query[] = 'DELETE';
         $data = $this->pullResourceData(self::DELETE);
         extract($data);
-
 
         if (!empty($include_on_join)) {
             foreach ($include_on_join as $module) {
@@ -1376,7 +1375,6 @@ abstract class DB extends \Canopy\Data
         // if where_groups is NOT empty then allow where to start with its conjunction
         $allow_first_conjunction = false;
 
-
         if (!empty($this->tables) && !empty($this->sub_selects)) {
             $modules = array_merge($this->tables, $this->sub_selects);
         } elseif ($this->tables) {
@@ -1588,7 +1586,7 @@ abstract class DB extends \Canopy\Data
         foreach ($this->tables as $tbl) {
             if (\phpws2\Database_CHECK_COLUMNS && !$tbl->columnExists($column_name)) {
                 throw new \Exception(sprintf('Column "%s" not found',
-                                $column_name));
+                            $column_name));
             }
             if ($add_to_table) {
                 $fields[] = $tbl->addField($column_name);
@@ -1680,7 +1678,7 @@ abstract class DB extends \Canopy\Data
                 $value = (string) $value;
             } else {
                 trigger_error(sprintf('Database quoting failed on %s object, missing __toString',
-                                get_class($value)), E_USER_ERROR);
+                        get_class($value)), E_USER_ERROR);
             }
         }
 
@@ -1812,7 +1810,7 @@ abstract class DB extends \Canopy\Data
         }
         $headers = null;
 
-        $func = function($value) {
+        $func = function ($value) {
             return '"' . str_replace('"', '\"', $value) . '"';
         };
 

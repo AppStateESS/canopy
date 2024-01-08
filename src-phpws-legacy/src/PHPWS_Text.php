@@ -375,7 +375,8 @@ class PHPWS_Text
         $t->useBreaker($use_breaker);
         $t->useAnchor($fix_anchors);
         $text = $t->getPrint();
-        $text = filter_var($text, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_HIGH);
+//        $text = filter_var($text, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_HIGH);
+        $text = filter_var($text, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_BACKTICK); //Allows for accents from non English languages. parseInput should filter out unwanted characters regarding SQL injection.
         return $text;
     }
 
